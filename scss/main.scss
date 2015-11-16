@@ -1,0 +1,69 @@
+// MODULES
+@import "modules/_mixins";
+// @import "modules/_layout";
+
+/* LAYOUT
+----------------------------------------------- */
+.container {
+	margin: 0 auto;
+	max-width: 80em;
+}
+
+/* FONTS
+----------------------------------------------- */
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
+
+%primary-sans {
+    font-family: 'Roboto', helvetica, arial, sans-serif;
+}
+
+%primary-mono {
+	font-family: 'Inconsolata', consolas, monaco, monospace;
+}
+
+
+/* TYPOGRAPHY
+----------------------------------------------- */
+body {
+	@extend %primary-sans;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* INTRO
+----------------------------------------------- */
+.intro {
+	background: #bbb url('/images/hero.jpg') no-repeat center;
+	background-size: cover;
+	display: inline-block;
+	height: 70vh;
+	width: 100%;
+	
+	h1 {
+		color: #fff;
+		font-weight: 100;
+		letter-spacing: -.125rem;
+		@include type-size(60);
+	}
+}
+
+/* FEED
+----------------------------------------------- */
+.feed-item {
+	li {
+		border-bottom: 1px solid #eee;
+		float: left;
+		letter-spacing: -.025rem;
+		padding: 1.5rem 0;
+		width: 25%;
+
+		@include type-size(20);
+		@extend %primary-mono;
+	}
+}

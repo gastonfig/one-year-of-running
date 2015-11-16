@@ -1,9 +1,9 @@
 {
-  "name": "",
-  "version": "0.0.0",
-  "dependencies": {
-  },
+  "name": "gastonfig_runs",
+  "version": "0.0.1",
+  "dependencies": {},
   "private": true,
   "devDependencies": {
+    "normalize-css": "~3.0.3"
   }
 }
