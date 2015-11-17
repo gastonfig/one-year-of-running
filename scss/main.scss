@@ -42,15 +42,17 @@ ul {
 $bg-color: #020722;
 $accent-color: #09C4E6;
 
+
 /* INTRO
 ----------------------------------------------- */
 .intro {
 	background: $bg-color;
 	background-size: cover;
-	display: inline-block;
-	height: 70vh;
+	display: block;
+	height: 80vh;
 	position: relative;
 	width: 100%;
+
 	
 	h1 {
 		color: #fff;
@@ -61,6 +63,42 @@ $accent-color: #09C4E6;
 		top: 15%;
 		@include type-size(60);
 	}
+}
+
+.intro__meta {
+    background: rgba(255,255,255,.05);
+    position: absolute;
+    width: 100%;
+    // height: 10vh;
+    left: 0;
+    bottom: 0%;
+
+    padding: to-rem(30) 0;
+
+    li {
+    	color: #fff;
+    	float: left;
+    	font-weight: 700;
+    	letter-spacing: -.15rem;
+    	text-align: center;
+    	width: 33.33%;
+
+		@include type-size(70);
+		@extend %primary-mono;
+
+		&:last-child {
+			// width: 100%;
+		}
+    }
+
+    span {
+    	display: block;
+    	clear: both;
+    	font-weight: 400;
+    	letter-spacing: .12rem;
+    	text-transform: uppercase;
+		@include type-size(13);		
+    }
 }
 
 /* FEED
