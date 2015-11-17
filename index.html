@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="" ng-app="runsApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -10,7 +10,7 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="css/styles.css">
     </head>
-    <body>
+    <body ng-controller="mainCtrl">
 
     <section class="intro">
         <h1>Run Stats 2015</h1>
@@ -21,88 +21,17 @@
 
     <section class="feed container">
         <ul>
-            <li class="feed-item">
+            <li class="feed-item" ng-repeat="run in data">
                 <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
+                    <li class="feed__date">{{ run.start_date_local | formatDate}}</li>
+                    <li class="feed__dist">{{ run.distance | metersToMiles}}<span>mi</span></li>
+                    <li class="feed__time">{{ run.moving_time | secondsToHMS}}</li>
+                    <li class="feed__pace">{{ run.average_speed | milesPerHour}}<span>/mi</span></li>
                 </ul>
             </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
-            <li class="feed-item">
-                <ul>
-                    <li class="feed__date">03-02-15</li>
-                    <li class="feed__dist">4<span>mi</span></li>
-                    <li class="feed__time">0:40:33</li>
-                    <li class="feed__pace">10<span>/mi</span></li>
-                </ul>
-            </li>
+            
         </ul>
     </section>
-    <script src="js/script.js"></script>
+    <script src="js/scripts.min.js"></script>
     </body>
 </html>

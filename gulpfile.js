@@ -31,15 +31,20 @@ gulp.task('sass', function() {
 
 /* JS
 ----------------------------------------------- */
-gulp.task('js', function () {
-  gulp.src('js/*.js')
+gulp.task('concat-js', function() {
+  gulp.src([
+    'bower_components/angular/angular.js',
+    'src/js/app.js',
+    ])
+    .pipe(concat('scripts.min.js'))
+    .pipe(gulp.dest('js/'))
     .pipe(livereload());
 });
 
 gulp.task('watch', function () {
   livereload.listen();
   gulp.watch(['*.html'], ['html']);
-  gulp.watch(['js/*.js'], ['js']);
+  gulp.watch(['src/js/**/*.js', 'js/**/*.js'], ['concat-js']);
   gulp.watch('scss/**/*.scss', ['sass']);
 });
 

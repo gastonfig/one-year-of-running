@@ -359,7 +359,7 @@ th {
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
 .container {
   margin: 0 auto;
-  max-width: 80em; }
+  max-width: 60em; }
 
 /* FONTS
 ----------------------------------------------- */
@@ -376,28 +376,45 @@ ul {
   margin: 0;
   padding: 0; }
 
+/* COLORS
+----------------------------------------------- */
 /* INTRO
 ----------------------------------------------- */
 .intro {
-  background: #bbb url("/images/hero.jpg") no-repeat center;
+  background: #020722;
   background-size: cover;
   display: inline-block;
   height: 70vh;
+  position: relative;
   width: 100%; }
   .intro h1 {
     color: #fff;
-    font-weight: 100;
-    letter-spacing: -.125rem;
+    font-weight: 800;
+    letter-spacing: -.025rem;
+    left: 15%;
+    position: absolute;
+    top: 15%;
     font-size: 3.75rem;
     line-height: 3.75rem; }
 
 /* FEED
 ----------------------------------------------- */
-.feed-item li {
-  border-bottom: 1px solid #eee;
+.feed-item {
   float: left;
-  letter-spacing: -.025rem;
-  padding: 1.5rem 0;
-  width: 25%;
-  font-size: 1.25rem;
-  line-height: 1.25rem; }
+  width: 100%;
+  transition: all .23s ease-in-out; }
+  .feed-item:hover {
+    background: #020722;
+    color: #09C4E6;
+    transform: scale(1.05); }
+    .feed-item:hover li {
+      border-color: transparent; }
+  .feed-item li {
+    border-bottom: 1px solid #eee;
+    float: left;
+    letter-spacing: -.025rem;
+    padding: 1.5rem 0;
+    text-align: center;
+    width: 25%;
+    font-size: 1.125rem;
+    line-height: 1.125rem; }

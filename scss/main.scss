@@ -6,13 +6,14 @@
 ----------------------------------------------- */
 .container {
 	margin: 0 auto;
-	max-width: 80em;
+	max-width: 60em;
 }
 
 /* FONTS
 ----------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
+// @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,300,100,500,700);
 
 %primary-sans {
     font-family: 'Roboto', helvetica, arial, sans-serif;
@@ -20,6 +21,7 @@
 
 %primary-mono {
 	font-family: 'Inconsolata', consolas, monaco, monospace;
+	// font-family: 'Roboto Mono', consolas, monaco, monospace;
 }
 
 
@@ -35,20 +37,28 @@ ul {
 	padding: 0;
 }
 
+/* COLORS
+----------------------------------------------- */
+$bg-color: #020722;
+$accent-color: #09C4E6;
 
 /* INTRO
 ----------------------------------------------- */
 .intro {
-	background: #bbb url('/images/hero.jpg') no-repeat center;
+	background: $bg-color;
 	background-size: cover;
 	display: inline-block;
 	height: 70vh;
+	position: relative;
 	width: 100%;
 	
 	h1 {
 		color: #fff;
-		font-weight: 100;
-		letter-spacing: -.125rem;
+		font-weight: 800;
+		letter-spacing: -.025rem;
+		left: 15%;
+		position: absolute;
+		top: 15%;
 		@include type-size(60);
 	}
 }
@@ -56,14 +66,30 @@ ul {
 /* FEED
 ----------------------------------------------- */
 .feed-item {
+	float: left;
+	width: 100%;
+	transition: all .23s ease-in-out;
+
+	&:hover {
+		background: $bg-color;
+		color: $accent-color;
+		transform: scale(1.05);
+
+		li {
+			border-color: transparent;
+		}
+	}
+
 	li {
 		border-bottom: 1px solid #eee;
 		float: left;
 		letter-spacing: -.025rem;
 		padding: 1.5rem 0;
+		text-align: center;
 		width: 25%;
 
-		@include type-size(20);
+		@include type-size(18);
 		@extend %primary-mono;
+
 	}
 }
