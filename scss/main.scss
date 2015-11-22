@@ -65,6 +65,26 @@ $accent-color: #09C4E6;
 	}
 }
 
+.intro__chart {
+	// background: rgba(255, 255, 255, .2);
+	height: 600px;
+	position: absolute;
+	right: 5%;
+	top: 0;
+	width: 600px;
+
+
+	path {
+		// stroke: #09C4E6;
+		stroke-width: 2;
+		fill: none;
+	}
+
+	line {
+		stroke: black;
+	}
+}
+
 .intro__meta {
     background: rgba(255,255,255,.05);
     position: absolute;

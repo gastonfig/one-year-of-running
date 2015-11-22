@@ -397,6 +397,18 @@ ul {
     font-size: 3.75rem;
     line-height: 3.75rem; }
 
+.intro__chart {
+  height: 600px;
+  position: absolute;
+  right: 5%;
+  top: 0;
+  width: 600px; }
+  .intro__chart path {
+    stroke-width: 2;
+    fill: none; }
+  .intro__chart line {
+    stroke: black; }
+
 .intro__meta {
   background: rgba(255, 255, 255, 0.05);
   position: absolute;

@@ -33,6 +33,7 @@ gulp.task('sass', function() {
 ----------------------------------------------- */
 gulp.task('concat-js', function() {
   gulp.src([
+    'bower_components/d3/d3.min.js',
     'bower_components/angular/angular.js',
     'src/js/app.js',
     ])
