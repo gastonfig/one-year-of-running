@@ -10,7 +10,7 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="css/styles.css">
     </head>
-    <body ng-controller="mainCtrl">
+    <body ng-controller="mainCtrl" ng-cloak>
 
     <section class="intro">
         <h1>Run Stats 2015</h1>
@@ -18,9 +18,9 @@
 
         <div class="intro__meta">
             <ul>
-                <li>74<span>mi</span></li>
-                <li>24<span>hrs</span></li>
-                <li>12<span>runs</span></li>
+                <li>{{ distanceSum | metersToMiles }}<span>mi</span></li>
+                <li>{{ timeSum | secondsToHMS }}<span>hrs</span></li>
+                <li>{{ runsSum }}<span>runs</span></li>
             </ul>            
         </div>        
     </section>

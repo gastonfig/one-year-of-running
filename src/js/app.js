@@ -26,7 +26,21 @@ var runsApp = angular.module('runsApp',[]);
 runsApp.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
 		$http.get('data.json').success(function(data) {
 			$scope.data = data;
+
+			$scope.distanceSum = getSum(data, 'distance');
+			$scope.timeSum = getSum(data, 'moving_time');
+			$scope.runsSum = data.length;
 		});
+
+		function getSum(data, key) {
+			var sum = 0;
+
+			for (var i = data.length - 1; i >= 0; i--) {
+				sum += parseInt(data[i][key]);
+			}
+
+			return sum;
+		}
 }]);
 
 runsApp.filter('metersToMiles', function() {
@@ -38,7 +52,7 @@ runsApp.filter('metersToMiles', function() {
 runsApp.filter('secondsToHMS', function() {
 	return function(input) {
 		var totSeconds = input,
-			hours = parseInt(totSeconds/3600) % 24,
+			hours = parseInt(totSeconds/3600),
 			minutes = parseInt(totSeconds/60) % 60,
 			seconds = totSeconds % 60;
 
@@ -105,7 +119,7 @@ runsApp.directive('linearChart', function($window) {
 					        .attr("transform", "translate(" + w/2 +", " + h/2 + ")");
 
 					    var line = d3.svg.line()
-					        .interpolate("cardinal")
+					        // .interpolate("cardinal")
 					        .x(function(d,i) { 
 					            return radius * x(d.distance) * Math.sin(angle * i) / 2;
 					        })
@@ -130,9 +144,9 @@ runsApp.directive('linearChart', function($window) {
 						    .attr('cy', function(d, i) {
 						                  return radius * y(d.distance) * Math.cos(angle * i) / 2 * -1;
 						                })
-						    .attr('fill', '#09C4E6')
-						    // .attr('stroke', '#09C4E6')
-						    // .attr('stroke-width', 2.5);
+						    // .attr('fill', '#09C4E6')
+						    .attr('stroke', '#09C4E6')
+						    .attr('stroke-width', 2.5);
 
 						// Rings
 						vis.append('svg:g').selectAll('.step')
