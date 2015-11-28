@@ -1,8 +1,13 @@
 // MIXINS
 
-@mixin type-size($sizeValue: 1.6, $lineHeight: $sizeValue) {
+@mixin type-size($sizeValue: 16, $lineHeight: $sizeValue, $relative: false) {
   font-size: ($sizeValue / 16) + rem;
-  line-height: ($lineHeight / 16) + rem;
+
+  @if $relative == false {
+	  line-height: ($lineHeight / 16) + rem;  	
+  } @else {
+	  line-height: ($sizeValue / 16 * $lineHeight) + rem;  	
+  }
 }
 
 @mixin to-rem($property, $val) {

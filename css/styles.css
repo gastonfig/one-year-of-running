@@ -356,7 +356,6 @@ th {
 /* LAYOUT
 ----------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
 .container {
   margin: 0 auto;
   max-width: 60em; }
@@ -366,7 +365,7 @@ th {
 body {
   font-family: 'Roboto', helvetica, arial, sans-serif; }
 
-.intro__meta li, .feed-item li {
+.meta li, .feed-item li {
   font-family: 'Inconsolata', consolas, monaco, monospace; }
 
 /* TYPOGRAPHY
@@ -387,15 +386,25 @@ ul {
   height: 80vh;
   position: relative;
   width: 100%; }
-  .intro h1 {
-    color: #fff;
-    font-weight: 800;
-    letter-spacing: -.025rem;
-    left: 15%;
+  .intro .inner {
+    left: 7%;
     position: absolute;
     top: 15%;
-    font-size: 3.75rem;
-    line-height: 3.75rem; }
+    max-width: 43%; }
+  .intro h1 {
+    color: #fff;
+    font-weight: 100;
+    letter-spacing: -.14rem;
+    position: relative;
+    font-size: 6.25rem;
+    line-height: 6.875rem; }
+  .intro p {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 300;
+    letter-spacing: 0.01875rem;
+    padding-left: 15%;
+    font-size: 1rem;
+    line-height: 1.525rem; }
 
 .intro__chart {
   height: 600px;
@@ -403,20 +412,22 @@ ul {
   right: 5%;
   top: 0;
   width: 600px; }
-  .intro__chart path {
-    stroke-width: 2;
-    fill: none; }
   .intro__chart line {
     stroke: black; }
+  .intro__chart .step {
+    stroke-dasharray: 2, 3; }
 
-.intro__meta {
-  background: rgba(255, 255, 255, 0.05);
-  position: absolute;
+/* META
+----------------------------------------------- */
+.meta {
+  background: #061129;
+  display: inline-block;
   width: 100%;
-  left: 0;
-  bottom: 0%;
   padding: 1.875rem 0; }
-  .intro__meta li {
+  .meta ul {
+    display: inline-block;
+    width: 100%; }
+  .meta li {
     color: #fff;
     float: left;
     font-weight: 700;
@@ -425,7 +436,7 @@ ul {
     width: 33.33%;
     font-size: 4.375rem;
     line-height: 4.375rem; }
-  .intro__meta span {
+  .meta span {
     display: block;
     clear: both;
     font-weight: 400;
@@ -444,6 +455,13 @@ ul {
     background: #020722;
     color: #09C4E6;
     transform: scale(1.05); }
+    .feed-item:hover:after {
+      content: '';
+      background: red;
+      position: absolute;
+      left: 0;
+      height: auto;
+      width: 100; }
     .feed-item:hover li {
       border-color: transparent; }
   .feed-item li {

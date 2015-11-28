@@ -8,24 +8,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,500,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body ng-controller="mainCtrl" ng-cloak>
 
     <section class="intro">
-        <h1>Run Stats 2015</h1>
-        <div class="intro__chart" linear-chart chart-data="data"></div>
+        <div class="container">
+            <div class="inner">
+                <h1>One Year <br> of Running</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan nisi vitae rutrum bibendum. Fusce non sem iaculis, rhoncus mi vel, vulputate tortor. Nunc molestie nisl sit amet scelerisque porta. Integer tristique mattis eros, sit amet pretium lacus placerat sit amet.</p>
+            </div>
+            
+            <div class="intro__chart" linear-chart chart-data="data"></div>
+        </div>
 
-        <div class="intro__meta">
-            <ul>
-                <li>{{ distanceSum | metersToMiles }}<span>mi</span></li>
-                <li>{{ timeSum | secondsToHMS }}<span>hrs</span></li>
-                <li>{{ runsSum }}<span>runs</span></li>
-            </ul>            
-        </div>        
+        <!-- <div class="intro__meta">
+                      
+        </div>  -->       
     </section>
 
-    <section class="feed container">
+    <section class="meta">
+        <ul>
+            <li>{{ distanceSum | metersToMiles }}<span>mi</span></li>
+            <li>{{ timeSum | secondsToHMS }}<span>hrs</span></li>
+            <li>{{ runsSum }}<span>runs</span></li>
+        </ul>  
+    </section>
+
+    <!-- <section class="feed container">
         <ul>
             <li class="feed-item" ng-repeat="run in data">
                 <ul>
@@ -37,7 +48,7 @@
             </li>
             
         </ul>
-    </section>
+    </section> -->
     <script src="js/scripts.min.js"></script>
     </body>
 </html>

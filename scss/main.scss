@@ -12,7 +12,7 @@
 /* FONTS
 ----------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
+// @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
 // @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,300,100,500,700);
 
 %primary-sans {
@@ -22,6 +22,10 @@
 %primary-mono {
 	font-family: 'Inconsolata', consolas, monaco, monospace;
 	// font-family: 'Roboto Mono', consolas, monaco, monospace;
+}
+
+%antialias {
+	-webkit-font-smoothing: antialiased;
 }
 
 
@@ -40,12 +44,14 @@ ul {
 /* COLORS
 ----------------------------------------------- */
 $bg-color: #020722;
+$bg-color-lighter: #061129;
 $accent-color: #09C4E6;
 
 
 /* INTRO
 ----------------------------------------------- */
 .intro {
+	// background: $bg-color url('/images/hero.jpg') no-repeat center;
 	background: $bg-color;
 	background-size: cover;
 	display: block;
@@ -53,15 +59,42 @@ $accent-color: #09C4E6;
 	position: relative;
 	width: 100%;
 
+	.inner {
+		left: 7%;
+		position: absolute;		
+		top: 15%;
+		max-width: 43%;
+	}
+
 	
 	h1 {
 		color: #fff;
-		font-weight: 800;
-		letter-spacing: -.025rem;
-		left: 15%;
-		position: absolute;
-		top: 15%;
-		@include type-size(60);
+		font-weight: 100;
+		letter-spacing: -.14rem;
+		position: relative;
+		@include type-size(100, 1.1, true);
+
+		// &:after {
+		// 	content: '‘15';
+		// 	color: rgba(255,255,255,.1);
+		// 	font-weight: 700;
+		// 	left: 40%;
+		// 	letter-spacing: -1rem;
+		// 	position: absolute;
+		// 	top: -60%;
+		// 	@include type-size(250);
+
+		// }
+	}
+
+	p {
+		color: rgba(255,255,255,.4);
+		font-weight: 300;
+		letter-spacing: to-rem(0.3);
+		padding-left: 15%;
+
+		@include type-size(16, 1.525, true);
+
 	}
 }
 
@@ -76,24 +109,38 @@ $accent-color: #09C4E6;
 
 	path {
 		// stroke: #09C4E6;
-		stroke-width: 2;
-		fill: none;
+		// stroke-width: 2;
+		// fill: none;
+		// opacity: .7;
 	}
 
 	line {
 		stroke: black;
 	}
+
+	.step {
+		// stroke-linecap: round;
+		stroke-dasharray: 2, 3;
+	}
 }
 
-.intro__meta {
-    background: rgba(255,255,255,.05);
-    position: absolute;
+/* META
+----------------------------------------------- */
+.meta {
+    background: $bg-color-lighter;
+    display: inline-block;
+    // position: absolute;
     width: 100%;
     // height: 10vh;
-    left: 0;
-    bottom: 0%;
+    // left: 0;
+    // bottom: 0%;
 
     padding: to-rem(30) 0;
+
+    ul {
+    	display: inline-block;
+	    width: 100%;
+    }
 
     li {
     	color: #fff;
@@ -133,8 +180,18 @@ $accent-color: #09C4E6;
 		color: $accent-color;
 		transform: scale(1.05);
 
+		&:after {
+			content: '';
+			background: red;
+			position: absolute;
+			left: 0;
+			height: auto;
+			width: 100;
+		}
+
 		li {
 			border-color: transparent;
+
 		}
 	}
 
