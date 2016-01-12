@@ -356,38 +356,42 @@ th {
 /* LAYOUT
 ----------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
 .container {
+  display: inline-block;
   margin: 0 auto;
-  max-width: 60em; }
+  max-width: 75em;
+  width: 75em; }
 
 /* FONTS
 ----------------------------------------------- */
 body {
   font-family: 'Roboto', helvetica, arial, sans-serif; }
 
-.meta li, .feed-item li {
+.feed-item li {
   font-family: 'Inconsolata', consolas, monaco, monospace; }
 
+/* COLORS
+----------------------------------------------- */
 /* TYPOGRAPHY
 ----------------------------------------------- */
+body {
+  background: #020722; }
+
 ul {
   list-style: none;
   margin: 0;
   padding: 0; }
 
-/* COLORS
------------------------------------------------ */
 /* INTRO
 ----------------------------------------------- */
 .intro {
-  background: #020722;
   background-size: cover;
   display: block;
-  height: 80vh;
-  position: relative;
-  width: 100%; }
+  height: 95vh;
+  position: relative; }
   .intro .inner {
-    left: 7%;
+    left: 0;
     position: absolute;
     top: 15%;
     max-width: 43%; }
@@ -399,51 +403,97 @@ ul {
     font-size: 6.25rem;
     line-height: 6.875rem; }
   .intro p {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.45);
     font-weight: 300;
-    letter-spacing: 0.01875rem;
-    padding-left: 15%;
+    letter-spacing: 0.03125rem;
+    margin-left: 20%;
+    width: 100%;
     font-size: 1rem;
     line-height: 1.525rem; }
 
 .intro__chart {
-  height: 600px;
   position: absolute;
-  right: 5%;
-  top: 0;
-  width: 600px; }
-  .intro__chart line {
-    stroke: black; }
-  .intro__chart .step {
-    stroke-dasharray: 2, 3; }
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%); }
+  .intro__chart .step, .intro__chart .line {
+    fill: transparent;
+    stroke: #fff;
+    opacity: .1;
+    stroke-width: 1; }
+  .intro__chart .line {
+    opacity: .07; }
+  .intro__chart .circle {
+    fill: #09C4E6; }
+  .intro__chart .path {
+    fill: rgba(117, 69, 230, 0.09); }
 
 /* META
 ----------------------------------------------- */
-.meta {
-  background: #061129;
+.runs-circle {
+  stroke: rgba(0, 0, 0, 0.3);
+  stroke-width: 1; }
+
+.runs-label {
+  font-family: % primary-sans;
+  font-weight: 100;
+  letter-spacing: 0.15625rem;
+  opacity: .76;
+  text-transform: uppercase;
+  font-size: 0.5625rem;
+  line-height: 0.5625rem; }
+
+.miles-line {
+  stroke-linecap: round;
+  stroke-width: 8px;
+  rx: 2.5;
+  ry: 2.5; }
+
+/* RUN
+----------------------------------------------- */
+.third {
+  width: 33.33%; }
+
+.two-thirds {
+  width: 66.67%; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+section {
   display: inline-block;
-  width: 100%;
-  padding: 1.875rem 0; }
-  .meta ul {
-    display: inline-block;
-    width: 100%; }
-  .meta li {
+  width: 100%; }
+
+.stats {
+  padding: 3.125rem 0; }
+  .stats .value p {
     color: #fff;
-    float: left;
-    font-weight: 700;
-    letter-spacing: -.15rem;
+    font-weight: 100;
+    letter-spacing: -0.25rem;
+    margin: 0;
     text-align: center;
-    width: 33.33%;
-    font-size: 4.375rem;
-    line-height: 4.375rem; }
-  .meta span {
-    display: block;
-    clear: both;
-    font-weight: 400;
-    letter-spacing: .12rem;
-    text-transform: uppercase;
-    font-size: 0.8125rem;
-    line-height: 0.8125rem; }
+    font-size: 9.625rem;
+    line-height: 9.625rem; }
+    .stats .value p span {
+      display: block;
+      font-weight: 500;
+      letter-spacing: 0.15625rem;
+      text-transform: uppercase;
+      opacity: .4;
+      font-size: 1.125rem;
+      line-height: 1.125rem; }
+
+.run {
+  background: #01051c;
+  text-align: center;
+  position: relative; }
+  .run .value {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); }
 
 /* FEED
 ----------------------------------------------- */
@@ -473,3 +523,8 @@ ul {
     width: 25%;
     font-size: 1.125rem;
     line-height: 1.125rem; }
+
+/* ABOUT
+----------------------------------------------- */
+.about {
+  background: #fff; }
