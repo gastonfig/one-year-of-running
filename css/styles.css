@@ -358,10 +358,24 @@ th {
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
 .container {
-  display: inline-block;
   margin: 0 auto;
-  max-width: 75em;
-  width: 75em; }
+  max-width: 68.75em; }
+  .container:after {
+    content: " ";
+    display: block;
+    clear: both; }
+
+.third {
+  width: 33.33%; }
+
+.two-thirds {
+  width: 66.67%; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
 
 /* FONTS
 ----------------------------------------------- */
@@ -449,51 +463,46 @@ ul {
   rx: 2.5;
   ry: 2.5; }
 
+/* STATS
+----------------------------------------------- */
 /* RUN
 ----------------------------------------------- */
-.third {
-  width: 33.33%; }
-
-.two-thirds {
-  width: 66.67%; }
-
-.right {
-  float: right; }
-
-.left {
-  float: left; }
-
-section {
-  display: inline-block;
-  width: 100%; }
-
-.stats {
-  padding: 3.125rem 0; }
-  .stats .value p {
+.stats, .stats_with-graph {
+  padding: 7.5rem 0;
+  position: relative; }
+  .stats .value p, .stats_with-graph .value p {
     color: #fff;
+    display: inline-block;
     font-weight: 100;
-    letter-spacing: -0.25rem;
+    letter-spacing: 0.04688rem;
     margin: 0;
-    text-align: center;
     font-size: 9.625rem;
     line-height: 9.625rem; }
-    .stats .value p span {
+    .stats .value p span, .stats_with-graph .value p span {
       display: block;
       font-weight: 500;
       letter-spacing: 0.15625rem;
       text-transform: uppercase;
       opacity: .4;
+      text-align: center;
       font-size: 1.125rem;
       line-height: 1.125rem; }
 
-.run {
-  background: #01051c;
-  text-align: center;
+.stats_with-graph .container {
   position: relative; }
-  .run .value {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%); }
+
+.stats_with-graph .value {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); }
+  .stats_with-graph .value.left {
+    left: 0; }
+  .stats_with-graph .value.right {
+    right: 0;
+    text-align: right; }
+
+.run {
+  background: #01051c; }
 
 /* FEED
 ----------------------------------------------- */

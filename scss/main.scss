@@ -4,13 +4,37 @@
 
 /* LAYOUT
 ----------------------------------------------- */
-$grid-width: 1200;
+$grid-width: 1100;
+
+.outer {
+	// position: relative;
+}
 
 .container {
-	display: inline-block;
 	margin: 0 auto;
-	max-width: ($grid-width/16) * 1em;	
-    width: ($grid-width/16) * 1em;
+	max-width: ($grid-width/16) * 1em;
+
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+	}
+}
+
+.third {
+	width: 33.33%;
+}
+
+.two-thirds {
+	width: 66.67%;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
 }
 
 /* FONTS
@@ -215,39 +239,22 @@ ul {
 	ry: 2.5;
 }
 
+/* STATS
+----------------------------------------------- */
+
+
 /* RUN
 ----------------------------------------------- */
-.third {
-	width: 33.33%;
-}
-
-.two-thirds {
-	width: 66.67%;
-}
-
-.right {
-	float: right;
-}
-
-.left {
-	float: left;
-}
-
-section {
-	display: inline-block;	
-	width: 100%;
-}
-
-.stats {
-	padding: to-rem(50) 0;
-
+.stats, .stats_with-graph {
+	padding: to-rem(120) 0;
+	position: relative;
 
 	.value p {
 		color: #fff;
+		display: inline-block;
 		font-weight: 100;
-		letter-spacing: to-rem(-4);
+		letter-spacing: to-rem(.75);
 		margin: 0;
-		text-align: center;
 		@include type-size(154);
 
 		span {
@@ -256,21 +263,35 @@ section {
 			letter-spacing: to-rem(2.5);
 			text-transform: uppercase;
 			opacity: .4;
+			text-align: center;
 			@include type-size(18);
 		}
 	}
 }
 
-.run {
-	background: $bg-color-dark;
-	text-align: center;
-	position: relative;
-
+.stats_with-graph {
+	.container {
+		position: relative;
+	}
 	.value {
 		position: absolute;
 		top: 50%;
-		transform: translateY(-50%);
+		transform: translateY(-50%);		
+		
+		&.left {
+			left: 0;
+		}
+
+		&.right {
+			right: 0;
+			text-align: right;
+		}
 	}
+
+}
+
+.run {
+	background: $bg-color-dark;	
 }
 
 /* FEED

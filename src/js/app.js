@@ -347,7 +347,7 @@ runsApp.directive('milesLineChart', function($window) {
 					margin = 10,
 					TWO_PI = 2 * Math.PI,
 					angle = TWO_PI / data.length,
-					rectWidth = 6,
+					rectWidth = 4,
 					months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec'],
 
 		            nest = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7) }).sortKeys(d3.ascending)
@@ -370,7 +370,6 @@ runsApp.directive('milesLineChart', function($window) {
 				    	.append('rect')
 				    		.attr('width', rectWidth)
 					    	.attr("y", function(d) {
-					    		// console.log( d.values);
 					    		return -y(d.values);
 					    	})
 					    	.attr("x", -rectWidth/2)
