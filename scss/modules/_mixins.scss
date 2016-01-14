@@ -18,3 +18,40 @@
 @function to-rem($val) {
   @return ($val / 16) + rem;
 }
+
+// MEDIA QUERIES
+@mixin breakpoint($point, $minMax) {
+  @if $point == full-min {
+    @media only screen and (min-width: 1440px) { @content; }
+  }
+  @if $point == 1200 {
+    @media only screen and (#{$minMax}-width: 1200px) { @content; }
+  }
+  @else if $point == 1040 {
+    @media only screen and (#{$minMax}-width: 1040px) { @content; }
+  }
+  @else if $point == desktop {
+    @media only screen and (#{$minMax}-width: 960px) { @content; }
+  }
+  @else if $point == tablet-portrait {
+    @media only screen and (#{$minMax}-width: 870px) { @content; }
+  }
+  @else if $point == phone-big {
+    @media only screen and (#{$minMax}-width: 767px)  { @content; }
+  }
+  @else if $point == phone-mid {
+    @media only screen and (#{$minMax}-width: 620px)  { @content; }
+  }
+  @else if $point == phone-mid-small {
+    @media only screen and (#{$minMax}-width: 540px)  { @content; }
+  }
+  // @else if $point == phone {
+  //   @media only screen and (max-width: 480px)  { @content; }
+  // }
+  // @else if $point == phone-small {
+  //   @media only screen and (max-width: 320px)  { @content; }
+  // }
+  @else {
+    @media only screen and (#{$point}) { @content; }
+  }
+}

@@ -259,8 +259,8 @@ runsApp.directive('runsDotsChart', function($window) {
 					d3 = $window.d3,
 					rawSvg = elem.find('svg'),
 					vis = d3.select(rawSvg[0]),
-					h = 300,
-					w = 600,
+					h = 280,
+					w = 730,
 					margin = 10,
 					TWO_PI = 2 * Math.PI,
 					angle = TWO_PI / data.length,
@@ -279,7 +279,12 @@ runsApp.directive('runsDotsChart', function($window) {
 
 		            console.log(maxMiles)
 
-				    vis.attr("width", w).attr("height", h);
+				    vis
+				    	// .attr("width", w).attr("height", h)
+				    	.attr('width', '100%')
+				        .attr('height', '100%')
+				    	.attr('viewBox','0 0 '+ w +' '+ h)
+				        .attr('preserveAspectRatio','xMinYMin');
 
 
 				    var g = vis.selectAll('g')
@@ -342,8 +347,8 @@ runsApp.directive('milesLineChart', function($window) {
 					d3 = $window.d3,
 					rawSvg = elem.find('svg'),
 					vis = d3.select(rawSvg[0]),
-					h = 300,
-					w = 600,
+					h = 280,
+					w = 730,
 					margin = 10,
 					TWO_PI = 2 * Math.PI,
 					angle = TWO_PI / data.length,
@@ -361,7 +366,12 @@ runsApp.directive('milesLineChart', function($window) {
 
 		            // console.log(maxRunsNum)
 
-				    vis.attr("width", w).attr("height", h);
+				    vis
+				    	.attr("width", w).attr("height", h)
+				    	.attr('width', '100%')
+				        .attr('height', '100%')
+				    	.attr('viewBox','0 0 '+ w +' '+ h)
+				        .attr('preserveAspectRatio','xMinYMin');
 
 				    var defs = vis.append("defs");
 

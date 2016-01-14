@@ -353,13 +353,18 @@ td,
 th {
   padding: 0; }
 
+@charset "UTF-8";
 /* LAYOUT
 ----------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
+.outer {
+  padding-left: 4%;
+  padding-right: 4%; }
+
 .container {
   margin: 0 auto;
-  max-width: 68.75em; }
+  max-width: 75em; }
   .container:after {
     content: " ";
     display: block;
@@ -377,6 +382,12 @@ th {
 .left {
   float: left; }
 
+@media only screen and (max-width: 870px) {
+  .third {
+    width: 100%; }
+  .two-thirds {
+    width: 100%; } }
+
 /* FONTS
 ----------------------------------------------- */
 body {
@@ -387,6 +398,9 @@ body {
 
 /* COLORS
 ----------------------------------------------- */
+.dark {
+  background: #01051c; }
+
 /* TYPOGRAPHY
 ----------------------------------------------- */
 body {
@@ -468,7 +482,8 @@ ul {
 /* RUN
 ----------------------------------------------- */
 .stats, .stats_with-graph {
-  padding: 7.5rem 0;
+  padding-bottom: 7.5rem;
+  padding-top: 7.5rem;
   position: relative; }
   .stats .value p, .stats_with-graph .value p {
     color: #fff;
@@ -501,9 +516,6 @@ ul {
     right: 0;
     text-align: right; }
 
-.run {
-  background: #01051c; }
-
 /* FEED
 ----------------------------------------------- */
 .feed-item {
@@ -533,7 +545,61 @@ ul {
     font-size: 1.125rem;
     line-height: 1.125rem; }
 
+/* SMALL STATS
+----------------------------------------------- */
+.small-stats h2 {
+  color: #9e9fa8;
+  letter-spacing: 0.135rem;
+  margin-bottom: 3.125rem;
+  padding-bottom: 0.9375rem;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 0.9375rem;
+  line-height: 0.9375rem; }
+  .small-stats h2:after {
+    background: rgba(255, 255, 255, 0.16);
+    bottom: 0;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 80%; }
+
+.small-stats .value p {
+  letter-spacing: 0.00937rem;
+  font-size: 6.5625rem;
+  line-height: 6.5625rem; }
+  .small-stats .value p span {
+    color: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    font-weight: 300;
+    letter-spacing: 0.0175rem;
+    margin-left: 0.5rem;
+    text-transform: lowercase;
+    font-size: 1.625rem;
+    line-height: 1.625rem; }
+
 /* ABOUT
 ----------------------------------------------- */
 .about {
-  background: #fff; }
+  background: #fff;
+  padding-bottom: 3.125rem;
+  padding-top: 3.125rem; }
+  .about h2 {
+    font-weight: 100;
+    letter-spacing: 0.03125rem;
+    font-size: 3.75rem;
+    line-height: 3.75rem; }
+    .about h2:after {
+      content: '—';
+      clear: both;
+      display: block; }
+  .about img {
+    border-radius: 100%;
+    max-width: 100%; }
+
+.about_copy {
+  font-weight: 300;
+  max-width: 52%;
+  font-size: 1.125rem;
+  line-height: 1.7rem; }
