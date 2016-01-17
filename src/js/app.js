@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // Defining Angular app model with all other dependent modules
 var runsApp = angular.module('runsApp',[]);
@@ -22,6 +22,7 @@ var runsApp = angular.module('runsApp',[]);
 // .run(['$rootScope', function ($rootScope) {
 	
 // }]);
+
 
 runsApp.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
 		$http.get('data.json').success(function(data) {
@@ -89,7 +90,7 @@ runsApp.directive('linearChart', function($window) {
       restrict:'EA',
       template:"<svg></svg>",
        link: function(scope, elem, attrs) {
-	       	scope.$watch('data', function(newData, oldData) {
+	       	scope.$watch('data', function(newData) {
 	       		if(newData) {
 	            var data = scope[attrs.chartData],
 						d3 = $window.d3,
@@ -101,7 +102,7 @@ runsApp.directive('linearChart', function($window) {
 						TWO_PI = 2 * Math.PI,
 					    angle = TWO_PI / data.length,
 					    radius = 1,
-						maxDistance = d3.max(data, function(d, i) { return + d.distance;}),
+						maxDistance = d3.max(data, function(d) { return + d.distance;}),
 						x = d3.scale.linear().domain([0, maxDistance]).range([0 + margin, (h) - margin]),
 						y = d3.scale.linear().domain([0, maxDistance]).range([0 + margin, (h) - margin]),
 
@@ -131,10 +132,10 @@ runsApp.directive('linearChart', function($window) {
 									return Math.round(radius * x(1609.34 * (i-1)) / 2); // In meters
 								})
 								.duration(1000);
-						};
+						}
 
 					    vis.attr("width", w)
-					        .attr("height", h)
+					        .attr("height", h);
 					        // .attr('width', '100%')
 					        // .attr('height', '100%')
 					        // .attr('viewBox','0 0 '+ w +' '+ h)
@@ -143,7 +144,7 @@ runsApp.directive('linearChart', function($window) {
 					    var g = vis.append('svg:g')
 					        .attr("transform", "translate(" + w/2 +", " + h/vertPlacement + ")");
 
-					    var line = d3.svg.line()					    	
+					    var line = d3.svg.line()
 					        // .interpolate("cardinal")
 					        .x(function(d,i) { 
 					            return radius * x(d.distance) * Math.sin(angle * i) / 2;
@@ -171,7 +172,7 @@ runsApp.directive('linearChart', function($window) {
 									.ease('elastic', 1, 1.25);
 
 						// Lines
-						var lines = vis.append('svg:g')
+						vis.append('svg:g')
 							  .attr("transform", "translate(" + w/2 +", " + h/vertPlacement + ")")
 								.selectAll('.line')
 						    .data(data)
@@ -191,7 +192,7 @@ runsApp.directive('linearChart', function($window) {
 							    })
 								.attr('opacity', 0)
 							  .transition()
-									.attr('opacity', .7)
+									.attr('opacity', 0.7)
 									.attr('x2', function(d, i) {
 										return radius * y(1609.34 * ringNum) * Math.sin(angle * i) / 2;
 									})
@@ -201,15 +202,14 @@ runsApp.directive('linearChart', function($window) {
 									.duration(1000);
 
 						// DOTS
-						var circles = vis
+						vis
 								.append('svg:g')
 						    .attr("transform", "translate(" + w/2 +", " + h/vertPlacement + ")")
 								.selectAll('.circle')
 						    .data(data)
 						  .enter().append('svg:circle')
 						    .attr("class", "circle")
-						    .attr('r', function(d) {
-						    	// return d.max_speed * .9;
+						    .attr('r', function() {
 						    	return 4;
 						    })
 								.attr('cx', 0)
@@ -245,7 +245,7 @@ runsApp.directive('linearChart', function($window) {
 			}, true);
 		}
 	};
-})
+});
 
 // RUN DOTS CHART
 runsApp.directive('runsDotsChart', function($window) {
@@ -253,7 +253,7 @@ runsApp.directive('runsDotsChart', function($window) {
       restrict:'EA',
       template:"<svg></svg>",
        link: function(scope, elem, attrs) {
-	       	scope.$watch('data', function(newData, oldData) {
+	       	scope.$watch('data', function(newData) {
 	       		if(newData) {
 	            var data = scope[attrs.chartData],
 					d3 = $window.d3,
@@ -262,25 +262,22 @@ runsApp.directive('runsDotsChart', function($window) {
 					h = 280,
 					w = 730,
 					margin = 10,
-					TWO_PI = 2 * Math.PI,
-					angle = TWO_PI / data.length,
 					dotRadius = 5,
 					months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec'],
 
-		            nest = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7) }).sortKeys(d3.ascending).entries(data),
-		            nestMiles = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7) }).sortKeys(d3.ascending)
-					            .rollup(function(d) { return d3.sum(d, function(g) {return g.distance; }); })
-					            .entries(data),
-					maxMiles = d3.max(nestMiles, function(d, i) { return + d.values;}),
-					maxRunsNum = d3.max(nest, function(d, i) { return + d.values.length;}),
+		            nest = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7); })
+						            .sortKeys(d3.ascending)
+						            .entries(data),
+		            nestMiles = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7); })
+					              .sortKeys(d3.ascending)
+					              .rollup(function(d) { return d3.sum(d, function(g) {return g.distance; });}).entries(data),
+					maxMiles = d3.max(nestMiles, function(d) { return + d.values;}),
+					maxRunsNum = d3.max(nest, function(d) { return + d.values.length;}),
 					x = d3.scale.linear().domain([1, 12]).range([margin, w - margin]), // Scale to 2 months
 					y = d3.scale.linear().domain([0, maxRunsNum + 1]).range([margin, h - margin]), // Adding 1 to maxRunsNum to account for text placement
 					color = d3.scale.linear().domain([0, maxMiles]).range(['#09A3E6', '#AF09E6']);
 
-		            console.log(maxMiles)
-
 				    vis
-				    	// .attr("width", w).attr("height", h)
 				    	.attr('width', '100%')
 				        .attr('height', '100%')
 				    	.attr('viewBox','0 0 '+ w +' '+ h)
@@ -291,8 +288,8 @@ runsApp.directive('runsDotsChart', function($window) {
 				    	.data(nest).enter()
 				    	.append('svg:g')
 				    	.attr('class', 'circle-container')
-				        .attr("transform", function(d, i) {
-				        	return "translate(" + x(d.key) + ", " + (h  - (dotRadius * 2) - (margin * 3)) + ")"
+				        .attr("transform", function(d) {
+				        	return "translate(" + x(d.key) + ", " + (h  - (dotRadius * 2) - (margin * 3)) + ")";
 				        });
 
 					g.selectAll('circle')
@@ -311,7 +308,7 @@ runsApp.directive('runsDotsChart', function($window) {
 					    	.attr('cy', function(d, i) {
 					    		return y(-i);
 					    	})
-					    	.attr('class', 'runs-circle')
+					    	.attr('class', 'runs-circle');
 
 					// TEXT
 					for(var i = 0; i < 12; i++) {
@@ -327,21 +324,21 @@ runsApp.directive('runsDotsChart', function($window) {
 						.attr('y', function() {
 							return h;
 						})
-						.attr('fill', '#fff')
+						.attr('fill', '#fff');
 					}
 	       		}
 			}, true);
 		}
 	};
-})
+});
 
 // RUN DOTS CHART
-runsApp.directive('milesLineChart', function($window) {
+runsApp.directive('milesBarChart', function($window) {
    return {
       restrict:'EA',
       template:"<svg></svg>",
        link: function(scope, elem, attrs) {
-	       	scope.$watch('data', function(newData, oldData) {
+	       	scope.$watch('data', function(newData) {
 	       		if(newData) {
 	            var data = scope[attrs.chartData],
 					d3 = $window.d3,
@@ -349,22 +346,17 @@ runsApp.directive('milesLineChart', function($window) {
 					vis = d3.select(rawSvg[0]),
 					h = 280,
 					w = 730,
-					margin = 10,
-					TWO_PI = 2 * Math.PI,
-					angle = TWO_PI / data.length,
+					margin = 10,					
 					rectWidth = 4,
 					months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec'],
 
-		            nest = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7) }).sortKeys(d3.ascending)
-		            .rollup(function(d) { return d3.sum(d, function(g) {return g.distance; }); })
-		            .entries(data),
-					maxRunsNum = d3.max(nest, function(d, i) { return + d.values;}),
+		            nest = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7); }).sortKeys(d3.ascending)
+						            .rollup(function(d) { return d3.sum(d, function(g) {return g.distance; }); })
+						            .entries(data),
+					maxRunsNum = d3.max(nest, function(d) { return + d.values;}),
 					x = d3.scale.linear().domain([1, 12]).range([margin, w - margin]), // Scale to 12 months
-					y = d3.scale.linear().domain([0, maxRunsNum]).range([margin, h - margin - rectWidth])
-
+					y = d3.scale.linear().domain([0, maxRunsNum]).range([margin, h - margin - rectWidth]),
 					color = d3.scale.linear().domain([0, maxRunsNum]).range(['#0984E6', '#E6098A']);
-
-		            // console.log(maxRunsNum)
 
 				    vis
 				    	.attr("width", w).attr("height", h)
@@ -375,7 +367,7 @@ runsApp.directive('milesLineChart', function($window) {
 
 				    var defs = vis.append("defs");
 
-				    var g = vis.selectAll('g')
+				    vis.selectAll('g')
 				    	.data(nest).enter()
 				    	.append('rect')
 				    		.attr('width', rectWidth)
@@ -387,15 +379,14 @@ runsApp.directive('milesLineChart', function($window) {
 					    		return y(d.values);
 					    	})
 					    	.attr('class', 'miles-line')
-					        .attr("transform", function(d, i) {
-					        	return "translate(" + x(d.key) + ", " + (h  - rectWidth - (margin)) + ")"
+					        .attr("transform", function(d) {
+					        	return "translate(" + x(d.key) + ", " + (h  - rectWidth - (margin)) + ")";
 					        })
 					        .style("fill", function(d, i) {
 					        	return "url(#the-gradient" + i + ")";
 					        });
 
 					for(var i = 0; i < 12; i++) {
-
 						// GRADIENT
 						if(nest[i]) {
 						    var gradient = defs
@@ -431,12 +422,131 @@ runsApp.directive('milesLineChart', function($window) {
 						.attr('y', function() {
 							return h;
 						})
-						.attr('fill', '#fff')
+						.attr('fill', '#fff');
 					}
 	       		}
 			}, true);
 		}
 	};
-})
+});
 
+// LINE CHART
+runsApp.directive('lineChart', function($window) {
+   return {
+      restrict:'EA',
+      template:"<svg></svg>",
+       link: function(scope, elem, attrs) {
+	       	scope.$watch('data', function(newData) {
+	       		if(newData) {
+	            var data = scope[attrs.chartData],
+						d3 = $window.d3,
+						rawSvg = elem.find('svg'),
+						vis = d3.select(rawSvg[0]),
+						h = 45,
+						w = 300,
+						margin = 10,
+					    chartAttribute = attrs.chartItem,
+					    parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse,
+						maxAttribute = d3.max(data, function(d) { return + d[chartAttribute];}),
+						minAttribute = d3.min(data, function(d) { return + d[chartAttribute];}),
+
+						x = d3.scale.ordinal().rangeRoundBands([0 + margin, w - margin], 0.05).domain(data.map(function(d) { return parseDate(d.start_date_local); })),
+						y = d3.scale.linear().domain([minAttribute, maxAttribute]).range([h - margin, 0 + margin]);
+
+					    vis
+					    	// .attr("width", w)
+					        .attr("height", h)
+					        .attr('width', '80%')
+					        .attr('height', 20 + '%')
+					        .attr('viewBox','0 0 '+ w +' '+ h)
+					        .attr('preserveAspectRatio','xMinYMin');
+
+					    // Line before animation
+					    var line = d3.svg.line()					    	
+					        .interpolate("cardinal")
+					        .x(function(d) {
+					            return x(parseDate(d.start_date_local));
+					        })
+					        .y(function(d) {
+					            return y(d[chartAttribute]);
+					        });
+
+					    // Line after animation
+					    var lineLoad = d3.svg.line()
+					        .interpolate("cardinal")
+					        .x(function(d) {
+					            return x(parseDate(d.start_date_local));
+					        })
+					        .y(h);
+
+						// BARS
+				        vis.append('svg:g')
+							.selectAll('.small-stats_bars')
+					    	.data(data)
+					    	.enter()
+					    	.append('svg:line')
+				    		.attr('class', 'small-stats_bars')
+				    		.attr('x1', function(d) {
+				    			return x(parseDate(d.start_date_local));
+				    		})
+				    		.attr("y1", h)
+				    		.attr('x2', function(d) {
+				    			return x(parseDate(d.start_date_local));
+				    		})
+				    		.attr("y2", h)
+					        .transition()
+					        	.attr("y2", function(d) {
+						    		return y(d[chartAttribute]);
+						    	})
+								.duration(1500)
+								.delay(250)
+								.ease('elastic', 1, 0.7);
+
+						// CLIP PATH
+						vis.append('svg:g').append("svg:path")
+								.attr("d", lineLoad(data))
+								.attr("d", line(data))
+								.attr('stroke', '#01051c')
+								.attr('stroke-width', 5)
+								.attr('fill', 'transparent');
+
+					    // MAIN PATH
+					    vis.append('svg:g').append("svg:path")
+								.attr("d", lineLoad(data))
+								.attr('stroke', '#0984E6')
+								.attr('stroke-width', 1)
+								.attr('fill', 'transparent')
+								.attr('class', 'small-stats_path')
+								.attr('opacity', 0)
+								.transition()
+									.attr('opacity', 1)
+									.attr("d", line(data))
+									.duration(1300)
+									.ease('elastic', 1, 0.7);
+
+						// DOT
+						vis.append('svg:g')
+							.selectAll('.small-stats_dot')
+					    .data(data)
+					  .enter().append('svg:circle')
+					  .filter(function(d) { return d[chartAttribute] === maxAttribute; })
+					    .attr("class", "small-stats_dot")
+					    .style("fill", "#E6098A")
+					    .attr('r', 3)
+							.attr('cx', function(d) {
+								return x(parseDate(d.start_date_local));
+							})
+						    .attr('cy', function(d) {
+						    	return y(d[chartAttribute]);
+						    })
+					    .attr('opacity', 0)
+					    .transition()
+						    .duration(1000)
+						    .attr('opacity', 1);
+						
+	       		}
+			}, true);
+		}
+	};
+})
 ;

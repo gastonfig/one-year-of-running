@@ -55,7 +55,7 @@
             </div>
             
             <div class="two-thirds left">
-                <div miles-line-chart chart-data="data"></div>
+                <div miles-bar-chart chart-data="data"></div>
             </div>               
         </div>
     </section>
@@ -65,17 +65,21 @@
             <div class="third value left">
                 <h2>Time on the Road</h2>
                 <p>48:32<span>hrs</span></p>
+                <div line-chart chart-data="data" chart-item="moving_time"></div>
             </div>
 
             <div class="third value left">
                 <h2>Longest Distance</h2>
                 <p>13<span>mi</span></p>
+                <div line-chart chart-data="data" chart-item="distance"></div>
             </div>
 
             <div class="third value left">
                 <h2>Fastest Pace</h2>
                 <p>8:60<span>m/mi</span></p>
+                <div line-chart chart-data="data" chart-item="average_speed"></div>
             </div>
+
         </div>
     </section>
 

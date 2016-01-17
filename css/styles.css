@@ -359,8 +359,8 @@ th {
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
 .outer {
-  padding-left: 4%;
-  padding-right: 4%; }
+  padding-left: 5%;
+  padding-right: 5%; }
 
 .container {
   margin: 0 auto;
@@ -567,6 +567,7 @@ ul {
 
 .small-stats .value p {
   letter-spacing: 0.00937rem;
+  margin-bottom: 1.875rem;
   font-size: 6.5625rem;
   line-height: 6.5625rem; }
   .small-stats .value p span {
@@ -578,6 +579,14 @@ ul {
     text-transform: lowercase;
     font-size: 1.625rem;
     line-height: 1.625rem; }
+
+.small-stats_dot {
+  stroke-width: 10;
+  stroke: rgba(117, 69, 230, 0.3); }
+
+.small-stats_bars {
+  stroke-width: 1;
+  stroke: rgba(255, 255, 255, 0.15); }
 
 /* ABOUT
 ----------------------------------------------- */
