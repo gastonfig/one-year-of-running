@@ -482,8 +482,8 @@ ul {
 /* RUN
 ----------------------------------------------- */
 .stats, .stats_with-graph {
-  padding-bottom: 7.5rem;
-  padding-top: 7.5rem;
+  padding-bottom: 9.375rem;
+  padding-top: 9.375rem;
   position: relative; }
   .stats .value p, .stats_with-graph .value p {
     color: #fff;
@@ -548,14 +548,14 @@ ul {
 /* SMALL STATS
 ----------------------------------------------- */
 .small-stats h2 {
-  color: #9e9fa8;
-  letter-spacing: 0.135rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.13125rem;
   margin-bottom: 3.125rem;
   padding-bottom: 0.9375rem;
   position: relative;
   text-transform: uppercase;
-  font-size: 0.9375rem;
-  line-height: 0.9375rem; }
+  font-size: 0.875rem;
+  line-height: 0.875rem; }
   .small-stats h2:after {
     background: rgba(255, 255, 255, 0.16);
     bottom: 0;
@@ -575,10 +575,10 @@ ul {
     display: inline-block;
     font-weight: 300;
     letter-spacing: 0.0175rem;
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
     text-transform: lowercase;
-    font-size: 1.625rem;
-    line-height: 1.625rem; }
+    font-size: 1.3125rem;
+    line-height: 1.3125rem; }
 
 .small-stats_dot {
   stroke-width: 10;
