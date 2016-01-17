@@ -31,7 +31,7 @@
     <!-- <section class="meta">
         <ul>
             <li>{{ distanceSum | metersToMiles }}<span>mi</span></li>
-            <li>{{ timeSum | secondsToHMS }}<span>hrs</span></li>
+            <li>{{ timeSum | secondsToHMS: true }}<span>hrs</span></li>
             <li>{{ runsSum }}<span>runs</span></li>
         </ul>  
     </section> -->
@@ -64,19 +64,19 @@
         <div class="container">
             <div class="third value left">
                 <h2>Time on the Road</h2>
-                <p>48:32<span>hrs</span></p>
+                <p>{{ timeSum | secondsToHMS }}<span>hrs</span></p>
                 <div line-chart chart-data="data" chart-item="moving_time"></div>
             </div>
 
             <div class="third value left">
                 <h2>Longest Distance</h2>
-                <p>13<span>mi</span></p>
+                <p>{{ maxDistance | metersToMiles}}<span>mi</span></p>
                 <div line-chart chart-data="data" chart-item="distance"></div>
             </div>
 
             <div class="third value left">
                 <h2>Fastest Pace</h2>
-                <p>8:60<span>m/mi</span></p>
+                <p>{{ minPace | milesPerHour}}<span>m/mi</span></p>
                 <div line-chart chart-data="data" chart-item="average_speed"></div>
             </div>
 
@@ -106,7 +106,7 @@
                 <ul>
                     <li class="feed__date">{{ run.start_date_local | formatDate}}</li>
                     <li class="feed__dist">{{ run.distance | metersToMiles}}<span>mi</span></li>
-                    <li class="feed__time">{{ run.moving_time | secondsToHMS}}</li>
+                    <li class="feed__time">{{ run.moving_time | secondsToHMS: true}}</li>
                     <li class="feed__pace">{{ run.average_speed | milesPerHour}}<span>/mi</span></li>
                 </ul>
             </li>

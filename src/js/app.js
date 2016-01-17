@@ -24,46 +24,57 @@ var runsApp = angular.module('runsApp',[]);
 // }]);
 
 
-runsApp.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
-		$http.get('data.json').success(function(data) {
-			$scope.data = data;
+/* FILTERS
+----------------------------------------------- */
 
-			$scope.distanceSum = getSum(data, 'distance');
-			$scope.timeSum = getSum(data, 'moving_time');
-			$scope.runsSum = data.length;
-		});
+runsApp
+.filter('getMaxVal', function() {
+	return function(input, key) {
+		var maxVal = Math.max.apply(Math, input.map(function(val) {
+			return val[key]; 
+		}));
 
-		function getSum(data, key) {
-			var sum = 0;
+		return maxVal;
+	};
+})
 
-			for (var i = data.length - 1; i >= 0; i--) {
-				sum += parseInt(data[i][key]);
-			}
+.filter('getSum', function() {
+	return function(input, key) {
+		var sum = 0;
 
-			return sum;
+		for (var i = input.length - 1; i >= 0; i--) {
+			sum += parseInt(input[i][key]);
 		}
-}]);
 
-runsApp.filter('metersToMiles', function() {
+		return sum;
+
+	};
+})
+
+.filter('metersToMiles', function() {
 	return function(input) {
 		return Math.round(input * 0.000621371 * 100) / 100;
 	};
-});
+})
 
-runsApp.filter('secondsToHMS', function() {
-	return function(input) {
+.filter('secondsToHMS', function() {
+	return function(input, showSecs) {
 		var totSeconds = input,
 			hours = parseInt(totSeconds/3600),
 			minutes = parseInt(totSeconds/60) % 60,
 			seconds = totSeconds % 60;
 
-		var formattedTime = hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ":" + (seconds  < 10 ? '0' + seconds : seconds);
+		if(showSecs === true) {
+			alert('hey');
+		}
+
+		var formattedTime = hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ( showSecs === true ? ":" + (seconds  < 10 ? '0' + seconds : seconds) : '');
 
 		return formattedTime;
 	};
-});
+})
 
-runsApp.filter('formatDate', function() {
+.filter('formatDate', function() {
 	return function(input) {
 		var date = new Date(input),
 			day = date.getDate(),
@@ -72,9 +83,9 @@ runsApp.filter('formatDate', function() {
 
 		return month + '/' + day + '/' + year;
 	};
-});
+})
 
-runsApp.filter('milesPerHour', function() {
+.filter('milesPerHour', function() {
 	return function(input) {
 		var totSeconds = parseInt(60 * 60 / (input * 2.237)),
 			minutes = parseInt(totSeconds/60) % 60,
@@ -84,8 +95,30 @@ runsApp.filter('milesPerHour', function() {
 	};
 });
 
+
+/* CONTROLLERS
+----------------------------------------------- */
+
+runsApp.controller('mainCtrl', ['$scope', '$http', 'getMaxValFilter', 'getSumFilter', function($scope, $http, getMaxValFilter, getSumFilter) {
+		$http.get('data.json').success(function(data) {
+			$scope.data = data;
+
+			$scope.distanceSum = getSumFilter(data, 'distance');
+			$scope.timeSum = getSumFilter(data, 'moving_time');
+			$scope.runsSum = data.length;
+			$scope.maxDistance = getMaxValFilter(data, 'distance');
+			$scope.minPace = getMaxValFilter(data, 'average_speed');
+		});
+}]);
+
+
+/* DIRECTIVES
+----------------------------------------------- */
+
 // RADAR CHART
-runsApp.directive('linearChart', function($window) {
+runsApp
+
+.directive('linearChart', function($window) {
    return {
       restrict:'EA',
       template:"<svg></svg>",
@@ -245,10 +278,10 @@ runsApp.directive('linearChart', function($window) {
 			}, true);
 		}
 	};
-});
+})
 
 // RUN DOTS CHART
-runsApp.directive('runsDotsChart', function($window) {
+.directive('runsDotsChart', function($window) {
    return {
       restrict:'EA',
       template:"<svg></svg>",
@@ -330,10 +363,10 @@ runsApp.directive('runsDotsChart', function($window) {
 			}, true);
 		}
 	};
-});
+})
 
 // RUN DOTS CHART
-runsApp.directive('milesBarChart', function($window) {
+.directive('milesBarChart', function($window) {
    return {
       restrict:'EA',
       template:"<svg></svg>",
@@ -428,10 +461,10 @@ runsApp.directive('milesBarChart', function($window) {
 			}, true);
 		}
 	};
-});
+})
 
 // LINE CHART
-runsApp.directive('lineChart', function($window) {
+.directive('lineChart', function($window) {
    return {
       restrict:'EA',
       template:"<svg></svg>",
