@@ -424,16 +424,30 @@ ul {
     top: 15%;
     max-width: 43%; }
   .intro h1 {
-    color: #fff;
+    color: white;
     font-weight: 100;
     letter-spacing: -.14rem;
     position: relative;
-    font-size: 6.25rem;
-    line-height: 6.875rem; }
+    font-size: 5.9375rem;
+    line-height: 6.65rem; }
+    .intro h1 span {
+      color: #2facd2;
+      font-weight: 700;
+      letter-spacing: -.13em;
+      padding-left: 1.875rem;
+      position: absolute;
+      bottom: -17.5px;
+      font-size: 8.125rem;
+      line-height: 8.9375rem; }
+      .intro h1 span:before {
+        content: '‘';
+        display: inline-block;
+        position: absolute;
+        left: 0.25rem; }
   .intro p {
     color: rgba(255, 255, 255, 0.45);
-    font-weight: 300;
-    letter-spacing: 0.03125rem;
+    font-weight: 100;
+    letter-spacing: .065em;
     margin-left: 20%;
     width: 100%;
     font-size: 1rem;
@@ -449,20 +463,15 @@ ul {
     stroke: #fff;
     stroke-width: 1; }
   .intro__chart .line {
-    stroke: #0984E6;
-    opacity: .35; }
+    stroke: #42a2bf;
+    opacity: .3; }
   .intro__chart .circle {
-    fill: #E6098A;
-    stroke-width: 8;
-    stroke: rgba(117, 69, 230, 0.3); }
+    fill: #0FBDF2;
+    r: 2; }
     .intro__chart .circle.selected {
       r: 5;
       fill: red; }
   .intro__chart .path {
-    fill: transparent;
-    stroke: rgba(230, 9, 138, 0.3);
-    stroke-dasharray: 2, 2;
-    stroke-width: 1;
     opacity: 0; }
 
 /* META
