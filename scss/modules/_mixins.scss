@@ -14,6 +14,14 @@
   #{$property}: ($val / 16) + rem;
 }
 
+@mixin columns-gutter($columns, $gutter) {
+  $st_gutter: $gutter;
+  $st_width: (100 - ($st_gutter * ($columns - 1)))/$columns;
+
+  margin-right: $st_gutter+%;
+  width: $st_width+%;
+}
+
 // FUNCTIONS
 @function to-rem($val) {
   @return ($val / 16) + rem;
@@ -52,6 +60,6 @@
   //   @media only screen and (max-width: 320px)  { @content; }
   // }
   @else {
-    @media only screen and (#{$point}) { @content; }
+    @media only screen and (#{$minMax}-width: #{$point}px) { @content; }
   }
 }

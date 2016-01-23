@@ -416,7 +416,7 @@ ul {
 .intro {
   background-size: cover;
   display: block;
-  height: 95vh;
+  height: 100vh;
   position: relative; }
   .intro .inner {
     left: 0;
@@ -453,7 +453,7 @@ ul {
     opacity: .35; }
   .intro__chart .circle {
     fill: #E6098A;
-    stroke-width: 10;
+    stroke-width: 8;
     stroke: rgba(117, 69, 230, 0.3); }
     .intro__chart .circle.selected {
       r: 5;
@@ -556,35 +556,55 @@ ul {
 
 /* SMALL STATS
 ----------------------------------------------- */
+.small-stats .value {
+  margin-right: 5%;
+  width: 30%; }
+  .small-stats .value:last-child {
+    margin-right: 0; }
+  @media only screen and (max-width: 870px) {
+    .small-stats .value {
+      margin-right: 0%;
+      width: 100%; } }
+
 .small-stats h2 {
   color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.13125rem;
   margin-bottom: 3.125rem;
-  padding-bottom: 0.9375rem;
+  padding-bottom: 0.75rem;
   position: relative;
   text-transform: uppercase;
   font-size: 0.875rem;
   line-height: 0.875rem; }
   .small-stats h2:after {
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.13);
     bottom: 0;
     content: '';
     height: 1px;
     left: 0;
     position: absolute;
-    width: 80%; }
+    width: 100%; }
 
 .small-stats .value p {
-  letter-spacing: 0.00937rem;
+  letter-spacing: .075rem;
   margin-bottom: 1.875rem;
   font-size: 6.5625rem;
   line-height: 6.5625rem; }
+  @media only screen and (min-width: 870px) {
+    .small-stats .value p {
+      letter-spacing: .005rem;
+      font-size: 4.375rem;
+      line-height: 4.375rem; } }
+  @media only screen and (min-width: 1100px) {
+    .small-stats .value p {
+      letter-spacing: .075rem;
+      font-size: 6.5625rem;
+      line-height: 6.5625rem; } }
   .small-stats .value p span {
     color: rgba(255, 255, 255, 0.5);
     display: inline-block;
     font-weight: 300;
     letter-spacing: 0.0175rem;
-    margin-left: 0.25rem;
+    margin-left: 0.125rem;
     text-transform: lowercase;
     font-size: 1.3125rem;
     line-height: 1.3125rem; }

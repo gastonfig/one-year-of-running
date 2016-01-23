@@ -155,7 +155,6 @@ runsApp
 						// 		return h/vertPlacement;
 						// 	})
 						// 	.attr('opacity', 0)
-						  
 						//   .transition()
 						// 		.attr('opacity', .1)
 						// 		.attr('r', function() {
@@ -176,7 +175,7 @@ runsApp
 
 					    var line = d3.svg.line()
 					        .interpolate(interpolation)
-					        .x(function(d,i) { 
+					        .x(function(d,i) {
 					            return radius * x(d.distance) * Math.sin(angle * i) / 2;
 					        })
 					        .y(function(d, i) {
@@ -241,11 +240,10 @@ runsApp
 						    .data(data)
 						  .enter().append('svg:circle')
 						    .attr("class", "circle")
-						    .attr('r', 3)
+						    .attr('r', 2)
 								.attr('cx', 0)
-								.attr('cy', 0)	
+								.attr('cy', 0)
 						    .attr('opacity', 0)
-						    
 						    .transition()
 							    .duration(1300)
 							    .attr('opacity', 1)
