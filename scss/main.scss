@@ -4,7 +4,7 @@
 
 /* LAYOUT
 ----------------------------------------------- */
-$grid-width: 1200;
+$grid-width: 1140;
 
 .outer {
 	padding-left: 5%;
@@ -45,7 +45,7 @@ $grid-width: 1200;
 
 	.two-thirds {
 		width: 100%;
-	}	
+	}
 }
 
 /* FONTS
@@ -67,8 +67,10 @@ $grid-width: 1200;
 
 /* COLORS
 ----------------------------------------------- */
-$bg-color:			#020722;
-$bg-color-dark:		#01051c;
+// $bg-color:			#020722;
+$bg-color:			#020724;
+// $bg-color-dark:		#01051c;
+$bg-color-dark:		#010519;
 $bg-color-light:	#061129;
 $accent-color: 		#09C4E6;
 $light-title:		#9e9fa8;
@@ -105,12 +107,11 @@ ul {
 
 	.inner {
 		left: 0;
-		position: absolute;		
+		position: absolute;
 		top: 15%;
 		max-width: 43%;
 	}
 
-	
 	h1 {
 		color: #fff;
 		font-weight: 100;
@@ -120,14 +121,14 @@ ul {
 
 		// &:after {
 		// 	content: '‘15';
-		// 	color: rgba(255,255,255,.1);
-		// 	font-weight: 700;
+		// 	// color: rgba(255,255,255,.1);
+		// 	// color: rgba(#0984E6, .8);
+		// 	font-weight: 900;
 		// 	left: 40%;
 		// 	letter-spacing: -1rem;
 		// 	position: absolute;
 		// 	top: -60%;
 		// 	@include type-size(250);
-
 		// }
 	}
 
@@ -144,8 +145,6 @@ ul {
 }
 
 .intro__chart {
-	// background: rgba(255, 255, 255, .2);
-	// height: 600px;
 	position: absolute;
 	right: 0;
 	top: 50%;
@@ -159,7 +158,7 @@ ul {
 		stroke: #fff;
 		// stroke-width: 1.5px;
 		// stroke: #fff;
-		opacity: .1;
+		// opacity: .1;
 		// stroke-linecap: round;
 		// stroke-dasharray: 1;
 		stroke-width: 1;
@@ -168,21 +167,34 @@ ul {
 	}
 
 	.line {
-		opacity: .07;
+		// stroke: rgba(#0984E6, .35);
+		stroke: #0984E6;
+		// stroke: rgba(#E6098A, .3);
+		opacity: .35;
+		// stroke-dasharray: 1, 1;
 	}
 
 	.circle {
-		// fill: $bg-color;
-		fill: #09C4E6;
-		// stroke: rgba(9, 196, 230, .3);
-		// r: 4;
-		// stroke-width: 6;
+		fill: #E6098A;
+		// r: 2;
+		stroke-width: 10;
+		stroke: rgba(117, 69, 230, .3);
 		// opacity: 0;
+
+		&.selected {
+			r: 5;
+			fill: red;
+		}
 	}
 
 	.path {
-		// stroke: rgba(255, 255, 255, .2);
-		fill: rgba(117, 69, 230, .09);
+		fill: transparent;
+		
+		// stroke: rgba(#0984E6, .35);
+		stroke: rgba(#E6098A, .3);
+		stroke-dasharray: 2, 2;
+		stroke-width: 1;
+		opacity: 0;
 	}
 }
 
@@ -406,8 +418,8 @@ ul {
 ----------------------------------------------- */
 .about {
 	background: #fff;
-	padding-bottom: to-rem(50);
-	padding-top: to-rem(50);
+	padding-bottom: to-rem(140);
+	padding-top: to-rem(110);
 
 	h2 {
 		font-weight: 100;
@@ -432,4 +444,26 @@ ul {
 	max-width: 52%;
 
 	@include type-size(18, 27.2);
+}
+
+/* FOOTER
+----------------------------------------------- */
+footer {
+	// background: #fff;
+	// border-top: 1px solid rgba(#ffffff, .9);
+	padding-bottom: to-rem(30);
+	padding-top: to-rem(30);
+	text-align: center;
+
+	p {
+		color: rgba(#ffffff, .45);
+		font-weight: 300;
+		letter-spacing: .04em;
+		@include type-size(13);
+	}
+
+	a {
+		color: rgba(#ffffff, .8);
+		text-decoration: none;
+	}
 }

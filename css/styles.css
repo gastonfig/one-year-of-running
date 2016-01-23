@@ -364,7 +364,7 @@ th {
 
 .container {
   margin: 0 auto;
-  max-width: 75em; }
+  max-width: 71.25em; }
   .container:after {
     content: " ";
     display: block;
@@ -399,12 +399,12 @@ body {
 /* COLORS
 ----------------------------------------------- */
 .dark {
-  background: #01051c; }
+  background: #010519; }
 
 /* TYPOGRAPHY
 ----------------------------------------------- */
 body {
-  background: #020722; }
+  background: #020724; }
 
 ul {
   list-style: none;
@@ -447,14 +447,23 @@ ul {
   .intro__chart .step, .intro__chart .line {
     fill: transparent;
     stroke: #fff;
-    opacity: .1;
     stroke-width: 1; }
   .intro__chart .line {
-    opacity: .07; }
+    stroke: #0984E6;
+    opacity: .35; }
   .intro__chart .circle {
-    fill: #09C4E6; }
+    fill: #E6098A;
+    stroke-width: 10;
+    stroke: rgba(117, 69, 230, 0.3); }
+    .intro__chart .circle.selected {
+      r: 5;
+      fill: red; }
   .intro__chart .path {
-    fill: rgba(117, 69, 230, 0.09); }
+    fill: transparent;
+    stroke: rgba(230, 9, 138, 0.3);
+    stroke-dasharray: 2, 2;
+    stroke-width: 1;
+    opacity: 0; }
 
 /* META
 ----------------------------------------------- */
@@ -523,7 +532,7 @@ ul {
   width: 100%;
   transition: all .23s ease-in-out; }
   .feed-item:hover {
-    background: #020722;
+    background: #020724;
     color: #09C4E6;
     transform: scale(1.05); }
     .feed-item:hover:after {
@@ -592,8 +601,8 @@ ul {
 ----------------------------------------------- */
 .about {
   background: #fff;
-  padding-bottom: 3.125rem;
-  padding-top: 3.125rem; }
+  padding-bottom: 8.75rem;
+  padding-top: 6.875rem; }
   .about h2 {
     font-weight: 100;
     letter-spacing: 0.03125rem;
@@ -612,3 +621,19 @@ ul {
   max-width: 52%;
   font-size: 1.125rem;
   line-height: 1.7rem; }
+
+/* FOOTER
+----------------------------------------------- */
+footer {
+  padding-bottom: 1.875rem;
+  padding-top: 1.875rem;
+  text-align: center; }
+  footer p {
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 300;
+    letter-spacing: .04em;
+    font-size: 0.8125rem;
+    line-height: 0.8125rem; }
+  footer a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none; }
