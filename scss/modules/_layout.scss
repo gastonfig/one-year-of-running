@@ -1,0 +1,51 @@
+/* LAYOUT
+----------------------------------------------- */
+$grid-width: 1140;
+
+.outer {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: ($grid-width/16) * 1em;
+
+	@extend .container_after;
+}
+
+.container_after{
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+	}
+}
+
+.third {
+	// width: 33.33%;
+	width: 25%;
+}
+
+.two-thirds {
+	// width: 66.67%;
+	width: 75%;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+@include breakpoint(tablet-portrait, max) {
+	.third {
+		width: 100%;
+	}
+
+	.two-thirds {
+		width: 100%;
+	}
+}
