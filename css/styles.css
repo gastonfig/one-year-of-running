@@ -356,8 +356,6 @@ th {
 @charset "UTF-8";
 /* COLORS
 ----------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
 .dark {
   background: #090220; }
 
@@ -398,9 +396,6 @@ th {
 ----------------------------------------------- */
 body {
   font-family: 'Roboto', helvetica, arial, sans-serif; }
-
-.feed-item li {
-  font-family: 'Inconsolata', consolas, monaco, monospace; }
 
 /* TYPOGRAPHY
 ----------------------------------------------- */
@@ -526,7 +521,7 @@ ul {
     right: 0;
     text-align: right; }
 
-.stats_with-graph_title {
+.stats_with-graph_title, .small-stats_title {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 100;
   letter-spacing: 2.42px;
@@ -534,7 +529,7 @@ ul {
   text-transform: uppercase;
   font-size: 0.9375rem;
   line-height: 0.9375rem; }
-  .stats_with-graph_title:after {
+  .stats_with-graph_title:after, .small-stats_title:after {
     background: rgba(255, 255, 255, 0.17);
     content: '';
     display: block;
@@ -545,13 +540,15 @@ ul {
 /* FEED
 ----------------------------------------------- */
 .feed-item {
+  color: rgba(255, 255, 255, 0.9);
   float: left;
+  font-weight: 300;
   width: 100%;
   transition: all .23s ease-in-out; }
   .feed-item:hover {
     background: #0C0329;
     color: #0984E6;
-    transform: scale(1.05); }
+    transform: scale(1.02); }
     .feed-item:hover:after {
       content: '';
       background: red;
@@ -559,17 +556,15 @@ ul {
       left: 0;
       height: auto;
       width: 100; }
-    .feed-item:hover li {
-      border-color: transparent; }
   .feed-item li {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     float: left;
-    letter-spacing: -.025rem;
+    letter-spacing: 0.075em;
     padding: 1.5rem 0;
     text-align: center;
     width: 25%;
-    font-size: 1.125rem;
-    line-height: 1.125rem; }
+    font-size: 0.9375rem;
+    line-height: 0.9375rem; }
 
 /* SMALL STATS
 ----------------------------------------------- */
@@ -582,24 +577,6 @@ ul {
     .small-stats .value {
       margin-right: 0%;
       width: 100%; } }
-
-.small-stats h2 {
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.13125rem;
-  margin-bottom: 3.125rem;
-  padding-bottom: 0.75rem;
-  position: relative;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  line-height: 0.875rem; }
-  .small-stats h2:after {
-    background: rgba(255, 255, 255, 0.13);
-    bottom: 0;
-    content: '';
-    height: 1px;
-    left: 0;
-    position: absolute;
-    width: 100%; }
 
 .small-stats .value p {
   letter-spacing: .075rem;
@@ -625,6 +602,21 @@ ul {
     text-transform: lowercase;
     font-size: 1.3125rem;
     line-height: 1.3125rem; }
+
+.small-stats_title {
+  margin-bottom: 3.125rem;
+  padding-bottom: 0.75rem;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1rem; }
+  .small-stats_title:after {
+    background: rgba(255, 255, 255, 0.13);
+    bottom: 0;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 100%; }
 
 .small-stats_path {
   stroke: #0984E6;
@@ -681,3 +673,5 @@ footer {
   footer a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none; }
+    footer a:hover {
+      color: #EB176F; }

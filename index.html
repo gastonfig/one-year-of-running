@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Run Feed</title>
-        <meta name="description" content="">
+        <title>One Year of Running</title>
+        <meta name="description" content="An annual data visualization report of all my runs in 2015.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -15,20 +15,12 @@
 
     <section class="intro container">
         <div class="inner">
-            <h1>One Year <br>of Running <!-- <span>‘15</span> --></h1>
+            <h1>One Year <br>of Running</h1>
             <p>A brief annual report of my attempts to run more and better in 2015. Nisi vitae rutrum bibendum. Fusce non sem iaculis, rhoncus mi vel, vulputate tortor. Nunc molestie nisl sit amet scelerisque porta.</p>
         </div>
 
         <div class="intro__chart" linear-chart chart-data="data"></div>
     </section>
-
-    <!-- <section class="meta">
-        <ul>
-            <li>{{ distanceSum | metersToMiles }}<span>mi</span></li>
-            <li>{{ timeSum | secondsToHMS: true }}<span>hrs</span></li>
-            <li>{{ runsSum }}<span>runs</span></li>
-        </ul> 
-    </section> -->
 
     <section class="run stats_with-graph outer dark">
         <div class="container">
@@ -65,19 +57,19 @@
     <section class="small-stats stats outer dark">
         <div class="container">
             <div class="third value left">
-                <h2>Time on the Road</h2>
+                <h3 class="small-stats_title">Time on the Road</h3>
                 <p>{{ timeSum | secondsToHMS }}<span>hrs</span></p>
                 <div line-chart chart-data="data" chart-item="moving_time"></div>
             </div>
 
             <div class="third value left">
-                <h2>Longest Distance</h2>
+                <h3 class="small-stats_title">Longest Distance</h3>
                 <p>{{ maxDistance | metersToMiles}}<span>mi</span></p>
                 <div line-chart chart-data="data" chart-item="distance"></div>
             </div>
 
             <div class="third value left">
-                <h2>Fastest Pace</h2>
+                <h3 class="small-stats_title">Fastest Pace</h3>
                 <p>{{ minPace | milesPerHour}}<span>m/mi</span></p>
                 <div line-chart chart-data="data" chart-item="average_speed"></div>
             </div>
@@ -102,13 +94,6 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>Designed and built by <a href="http://twitter.com/gastonfig" target="_blank">@gastonfig</a>.</p>
-            <p>Copyright &copy; 2016</p>
-        </div>
-    </footer>
-
     <!-- <section class="feed container">
         <ul>
             <li class="feed-item" ng-repeat="run in data">
@@ -119,9 +104,16 @@
                     <li class="feed__pace">{{ run.average_speed | milesPerHour}}<span>/mi</span></li>
                 </ul>
             </li>
-            
         </ul>
     </section> -->
+
+    <footer>
+        <div class="container">
+            <p>Designed and built by <a href="http://twitter.com/gastonfig" target="_blank">@gastonfig</a>.</p>
+            <p>Copyright &copy; 2016</p>
+        </div>
+    </footer>
+
     <script src="js/scripts.min.js"></script>
     </body>
 </html>

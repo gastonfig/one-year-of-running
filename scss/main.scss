@@ -6,15 +6,8 @@
 
 /* FONTS
 ----------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
-
 %primary-sans {
     font-family: 'Roboto', helvetica, arial, sans-serif;
-}
-
-%primary-mono {
-	font-family: 'Inconsolata', consolas, monaco, monospace;
 }
 
 %antialias {
@@ -288,14 +281,16 @@ ul {
 /* FEED
 ----------------------------------------------- */
 .feed-item {
+	color: rgba(#ffffff, .9);
 	float: left;
+	font-weight: 300;
 	width: 100%;
 	transition: all .23s ease-in-out;
 
 	&:hover {
 		background: $bg-color;
 		color: $accent-color;
-		transform: scale(1.05);
+		transform: scale(1.02);
 
 		&:after {
 			content: '';
@@ -307,20 +302,20 @@ ul {
 		}
 
 		li {
-			border-color: transparent;
+			// border-color: transparent;
 
 		}
 	}
 
 	li {
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid rgba(#ffffff, .2);
 		float: left;
-		letter-spacing: -.025rem;
+		letter-spacing: 0.075em;
 		padding: 1.5rem 0;
 		text-align: center;
 		width: 25%;
 
-		@include type-size(18);
+		@include type-size(15);
 		@extend %primary-mono;
 
 	}
@@ -338,27 +333,6 @@ ul {
 
 		@include breakpoint(tablet-portrait, max) {
 			@include columns-gutter(1, 0);
-		}
-	}
-
-	h2 {
-		color: rgba(#ffffff, .35);
-		letter-spacing: to-rem(2.1);
-		margin-bottom: to-rem(50);
-		padding-bottom: to-rem(12);
-		position: relative;
-		text-transform: uppercase;
-
-		@include type-size(14);
-
-		&:after {
-			background: rgba(255, 255, 255, .13);
-			bottom: 0;
-			content: '';
-			height: 1px;
-			left: 0;
-			position: absolute;
-			width: 100%;
 		}
 	}
 
@@ -390,6 +364,25 @@ ul {
 
 			@include type-size(21);
 		}
+	}
+}
+
+.small-stats_title {
+	margin-bottom: to-rem(50);
+	padding-bottom: to-rem(12);
+	position: relative;
+
+	@include type-size(16);
+	@extend .stats_with-graph_title;
+
+	&:after {
+		background: rgba(255, 255, 255, .13);
+		bottom: 0;
+		content: '';
+		height: 1px;
+		left: 0;
+		position: absolute;
+		width: 100%;
 	}
 }
 
@@ -465,5 +458,9 @@ footer {
 	a {
 		color: rgba(#ffffff, .8);
 		text-decoration: none;
+
+		&:hover {
+			color: $accent-contrast;
+		}
 	}
 }
