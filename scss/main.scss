@@ -1,52 +1,8 @@
 // MODULES
 @import "modules/_mixins";
-// @import "modules/_layout";
+@import "modules/_colors";
+@import "modules/_layout";
 
-/* LAYOUT
------------------------------------------------ */
-$grid-width: 1140;
-
-.outer {
-	padding-left: 5%;
-	padding-right: 5%;
-}
-
-.container {
-	margin: 0 auto;
-	max-width: ($grid-width/16) * 1em;
-
-	&:after {
-		content: " ";
-		display: block;
-		clear: both;
-	}
-}
-
-.third {
-	width: 33.33%;
-}
-
-.two-thirds {
-	width: 66.67%;
-}
-
-.right {
-	float: right;
-}
-
-.left {
-	float: left;
-}
-
-@include breakpoint(tablet-portrait, max) {
-	.third {
-		width: 100%;
-	}
-
-	.two-thirds {
-		width: 100%;
-	}
-}
 
 /* FONTS
 ----------------------------------------------- */
@@ -65,21 +21,6 @@ $grid-width: 1140;
 	-webkit-font-smoothing: antialiased;
 }
 
-/* COLORS
------------------------------------------------ */
-// $bg-color:			#020722;
-$bg-color:			#020724;
-// $bg-color-dark:		#01051c;
-$bg-color-dark:		#010519;
-$bg-color-light:	#061129;
-$accent-color: 		#09C4E6;
-$light-title:		#9e9fa8;
-
-.dark {
-	background: $bg-color-dark;
-}
-
-
 /* TYPOGRAPHY
 ----------------------------------------------- */
 body {
@@ -96,7 +37,6 @@ ul {
 
 /* INTRO
 ----------------------------------------------- */
-$hero-accent: #0FBDF2;
 
 .intro {
 	// background: $bg-color url('/images/hero.jpg') no-repeat center;
@@ -116,32 +56,35 @@ $hero-accent: #0FBDF2;
 	h1 {
 		color: rgba(#ffffff, 1);
 		font-weight: 100;
-		letter-spacing: -.14rem;
+		letter-spacing: -.16rem;
 		position: relative;
-		@include type-size(95, 1.12, true);
+		@include type-size(105, 1.1, true);
 
 		span {
-			color: desaturate($hero-accent, 25%);
-			// color: rgba(#ffffff, 1);
 			font-weight: 700;
-			letter-spacing: -.13em;
-			padding-left: to-rem(30);
-			position: absolute;
-			bottom: -17.5px; // Half of the diff between h1 and span typesizes
+			letter-spacing: -.03em;
 
-			@include type-size(130, 1.1, true);
+			// color: desaturate($accent-contrast-b, 20%);
+		// 	color: rgba(#ffffff, 1);
+		// 	font-weight: 700;
+		// 	letter-spacing: -.13em;
+		// 	padding-left: to-rem(35);
+		// 	position: absolute;
+		// 	bottom: -7.5px; // Half of the diff between h1 and span typesizes
 
-			&:before {
-				content: '‘';
-				display: inline-block;
-				position: absolute;
-				left: to-rem(4);
-			}
+		// 	@include type-size(110, 1.1, true);
+
+		// 	&:before {
+		// 		content: '‘';
+		// 		display: inline-block;
+		// 		position: absolute;
+		// 		left: to-rem(14);
+		// 	}
 		}
 	}
 
 	p {
-		color: rgba(255,255,255,.45);
+		color: rgba(255,255,255,.6);
 		font-weight: 100;
 		letter-spacing: .065em;
 		margin-left: 20%;
@@ -161,23 +104,24 @@ $hero-accent: #0FBDF2;
 	.step, .line {
 		fill: transparent;
 		stroke: #fff;
-		stroke-width: 1;
+		stroke-width: 2;
 	}
 
 	.line {
-		stroke: desaturate($hero-accent, 40%);
-		opacity: .3;
+		stroke: darken($accent-color, 0%);
+		opacity: .55;
 		// stroke-dasharray: 1, 1;
 	}
 
 	.circle {
 		// fill: #E6098A;
-		fill: $hero-accent;
-		r: 2;
-		// stroke-width: 3;
+		// fill: $hero-accent;
+		fill: $accent-contrast;
+		r: 2.5;
+		// stroke-width: 1;
 		// stroke: rgba(117, 69, 230, .3);
 		// stroke: rgba(#ffffff, .1);
-		// stroke: $bg-color;
+		// stroke: lighten($hero-accent, 10%);
 
 		&.selected {
 			r: 5;
@@ -237,63 +181,67 @@ $hero-accent: #0FBDF2;
 //     	font-weight: 400;
 //     	letter-spacing: .12rem;
 //     	text-transform: uppercase;
-// 		@include type-size(13);		
+// 		@include type-size(13);	
 //     }
 // }
 
 
 .runs-circle {
-	// fill: rgba(117, 69, 230, .8);
 	stroke: rgba(0, 0, 0, .3);
 	stroke-width: 1;
 }
 
 .runs-label {
-	font-family: %primary-sans;
 	font-weight: 100;
 	letter-spacing: to-rem(2.5);
 	opacity: .76;
 	text-transform: uppercase;
-	@include type-size(9);
+	@include type-size(7.5);
 }
 
-.miles-line {
-	// stroke: url("#gradient");
-	// fill: url("#the-gradient");
+.miles-line, .miles-circle-bg {
 	stroke-linecap: round;
 	stroke-width: 8px;
 	rx: 2.5;
 	ry: 2.5;
 }
 
-/* STATS
------------------------------------------------ */
-
 
 /* RUN
 ----------------------------------------------- */
 .stats, .stats_with-graph {
-	padding-bottom: to-rem(150);
-	padding-top: to-rem(150);
+	padding-bottom: to-rem(120);
+	padding-top: to-rem(100);
 	position: relative;
+
 
 	.value p {
 		color: #fff;
 		display: inline-block;
 		font-weight: 100;
-		letter-spacing: to-rem(.75);
+		letter-spacing: to-rem(-2);
 		margin: 0;
-		@include type-size(154);
+		@include type-size(150);
 
 		span {
 			display: block;
 			font-weight: 500;
-			letter-spacing: to-rem(2.5);
+			letter-spacing: to-rem(3.7);
 			text-transform: uppercase;
 			opacity: .4;
 			text-align: center;
-			@include type-size(18);
+			@include type-size(12);
 		}
+
+		&.large_value {
+			@include type-size(130);
+
+		}
+	}
+
+	.inner {
+		position: relative;
+		@extend .container_after;
 	}
 }
 
@@ -316,7 +264,25 @@ $hero-accent: #0FBDF2;
 			text-align: right;
 		}
 	}
+}
 
+.stats_with-graph_title {
+	color: rgba(#ffffff, .5);
+	font-weight: 100;
+	letter-spacing: 2.42px;
+	margin-bottom: to-rem(70);
+	text-transform: uppercase;
+
+	@include type-size(15);
+
+	&:after {
+		background: rgba(#ffffff, .17);
+		content: '';
+		display: block;
+		height: 2px;
+		margin-top: to-rem(12);
+		width: to-rem(12);
+	}
 }
 
 /* FEED
@@ -427,14 +393,25 @@ $hero-accent: #0FBDF2;
 	}
 }
 
+.small-stats_path {
+	// stroke: #0984E6;
+	stroke: $accent-color;
+	stroke-width: 1;
+	fill: transparent;
+}
+
 .small-stats_dot {
+	// fill: #E6098A;
+	fill: $accent-contrast;
+	r: 3;
 	stroke-width: 10;
-	stroke: rgba(117, 69, 230, .3);
+	// stroke: rgba(117, 69, 230, .3);
+	stroke: rgba($accent-contrast-b, .2);
 }
 
 .small-stats_bars {
 	stroke-width: 1;
-	stroke: rgba(255, 255, 255, .15);
+	stroke: rgba(#ffffff, .15);
 }
 
 /* ABOUT

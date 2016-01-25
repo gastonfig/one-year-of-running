@@ -15,7 +15,7 @@
 
     <section class="intro container">
         <div class="inner">
-            <h1>One Year of<br>Running <span>15</span></h1>
+            <h1>One Year <br>of Running <!-- <span>‘15</span> --></h1>
             <p>A brief annual report of my attempts to run more and better in 2015. Nisi vitae rutrum bibendum. Fusce non sem iaculis, rhoncus mi vel, vulputate tortor. Nunc molestie nisl sit amet scelerisque porta.</p>
         </div>
 
@@ -27,30 +27,38 @@
             <li>{{ distanceSum | metersToMiles }}<span>mi</span></li>
             <li>{{ timeSum | secondsToHMS: true }}<span>hrs</span></li>
             <li>{{ runsSum }}<span>runs</span></li>
-        </ul>  
+        </ul> 
     </section> -->
 
     <section class="run stats_with-graph outer dark">
         <div class="container">
-            <div class="third value left">
-                <p>{{ runsSum }}<span>runs</span></p>
-            </div>
+            <h3 class="stats_with-graph_title">Total Runs</h3>
 
-            <div class="two-thirds right">
-                <div runs-dots-chart chart-data="data"></div>
-            </div>            
+            <div class="inner">
+                <div class="third value left">
+                    <p>{{ runsSum }}<span>runs</span></p>
+                </div>
+
+                <div class="two-thirds right">
+                    <div runs-dots-chart chart-data="data"></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="miles stats_with-graph outer">
         <div class="container">
-            <div class="third value right">
-                <p>{{ distanceSum | metersToMiles | number:0 }}<span>miles</span></p>
+            <h3 class="stats_with-graph_title">Total Miles</h3>
+
+            <div class="inner">
+                <div class="third value right">
+                    <p class="large_value">{{ distanceSum | metersToMiles | number:0 }}<span>miles</span></p>
+                </div>
+
+                <div class="two-thirds left">
+                    <div miles-bar-chart chart-data="data"></div>
+                </div>
             </div>
-            
-            <div class="two-thirds left">
-                <div miles-bar-chart chart-data="data"></div>
-            </div>               
         </div>
     </section>
 
