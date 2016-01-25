@@ -207,7 +207,6 @@ ul {
 	padding-top: to-rem(100);
 	position: relative;
 
-
 	.value p {
 		color: #fff;
 		display: inline-block;
@@ -243,10 +242,15 @@ ul {
 		position: relative;
 	}
 
+	.chart {
+		width: 75%;
+	}
+
 	.value {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
+		width: 25%;
 
 		&.left {
 			left: 0;

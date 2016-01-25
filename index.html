@@ -27,11 +27,11 @@
             <h3 class="stats_with-graph_title">Total Runs</h3>
 
             <div class="inner">
-                <div class="third value left">
+                <div class="value left">
                     <p>{{ runsSum }}<span>runs</span></p>
                 </div>
 
-                <div class="two-thirds right">
+                <div class="chart right">
                     <div runs-dots-chart chart-data="data"></div>
                 </div>
             </div>
@@ -43,11 +43,11 @@
             <h3 class="stats_with-graph_title">Total Miles</h3>
 
             <div class="inner">
-                <div class="third value right">
+                <div class="value right">
                     <p class="large_value">{{ distanceSum | metersToMiles | number:0 }}<span>miles</span></p>
                 </div>
 
-                <div class="two-thirds left">
+                <div class="chart left">
                     <div miles-bar-chart chart-data="data"></div>
                 </div>
             </div>

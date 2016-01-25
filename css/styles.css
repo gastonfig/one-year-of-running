@@ -375,10 +375,10 @@ th {
   clear: both; }
 
 .third {
-  width: 25%; }
+  width: 33.33%; }
 
 .two-thirds {
-  width: 75%; }
+  width: 66.67%; }
 
 .right {
   float: right; }
@@ -511,10 +511,14 @@ ul {
 .stats_with-graph .container {
   position: relative; }
 
+.stats_with-graph .chart {
+  width: 75%; }
+
 .stats_with-graph .value {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%); }
+  transform: translateY(-50%);
+  width: 25%; }
   .stats_with-graph .value.left {
     left: 0; }
   .stats_with-graph .value.right {
