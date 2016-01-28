@@ -529,8 +529,6 @@ runsApp
 						// })
 						// .attr('fill', '#fff');
 					}
-
-					
 	       		}
 			}, true);
 		}
@@ -549,30 +547,31 @@ runsApp
 						d3 = $window.d3,
 						rawSvg = elem.find('svg'),
 						vis = d3.select(rawSvg[0]),
-						h = 45,
 						w = 300,
+						h = w/10,
 						margin = 10,
 					    chartAttribute = attrs.chartItem,
-					    parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse,
 						maxAttribute = d3.max(data, function(d) { return + d[chartAttribute];}),
+
 						minAttribute = d3.min(data, function(d) { return + d[chartAttribute];}),
 
-						x = d3.scale.ordinal().rangeRoundBands([0 + margin, w - margin], 0.05).domain(data.map(function(d) { return parseDate(d.start_date_local); })),
+						// x = d3.scale.ordinal().rangeRoundBands([0, w], 1).domain(data.map(function(d) { return parseDate(d.start_date_local); })),
+						x = d3.scale.linear().domain([0, data.length]).range([0, w]),
 						y = d3.scale.linear().domain([minAttribute, maxAttribute]).range([h - margin, 0 + margin]);
 
 					    vis
 					    	// .attr("width", w)
-					        .attr("height", h)
-					        .attr('width', '80%')
-					        .attr('height', 20 + '%')
+					        // .attr("height", h)
+					        .attr('width', '100%')
+					        .attr('height', '100%')
 					        .attr('viewBox','0 0 '+ w +' '+ h)
-					        .attr('preserveAspectRatio','xMinYMin');
+					        .attr('preserveAspectRatio','xMidYMid meet');
 
 					    // Line before animation
 					    var line = d3.svg.line()
 					        .interpolate("cardinal")
-					        .x(function(d) {
-					            return x(parseDate(d.start_date_local));
+					        .x(function(d, i) {
+					            return x(i);
 					        })
 					        .y(function(d) {
 					            return y(d[chartAttribute]);
@@ -581,24 +580,25 @@ runsApp
 					    // Line after animation
 					    var lineLoad = d3.svg.line()
 					        .interpolate("cardinal")
-					        .x(function(d) {
-					            return x(parseDate(d.start_date_local));
+					        .x(function(d, i) {
+					            return x(i);
 					        })
 					        .y(h);
 
 						// BARS
-				        vis.append('svg:g')
+				        vis
+					        .append('g')
 							.selectAll('.small-stats_bars')
 					    	.data(data)
 					    	.enter()
 					    	.append('svg:line')
 				    		.attr('class', 'small-stats_bars')
-				    		.attr('x1', function(d) {
-				    			return x(parseDate(d.start_date_local));
+				    		.attr('x1', function(d, i) {
+				    			return x(i);
 				    		})
 				    		.attr("y1", h)
-				    		.attr('x2', function(d) {
-				    			return x(parseDate(d.start_date_local));
+				    		.attr('x2', function(d, i) {
+				    			return x(i);
 				    		})
 				    		.attr("y2", h)
 					        .transition()
@@ -633,10 +633,11 @@ runsApp
 							.selectAll('.small-stats_dot')
 					    .data(data)
 					  .enter().append('svg:circle')
-					  .filter(function(d) { return d[chartAttribute] === maxAttribute; })
+					  // Using .select() instead of .filter() to preserve indecis
+					  .select(function(d) { return d[chartAttribute] === maxAttribute ? this: null; })
 					    .attr("class", "small-stats_dot")
-							.attr('cx', function(d) {
-								return x(parseDate(d.start_date_local));
+							.attr('cx', function(d, i) {
+								return x(i);
 							})
 						    .attr('cy', function(d) {
 						    	return y(d[chartAttribute]);

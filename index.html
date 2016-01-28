@@ -43,11 +43,11 @@
             <h3 class="stats_with-graph_title">Total Miles</h3>
 
             <div class="inner">
-                <div class="value right">
+                <div class="value left">
                     <p class="large_value">{{ distanceSum | metersToMiles | number:0 }}<span>miles</span></p>
                 </div>
 
-                <div class="chart left">
+                <div class="chart right">
                     <div miles-bar-chart chart-data="data"></div>
                 </div>
             </div>
@@ -59,19 +59,19 @@
             <div class="third value left">
                 <h3 class="small-stats_title">Time on the Road</h3>
                 <p>{{ timeSum | secondsToHMS }}<span>hrs</span></p>
-                <div line-chart chart-data="data" chart-item="moving_time"></div>
+                <div class=" " line-chart chart-data="data" chart-item="moving_time"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title">Longest Distance</h3>
                 <p>{{ maxDistance | metersToMiles}}<span>mi</span></p>
-                <div line-chart chart-data="data" chart-item="distance"></div>
+                <div class="small-stats_chart" line-chart chart-data="data" chart-item="distance"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title">Fastest Pace</h3>
                 <p>{{ minPace | milesPerHour}}<span>m/mi</span></p>
-                <div line-chart chart-data="data" chart-item="average_speed"></div>
+                <div class="small-stats_chart" line-chart chart-data="data" chart-item="average_speed"></div>
             </div>
 
         </div>
@@ -85,7 +85,6 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend ornare odio, sit amet tempus mauris rutrum pellentesque. Fusce venenatis ante augue, feugiat consectetur turpis eleifend vitae. Cras porttitor quis risus a hendrerit. Cras ut aliquet lectus.</p>
                 <p>Nulla vitae imperdiet ipsum. Nulla consequat mollis magna tempus lacinia. Donec pretium vulputate mi, ac consequat enim pellentesque non.</p>
                 <p>Duis ac dui quis erat commodo rhoncus. Integer nisl tellus, sagittis laoreet rutrum et, hendrerit in magna. Aenean nec tempus justo, vitae faucibus felis. Sed imperdiet orci dignissim mi porttitor, at finibus massa feugiat. Nam dignissim scelerisque elit.</p>
-                <p>Praesent sodales sed tellus venenatis accumsan. Cras et lectus nunc. Donec quis mollis massa. Cras eu faucibus neque, vel aliquam augue. Mauris in eleifend metus. Curabitur non rhoncus ligula.</p>
             </div>
 
             <div class="third left">

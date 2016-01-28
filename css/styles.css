@@ -388,8 +388,10 @@ th {
 
 @media only screen and (max-width: 870px) {
   .third {
+    float: left;
     width: 100%; }
   .two-thirds {
+    float: left;
     width: 100%; } }
 
 /* FONTS
@@ -491,8 +493,8 @@ ul {
     font-weight: 100;
     letter-spacing: -0.125rem;
     margin: 0;
-    font-size: 9.375rem;
-    line-height: 9.375rem; }
+    font-size: 6.875rem;
+    line-height: 6.875rem; }
     .stats .value p span, .stats_with-graph .value p span {
       display: block;
       font-weight: 500;
@@ -503,27 +505,41 @@ ul {
       font-size: 0.75rem;
       line-height: 0.75rem; }
     .stats .value p.large_value, .stats_with-graph .value p.large_value {
-      font-size: 8.125rem;
-      line-height: 8.125rem; }
+      font-size: 5.625rem;
+      line-height: 5.625rem; }
+    @media only screen and (min-width: 870px) {
+      .stats .value p, .stats_with-graph .value p {
+        font-size: 9.375rem;
+        line-height: 9.375rem; }
+        .stats .value p.large_value, .stats_with-graph .value p.large_value {
+          font-size: 6.875rem;
+          line-height: 6.875rem; } }
   .stats .inner, .stats_with-graph .inner {
     position: relative; }
 
 .stats_with-graph .container {
   position: relative; }
 
-.stats_with-graph .chart {
-  width: 75%; }
+.stats_with-graph .value, .stats_with-graph .chart {
+  width: 100%; }
 
-.stats_with-graph .value {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 25%; }
-  .stats_with-graph .value.left {
-    left: 0; }
-  .stats_with-graph .value.right {
-    right: 0;
-    text-align: right; }
+@media only screen and (min-width: 767px) {
+  .stats_with-graph .value {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25%; }
+    .stats_with-graph .value.left {
+      left: 0; }
+    .stats_with-graph .value.right {
+      right: 0;
+      text-align: right; }
+  .stats_with-graph .chart {
+    width: 75%; } }
+
+@media only screen and (max-width: 870px) {
+  .stats_with-graph .value {
+    margin: 0.625rem 0 4.375rem 0; } }
 
 .stats_with-graph_title, .small-stats_title {
   color: rgba(255, 255, 255, 0.5);
@@ -579,14 +595,17 @@ ul {
     margin-right: 0; }
   @media only screen and (max-width: 870px) {
     .small-stats .value {
+      margin-bottom: 5rem;
       margin-right: 0%;
-      width: 100%; } }
+      width: 100%; }
+      .small-stats .value:last-child {
+        margin-bottom: 0; } }
 
 .small-stats .value p {
   letter-spacing: .075rem;
   margin-bottom: 1.875rem;
-  font-size: 6.5625rem;
-  line-height: 6.5625rem; }
+  font-size: 5.625rem;
+  line-height: 5.625rem; }
   @media only screen and (min-width: 870px) {
     .small-stats .value p {
       letter-spacing: .005rem;
@@ -608,8 +627,8 @@ ul {
     line-height: 1.3125rem; }
 
 .small-stats_title {
-  margin-bottom: 3.125rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 0.6875rem;
   position: relative;
   font-size: 1rem;
   line-height: 1rem; }
@@ -657,10 +676,15 @@ ul {
     max-width: 100%; }
 
 .about_copy {
+  color: rgba(0, 0, 0, 0.75);
   font-weight: 300;
   max-width: 52%;
-  font-size: 1.125rem;
-  line-height: 1.7rem; }
+  font-size: 1.25rem;
+  line-height: 2.0625rem; }
+  @media only screen and (max-width: 870px) {
+    .about_copy {
+      margin-bottom: 2.5rem;
+      max-width: 100%; } }
 
 /* FOOTER
 ----------------------------------------------- */

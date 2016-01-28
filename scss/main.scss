@@ -213,7 +213,7 @@ ul {
 		font-weight: 100;
 		letter-spacing: to-rem(-2);
 		margin: 0;
-		@include type-size(150);
+		@include type-size(110);
 
 		span {
 			display: block;
@@ -226,8 +226,15 @@ ul {
 		}
 
 		&.large_value {
-			@include type-size(130);
+			@include type-size(90);
+		}
 
+		@include breakpoint(tablet-portrait, min) {
+			@include type-size(150);
+
+			&.large_value {
+				@include type-size(110);
+			}
 		}
 	}
 
@@ -242,23 +249,35 @@ ul {
 		position: relative;
 	}
 
-	.chart {
-		width: 75%;
+	.value, .chart {
+		width: 100%;
 	}
 
-	.value {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 25%;
+	@include breakpoint(phone-big, min) {
+		.value {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 25%;
 
-		&.left {
-			left: 0;
+			&.left {
+				left: 0;
+			}
+
+			&.right {
+				right: 0;
+				text-align: right;
+			}
 		}
 
-		&.right {
-			right: 0;
-			text-align: right;
+		.chart {
+			width: 75%;
+		}
+	}
+
+	@include breakpoint(tablet-portrait, max) {
+		.value {
+			margin: to-rem(10) 0 to-rem(70) 0;
 		}
 	}
 }
@@ -336,7 +355,12 @@ ul {
 		}
 
 		@include breakpoint(tablet-portrait, max) {
+			margin-bottom: to-rem(80);
 			@include columns-gutter(1, 0);
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 
@@ -344,7 +368,11 @@ ul {
 		letter-spacing: .075rem;
 		margin-bottom: to-rem(30);
 
-		@include type-size(105);
+		@include type-size(90);
+
+		// @include breakpoint(phone-mid, max) {
+		// 	@include type-size(110);
+		// }
 
 		@include breakpoint(tablet-portrait, min) {
 			letter-spacing: .005rem;
@@ -369,11 +397,17 @@ ul {
 			@include type-size(21);
 		}
 	}
+
+	.small-stats_chart {
+		// float: right;
+
+		// width: 100%;
+	}
 }
 
 .small-stats_title {
-	margin-bottom: to-rem(50);
-	padding-bottom: to-rem(12);
+	margin-bottom: to-rem(40);
+	padding-bottom: to-rem(11);
 	position: relative;
 
 	@include type-size(16);
@@ -437,17 +471,21 @@ ul {
 }
 
 .about_copy {
+	color: rgba(#000000, .75);
 	font-weight: 300;
 	max-width: 52%;
 
-	@include type-size(18, 27.2);
+	@include type-size(20, 1.65, true);
+
+	@include breakpoint(tablet-portrait, max) {
+		margin-bottom: to-rem(40);
+		max-width: 100%;
+	}
 }
 
 /* FOOTER
 ----------------------------------------------- */
 footer {
-	// background: #fff;
-	// border-top: 1px solid rgba(#ffffff, .9);
 	padding-bottom: to-rem(30);
 	padding-top: to-rem(30);
 	text-align: center;

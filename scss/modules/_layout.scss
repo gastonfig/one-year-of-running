@@ -40,10 +40,12 @@ $grid-width: 1140;
 
 @include breakpoint(tablet-portrait, max) {
 	.third {
+		float: left;
 		width: 100%;
 	}
 
 	.two-thirds {
+		float: left;
 		width: 100%;
 	}
 }
