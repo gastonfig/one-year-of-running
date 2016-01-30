@@ -42,7 +42,8 @@ ul {
 	.inner {
 		left: 0;
 		position: absolute;
-		top: 15%;
+		top: 40%;
+		transform: translateY(-40%);
 		max-width: 43%;
 	}
 
@@ -50,8 +51,9 @@ ul {
 		color: rgba(#ffffff, 1);
 		font-weight: 100;
 		letter-spacing: -.16rem;
+		margin: 0 0 to-rem(50) 0;
 		position: relative;
-		@include type-size(105, 1.1, true);
+		@include type-size(110, 1.1, true);
 
 		span {
 			font-weight: 700;
@@ -77,13 +79,13 @@ ul {
 	}
 
 	p {
-		color: rgba(255,255,255,.6);
+		color: rgba(255,255,255,.45);
 		font-weight: 100;
 		letter-spacing: .065em;
 		margin-left: 20%;
 		width: 100%;
 
-		@include type-size(16, 1.525, true);
+		@include type-size(18, 1.35, true);
 
 	}
 }
@@ -94,27 +96,17 @@ ul {
 	top: 50%;
 	transform: translateY(-50%);
 
-	.step, .line {
-		fill: transparent;
-		stroke: #fff;
-		stroke-width: 2;
-	}
-
 	.line {
-		stroke: darken($accent-color, 0%);
+		fill: transparent;
 		opacity: .55;
-		// stroke-dasharray: 1, 1;
+		stroke: darken($accent-color, 0%);
+		stroke-width: 2;
+		// stroke-dasharray: 4, 2;
 	}
 
 	.circle {
-		// fill: #E6098A;
-		// fill: $hero-accent;
 		fill: $accent-contrast;
 		r: 2.5;
-		// stroke-width: 1;
-		// stroke: rgba(117, 69, 230, .3);
-		// stroke: rgba(#ffffff, .1);
-		// stroke: lighten($hero-accent, 10%);
 
 		&.selected {
 			r: 5;
@@ -123,14 +115,11 @@ ul {
 	}
 
 	.path {
-		// fill: transparent;
-		// fill: rgba(#0984E6, .05);
-		// fill: rgba(#E6098A, .08);
-		// stroke: rgba(#0984E6, .35);
-		// stroke: rgba(#E6098A, .3);
-		// stroke-dasharray: 2, 2;
-		// stroke-width: 1;
-		opacity: 0;
+		fill: transparent;
+		stroke: rgba(#E6098A, .3);
+		stroke-dasharray: 2, 2;
+		stroke-width: 2;
+		// opacity: 0;
 	}
 }
 
