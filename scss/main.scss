@@ -35,7 +35,7 @@ a {
 /* INTRO
 ----------------------------------------------- */
 .intro {
-	background: linear-gradient(to bottom, #0C011C 0%,#0c0329 100%);
+	// background: linear-gradient(to bottom, #0C011C 0%,#0c0329 100%);
 }
 
 .intro .container {
@@ -114,10 +114,8 @@ a {
 
 	.line {
 		fill: transparent;
-		// opacity: .55;
-		stroke: darken($accent-color, 0%);
-		stroke-width: 2;
-		// stroke-dasharray: 4, 2;
+		stroke: $accent-color;
+		stroke-width: 1.5;
 	}
 
 	.circle {
@@ -206,7 +204,7 @@ a {
 			@include type-size(110, 100);
 
 			span {
-				display: block;
+				display: inline-block;
 				font-weight: 100;
 				letter-spacing: to-rem(1.3);
 				text-transform: uppercase;
@@ -214,8 +212,6 @@ a {
 				text-align: center;
 
 				@include type-size(13, .95, true);
-
-				display: none;
 			}
 
 			&.large_value {
@@ -247,8 +243,7 @@ a {
 		@extend %antialias;
 
 		p {
-			color: rgba(#ffffff, .3);
-			// font-weight: 300;
+			color: rgba(#ffffff, .35);
 			letter-spacing: to-rem(0.6);
 			@include type-size(14, 1.6, true);
 		}

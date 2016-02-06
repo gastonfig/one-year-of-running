@@ -14,7 +14,7 @@
     <body ng-controller="mainCtrl" ng-cloak>
 
 
-    <section class="outer intro">
+    <section class="outer intro dark">
         <div class="container">
             <div class="inner">
                 <h1>One Year <br />of Running</h1>
@@ -25,13 +25,13 @@
         </div>
     </section>
 
-    <section class="run stats_with-graph outer dark">
+    <section class="run stats_with-graph outer">
         <div class="container">
             <h3 class="stats_with-graph_title">Total Runs</h3>
 
             <div class="inner">
                 <div class="value">
-                    <p>{{ runsSum }}<span>runs</span></p>
+                    <p>{{ runsSum }}</p>
                 </div>
 
                 <div class="copy">
@@ -45,13 +45,13 @@
         </div>
     </section>
 
-    <section class="miles stats_with-graph outer">
+    <section class="miles stats_with-graph outer dark">
         <div class="container">
             <h3 class="stats_with-graph_title">Total Miles</h3>
 
             <div class="inner">
                 <div class="value">
-                    <p class="large_value">{{ distanceSum | metersToMiles | number:0 }}<span>miles</span></p>
+                    <p class="large_value">{{ distanceSum | metersToMiles | number:0 }}</p>
                 </div>
 
                 <div class="copy">
@@ -60,6 +60,27 @@
 
                 <div class="chart">
                     <div miles-bar-chart chart-data="data"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="miles stats_with-graph outer">
+        <div class="container">
+            <h3 class="stats_with-graph_title">Elevation Gain</h3>
+
+            <div class="inner">
+                <div class="value">
+                    <p class="large_value">{{ elevationGain | number:0 }}<span>ft</span></p>
+                </div>
+
+                <div class="copy">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
+                </div>
+
+                <div class="chart">
+                    <div class="small-stats_chart" line-chart chart-data="data" chart-item="total_elevation_gain"></div>
+                    <!-- <div miles-bar-chart chart-data="data"></div> -->
                 </div>
             </div>
         </div>

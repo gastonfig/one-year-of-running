@@ -418,9 +418,6 @@ a {
 
 /* INTRO
 ----------------------------------------------- */
-.intro {
-  background: linear-gradient(to bottom, #0C011C 0%, #0c0329 100%); }
-
 .intro .container {
   background-size: cover;
   display: block;
@@ -468,8 +465,8 @@ a {
   transform: translateY(-50%); }
   .intro__chart .line {
     fill: transparent;
-    stroke: #0984e6;
-    stroke-width: 2; }
+    stroke: #0984E6;
+    stroke-width: 1.5; }
   .intro__chart .circle {
     fill: #EB176F;
     r: 2.5; }
@@ -531,15 +528,14 @@ a {
     font-size: 6.875rem;
     line-height: 6.25rem; }
     .stats .value p span, .stats_with-graph .value p span {
-      display: block;
+      display: inline-block;
       font-weight: 100;
       letter-spacing: 0.08125rem;
       text-transform: uppercase;
       opacity: .3;
       text-align: center;
       font-size: 0.8125rem;
-      line-height: 0.77187rem;
-      display: none; }
+      line-height: 0.77187rem; }
     @media only screen and (min-width: 870px) {
       .stats .value p, .stats_with-graph .value p {
         font-size: 6.25rem;
@@ -553,7 +549,7 @@ a {
     float: left;
     width: 27.27273%; }
     .stats .copy p, .stats_with-graph .copy p {
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.35);
       letter-spacing: 0.0375rem;
       font-size: 0.875rem;
       line-height: 1.4rem; }
