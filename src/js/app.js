@@ -297,7 +297,7 @@ runsApp
 					x = d3.scale.linear().domain([1, 12]).range([margin, w - margin]), // Scale to 2 months
 					y = d3.scale.linear().domain([0, maxRunsNum + 1]).range([margin, h - margin]), // Adding 1 to maxRunsNum to account for text placement
 					color = d3.scale.linear().domain([0, maxRunsNum - 1]).range(['#0984E6', '#EB176F']);
-console.log(maxRunsNum);
+
 				    vis
 				    	.attr('width', '100%')
 				        .attr('height', '100%')
@@ -352,7 +352,6 @@ console.log(maxRunsNum);
 					    	.attr('width', dotRadius * 5.5)
 					    	.attr('height', dotRadius * 1.3)
 					    	.attr('fill', function(d, i) {
-					    		console.log(i, color(i));
 					    		return color(i);
 					    	})
 					    	.attr('y', function(d, i) {
@@ -508,10 +507,8 @@ console.log(maxRunsNum);
 						margin = 10,
 					    chartAttribute = attrs.chartItem,
 						maxAttribute = d3.max(data, function(d) { return + d[chartAttribute];}),
-
 						minAttribute = d3.min(data, function(d) { return + d[chartAttribute];}),
 
-						// x = d3.scale.ordinal().rangeRoundBands([0, w], 1).domain(data.map(function(d) { return parseDate(d.start_date_local); })),
 						x = d3.scale.linear().domain([0, data.length]).range([0, w]),
 						y = d3.scale.linear().domain([minAttribute, maxAttribute]).range([h - margin, 0 + margin]);
 
@@ -602,6 +599,91 @@ console.log(maxRunsNum);
 					    .transition()
 						    .duration(1000)
 						    .attr('opacity', 1);
+	       		}
+			}, true);
+		}
+	};
+})
+
+// ELEVATION CHART
+.directive('elevationChart', function($window) {
+   return {
+      restrict:'EA',
+      template:"<svg></svg>",
+       link: function(scope, elem, attrs) {
+	       	scope.$watch('data', function(newData) {
+	       		if(newData) {
+	            var data = scope[attrs.chartData],
+						d3 = $window.d3,
+						rawSvg = elem.find('svg'),
+						vis = d3.select(rawSvg[0]),
+						h = 200,
+						w = 300,
+						x = d3.scale.linear().domain([0, 6]).range([0, w]),
+						y = d3.scale.linear().domain([0, 6]).range([h, 0]);
+
+					    vis
+					    	// .attr("width", w)
+					        // .attr("height", h)
+					        // .style('background', 'rgba(255,255,255,.1)')
+					        .attr('width', '100%')
+					        .attr('height', '100%')
+					        .attr('viewBox','0 0 '+ w +' '+ h)
+					        .attr('preserveAspectRatio','xMidYMid meet');
+
+				        var trianglePoints = x(2) + ' ' + y(0) + ', ' +
+				        				     x(6) + ' ' + y(0) + ', ' +
+				        				     x(4) + ' ' + y(6) + ', ' +
+				        				     x(2) + ' ' + y(0);
+
+				    	var smallpyramid = x(1) + ' ' + y(0) + ', ' +
+				        				   x(3) + ' ' + y(0) + ', ' +
+				        				   x(2) + ' ' + y(3) + ', ' +
+				        				   x(1) + ' ' + y(0);
+
+				        console.log(trianglePoints);
+
+				        vis
+				        	.append('g')
+				        	.append('polyline')
+					        .attr('points', smallpyramid)
+					        .attr("class", "mountain small");
+
+					    vis
+				        	.append('g')
+				        	.append('polyline')
+					        .attr('points', trianglePoints)
+					        .attr("class", "mountain big");
+
+					    vis
+				        	.append('g')
+				        	.append('polyline')
+					        .attr('points', trianglePoints)
+					        .attr("class", "mountain cover");
+
+					        var gradient = vis
+					        .append("linearGradient")
+					        .attr("y1", 0)
+					        .attr("y2", h)
+					        .attr("x1", 0)
+					        .attr("x2", 0)
+					        .attr("id", "linear-gradient")
+					        .attr("gradientUnits", "userSpaceOnUse");
+
+					        gradient
+					        .append("stop")
+					        .attr("offset", "0")
+					        .attr("stop-opacity", 0.15)
+					        .attr("stop-color", "#EB176F");
+
+					        gradient
+					        .append("stop")
+					        .attr("offset", "100%")
+					        .attr("stop-opacity", 0.15)
+					        .attr("stop-color", "#0984E6");
+
+
+
 	       		}
 			}, true);
 		}

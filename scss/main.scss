@@ -311,6 +311,27 @@ a {
 	}
 }
 
+.elevation_bar-chart {
+	@include columns(3, 7);
+}
+
+.elevation_mnts-chart {
+	@include columns(3.5, 7, right);
+}
+
+polyline.mountain {
+	fill: none;
+	stroke: $accent-contrast;
+
+	&.big {
+		fill: url(#linear-gradient);
+	}
+
+	&.cover {
+		stroke: $$bg-color;
+		fill: $$bg-color;
+	}
+}
 /* FEED
 ----------------------------------------------- */
 .feed-item {

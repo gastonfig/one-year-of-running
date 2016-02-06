@@ -583,6 +583,20 @@ a {
   .stats_with-graph .value {
     margin: 0.625rem 0 4.375rem 0; } }
 
+.elevation_bar-chart {
+  float: left;
+  width: 42.85714%; }
+
+.elevation_mnts-chart {
+  float: right;
+  width: 50%; }
+
+polyline.mountain {
+  fill: none;
+  stroke: #EB176F; }
+  polyline.mountain.big {
+    fill: url(#linear-gradient); }
+
 /* FEED
 ----------------------------------------------- */
 .feed-item {
