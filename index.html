@@ -8,18 +8,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,500,300,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,500,300,700,900' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body ng-controller="mainCtrl" ng-cloak>
 
-    <section class="intro container">
-        <div class="inner">
-            <h1>One Year of&nbsp;Running</h1>
-            <p>An annual report and data visualization exploration of my runs in 2015.</p>
-        </div>
 
-        <div class="intro__chart" linear-chart chart-data="data"></div>
+    <section class="outer intro">
+        <div class="container">
+            <div class="inner">
+                <h1>One Year <br />of Running</h1>
+                <p>An annual report and data visualization exploration of my runs in 2015.</p>
+            </div>
+
+            <div class="intro__chart" linear-chart chart-data="data"></div>
+        </div>
     </section>
 
     <section class="run stats_with-graph outer dark">
@@ -27,11 +30,15 @@
             <h3 class="stats_with-graph_title">Total Runs</h3>
 
             <div class="inner">
-                <div class="value left">
+                <div class="value">
                     <p>{{ runsSum }}<span>runs</span></p>
                 </div>
 
-                <div class="chart right">
+                <div class="copy">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
+                </div>
+
+                <div class="chart">
                     <div runs-dots-chart chart-data="data"></div>
                 </div>
             </div>
@@ -43,11 +50,15 @@
             <h3 class="stats_with-graph_title">Total Miles</h3>
 
             <div class="inner">
-                <div class="value left">
+                <div class="value">
                     <p class="large_value">{{ distanceSum | metersToMiles | number:0 }}<span>miles</span></p>
                 </div>
 
-                <div class="chart right">
+                <div class="copy">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
+                </div>
+
+                <div class="chart">
                     <div miles-bar-chart chart-data="data"></div>
                 </div>
             </div>
@@ -82,9 +93,11 @@
             <h2>About this Project</h2>
 
             <div class="about_copy right">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend ornare odio, sit amet tempus mauris rutrum pellentesque. Fusce venenatis ante augue, feugiat consectetur turpis eleifend vitae. Cras porttitor quis risus a hendrerit. Cras ut aliquet lectus.</p>
-                <p>Nulla vitae imperdiet ipsum. Nulla consequat mollis magna tempus lacinia. Donec pretium vulputate mi, ac consequat enim pellentesque non.</p>
-                <p>Duis ac dui quis erat commodo rhoncus. Integer nisl tellus, sagittis laoreet rutrum et, hendrerit in magna. Aenean nec tempus justo, vitae faucibus felis. Sed imperdiet orci dignissim mi porttitor, at finibus massa feugiat. Nam dignissim scelerisque elit.</p>
+                <p>I took an interest in running in 2014 and <a href="http://gastonfig.com/my-first-race/" target="_blank">ran my first</a> race that year. I didn't make myself promises for 2015 but tried to run more overall and have fun at.</p>
+                <!-- <p>In 2015 running became more of a fun thing to do during in the weekends, most times pushing my daughter on her stroller.</p> -->
+
+                <h3>Meta</h3>
+                <p>I tracked all my activities using the <a href="https://www.strava.com/" target="_blank">Strava app</a>. I also wrote a quick Python script to export and format the data for easy manipulation and visualization. All the visualizations were built using <a href="http://d3js.org/" target="_blank">D3.js</a> with a little help from <a href="https://angularjs.org/" target="_blank">Angular.js</a>. The rest is just good old HTML and CSS.</p>
             </div>
 
             <div class="third left">

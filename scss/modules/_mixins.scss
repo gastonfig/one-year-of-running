@@ -22,9 +22,18 @@
   width: $st_width+%;
 }
 
+@mixin columns($columns, $totalCols, $float: left) {
+  float: $float;
+  width: ($grid-width / $totalCols * 100) / $grid-width * $columns + %;
+}
+
 // FUNCTIONS
 @function to-rem($val) {
   @return ($val / 16) + rem;
+}
+
+@function columns($columns, $totalCols) {
+  @return ($grid-width / $totalCols * 100) / $grid-width * $columns + %;
 }
 
 // MEDIA QUERIES

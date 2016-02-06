@@ -279,10 +279,10 @@ runsApp
 					d3 = $window.d3,
 					rawSvg = elem.find('svg'),
 					vis = d3.select(rawSvg[0]),
-					h = 280,
+					h = 200,
 					w = 730,
-					margin = 10,
-					dotRadius = 4,
+					dotRadius = 5,
+					margin = dotRadius * 2.75,
 					months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec'],
 
 		            nest = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7); })
@@ -297,13 +297,11 @@ runsApp
 					y = d3.scale.linear().domain([0, maxRunsNum + 1]).range([margin, h - margin]), // Adding 1 to maxRunsNum to account for text placement
 					color = d3.scale.linear().domain([0, maxRunsNum]).range(['#0984E6', '#E6098A']);
 
-
 				    vis
 				    	.attr('width', '100%')
 				        .attr('height', '100%')
 				    	.attr('viewBox','0 0 '+ w +' '+ h)
 				        .attr('preserveAspectRatio','xMinYMin');
-
 
 				    var g = vis.selectAll('.circle-container')
 				    	.data(nest).enter()
@@ -331,12 +329,12 @@ runsApp
 						.attr('fill', '#fff');
 
 					// BG
-					for(var j = 0; j < months.length; j++) {
+					for(var j = 0; j < months.length -1; j++) {
 						gBg
 							.append('rect')
 					    	.attr('x', dotRadius * -2.75)
 					    	.attr('width', dotRadius * 5.5)
-					    	.attr('height', dotRadius)
+					    	.attr('height', dotRadius * 1.3)
 					    	.attr('fill', 'rgba(255,255,255,.1)')
 					    	.attr('y', function() {
 					    		return y(-j) - (dotRadius * 2) - (margin * 3);
@@ -351,7 +349,7 @@ runsApp
 					    	.append('rect')
 					    	.attr('x', dotRadius * -2.75)
 					    	.attr('width', dotRadius * 5.5)
-					    	.attr('height', dotRadius)
+					    	.attr('height', dotRadius * 1.3)
 					    	.attr('fill', function(d, i) {
 					    		return color(i);
 					    	})
@@ -384,10 +382,10 @@ runsApp
 					d3 = $window.d3,
 					rawSvg = elem.find('svg'),
 					vis = d3.select(rawSvg[0]),
-					h = 280,
+					h = 200,
 					w = 730,
 					margin = 10,
-					rectWidth = 4,
+					rectWidth = 5,
 					months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec'],
 
 		            nest = d3.nest().key(function(d) { return d.start_date_local.substring(5, 7); }).sortKeys(d3.ascending)
@@ -395,7 +393,7 @@ runsApp
 						            .entries(data),
 					maxRunsNum = d3.max(nest, function(d) { return + d.values;}),
 					x = d3.scale.linear().domain([1, 12]).range([margin, w - margin]), // Scale to 12 months
-					y = d3.scale.linear().domain([0, maxRunsNum]).range([margin, h - margin - rectWidth]),
+					y = d3.scale.linear().domain([0, maxRunsNum]).range([0, h - (rectWidth * 4)]),
 					color = d3.scale.linear().domain([0, maxRunsNum]).range(['#0984E6', '#E6098A']);
 
 				    vis
@@ -432,7 +430,7 @@ runsApp
 				    	.attr('height', y(maxRunsNum))
 				    	.attr('fill', 'rgba(255,255,255,.1)')
 				    	.attr('y', function() {
-				    		return y(-maxRunsNum) - (rectWidth) - (margin * 3);
+				    		return y(-maxRunsNum) - (rectWidth * 4);
 				    	})
 				    	.attr('class', 'miles-circle-bg');
 
@@ -440,18 +438,12 @@ runsApp
 				    	.data(nest).enter()
 				    	.append('rect')
 				    		.attr('width', rectWidth)
-					    	.attr("y", function(d) {
-					    		// return -y(d.values);
-					    		return -y(0);
-					    	})
+					    	.attr("y", -y(0))
 					    	.attr("x", -rectWidth/2)
-					    	.attr("height", function(d) {
-							    	// return y(d.values);
-							    	return y(0);
-							    })
+					    	.attr("height", y(0))
 					    	.attr('class', 'miles-line')
 					        .attr("transform", function(d) {
-					        	return "translate(" + x(d.key) + ", " + (h  - rectWidth - (margin)) + ")";
+					        	return "translate(" + x(d.key) + ", " + (h  - (rectWidth * 4)) + ")";
 					        })
 					        .style("fill", function(d, i) {
 					        	return "url(#the-gradient" + i + ")";
@@ -525,7 +517,7 @@ runsApp
 						rawSvg = elem.find('svg'),
 						vis = d3.select(rawSvg[0]),
 						w = 300,
-						h = w/10,
+						h = w/6,
 						margin = 10,
 					    chartAttribute = attrs.chartItem,
 						maxAttribute = d3.max(data, function(d) { return + d[chartAttribute];}),
