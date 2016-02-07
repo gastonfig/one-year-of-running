@@ -157,7 +157,6 @@ a {
 	ry: 2.5;
 }
 
-
 /* MAIN STATS
 ----------------------------------------------- */
 .stats_with-graph {
@@ -322,11 +321,12 @@ a {
 }
 
 .elevation_bar-chart {
-	width: columns(3.4, 11);
+	width: columns(3.8, 11);
 }
 
 .elevation_mnts-chart {
-	width: columns(3.5, 11);
+	margin-left: columns(1, 11);
+	width: columns(2.2, 11);
 }
 
 polyline.mountain {
@@ -342,6 +342,29 @@ polyline.mountain {
 		fill: $bg-color;
 	}
 }
+
+.mountain_marker {
+	stroke: $accent-contrast;
+	stroke-dasharray: 3, 3;
+	stroke-width: 1;
+}
+
+.mountain_marker-label {
+	fill: rgba(#ffffff, .7);
+	letter-spacing: to-rem(1.5);
+	text-transform: uppercase;
+
+	@include type-size(13);
+}
+
+.elevation_marker-label {
+	fill: $accent-contrast;
+	letter-spacing: to-rem(1.5);
+	text-transform: uppercase;
+
+	@include type-size(13);
+}
+
 /* FEED
 ----------------------------------------------- */
 .feed-item {

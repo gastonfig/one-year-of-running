@@ -588,10 +588,11 @@ a {
   display: inline-block; }
 
 .elevation_bar-chart {
-  width: 30.90909%; }
+  width: 34.54545%; }
 
 .elevation_mnts-chart {
-  width: 31.81818%; }
+  margin-left: 9.09091%;
+  width: 20%; }
 
 polyline.mountain {
   fill: none;
@@ -601,6 +602,25 @@ polyline.mountain {
   polyline.mountain.cover {
     stroke: #0C0329;
     fill: #0C0329; }
+
+.mountain_marker {
+  stroke: #EB176F;
+  stroke-dasharray: 3, 3;
+  stroke-width: 1; }
+
+.mountain_marker-label {
+  fill: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.09375rem;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  line-height: 0.8125rem; }
+
+.elevation_marker-label {
+  fill: #EB176F;
+  letter-spacing: 0.09375rem;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  line-height: 0.8125rem; }
 
 /* FEED
 ----------------------------------------------- */
