@@ -625,43 +625,41 @@ runsApp
 					    vis
 					    	// .attr("width", w)
 					        // .attr("height", h)
-					        // .style('background', 'rgba(255,255,255,.1)')
 					        .attr('width', '100%')
 					        .attr('height', '100%')
 					        .attr('viewBox','0 0 '+ w +' '+ h)
 					        .attr('preserveAspectRatio','xMidYMid meet');
 
-				        var trianglePoints = x(2) + ' ' + y(0) + ', ' +
-				        				     x(6) + ' ' + y(0) + ', ' +
-				        				     x(4) + ' ' + y(6) + ', ' +
-				        				     x(2) + ' ' + y(0);
+				        var bigMountain = x(2) + ' ' + y(0) + ', ' +
+										  x(6) + ' ' + y(0) + ', ' +
+										  x(4) + ' ' + y(6) + ', ' +
+										  x(2) + ' ' + y(0);
 
-				    	var smallpyramid = x(1) + ' ' + y(0) + ', ' +
-				        				   x(3) + ' ' + y(0) + ', ' +
-				        				   x(2) + ' ' + y(3) + ', ' +
-				        				   x(1) + ' ' + y(0);
+				    	var smallMountain = x(1) + ' ' + y(0) + ', ' +
+				        				   	x(3) + ' ' + y(0) + ', ' +
+				        				   	x(2) + ' ' + y(3) + ', ' +
+				        				   	x(1) + ' ' + y(0);
 
-				        console.log(trianglePoints);
+				        // vis
+				        // 	.append('g')
+				        // 	.append('polyline')
+					       //  .attr('points', smallMountain)
+					       //  .attr("class", "mountain small");
 
-				        vis
-				        	.append('g')
-				        	.append('polyline')
-					        .attr('points', smallpyramid)
-					        .attr("class", "mountain small");
-
+					    // Cover/mask
 					    vis
 				        	.append('g')
 				        	.append('polyline')
-					        .attr('points', trianglePoints)
-					        .attr("class", "mountain big");
-
-					    vis
-				        	.append('g')
-				        	.append('polyline')
-					        .attr('points', trianglePoints)
+					        .attr('points', bigMountain)
 					        .attr("class", "mountain cover");
 
-					        var gradient = vis
+					    vis
+				        	.append('g')
+				        	.append('polyline')
+					        .attr('points', bigMountain)
+					        .attr("class", "mountain big");
+
+				        var gradient = vis
 					        .append("linearGradient")
 					        .attr("y1", 0)
 					        .attr("y2", h)
@@ -670,20 +668,17 @@ runsApp
 					        .attr("id", "linear-gradient")
 					        .attr("gradientUnits", "userSpaceOnUse");
 
-					        gradient
+				        gradient
 					        .append("stop")
 					        .attr("offset", "0")
-					        .attr("stop-opacity", 0.15)
+					        .attr("stop-opacity", 0.25)
 					        .attr("stop-color", "#EB176F");
 
-					        gradient
+				        gradient
 					        .append("stop")
 					        .attr("offset", "100%")
-					        .attr("stop-opacity", 0.15)
+					        .attr("stop-opacity", 0)
 					        .attr("stop-color", "#0984E6");
-
-
-
 	       		}
 			}, true);
 		}

@@ -544,9 +544,8 @@ a {
     position: relative;
     margin-left: 8.33333%; }
   .stats .copy, .stats_with-graph .copy {
-    bottom: 0;
-    position: absolute;
-    float: left;
+    display: inline-block;
+    margin-right: 9.09091%;
     width: 27.27273%; }
     .stats .copy p, .stats_with-graph .copy p {
       color: rgba(255, 255, 255, 0.35);
@@ -574,28 +573,34 @@ a {
   position: relative; }
 
 @media only screen and (min-width: 767px) {
-  .stats_with-graph .chart {
-    margin-left: 9.09091%;
-    float: right;
-    width: 63.63636%; } }
+  .stats_with-graph .chart-container {
+    float: left;
+    width: 100%; }
+    .stats_with-graph .chart-container .chart {
+      display: inline-block;
+      width: 63.63636%; } }
 
 @media only screen and (max-width: 870px) {
   .stats_with-graph .value {
     margin: 0.625rem 0 4.375rem 0; } }
 
+.elevation-charts {
+  display: inline-block; }
+
 .elevation_bar-chart {
-  float: left;
-  width: 42.85714%; }
+  width: 30.90909%; }
 
 .elevation_mnts-chart {
-  float: right;
-  width: 50%; }
+  width: 31.81818%; }
 
 polyline.mountain {
   fill: none;
-  stroke: #EB176F; }
+  stroke: #0984E6; }
   polyline.mountain.big {
     fill: url(#linear-gradient); }
+  polyline.mountain.cover {
+    stroke: #0C0329;
+    fill: #0C0329; }
 
 /* FEED
 ----------------------------------------------- */
