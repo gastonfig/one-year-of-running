@@ -399,7 +399,7 @@ th {
 body {
   font-family: 'Roboto', helvetica, arial, sans-serif; }
 
-.stats .copy, .stats_with-graph .copy, .stats_with-graph_title, .small-stats_title, .small-stats .value p {
+.stats_with-graph_title, .small-stats_title, .stats_with-graph .copy, .small-stats .value p {
   -webkit-font-smoothing: antialiased; }
 
 /* TYPOGRAPHY
@@ -496,29 +496,15 @@ a {
 
 /* MAIN STATS
 ----------------------------------------------- */
-.stats_with-graph .value {
-  padding-top: 3.125rem;
-  float: left;
-  width: 100%; }
-  .stats_with-graph .value:before, .stats_with-graph .value:after {
-    background: rgba(255, 255, 255, 0.08);
-    content: '';
-    height: 1px;
-    position: absolute;
-    top: 0;
-    float: right;
-    width: 27.27273%; }
-  .stats_with-graph .value:before {
-    left: 0;
-    width: 27.27273%; }
-  .stats_with-graph .value:after {
-    right: 0;
-    width: 63.63636%; }
-
 .stats, .stats_with-graph {
-  padding-bottom: 12.5rem;
-  padding-top: 7.5rem;
+  padding-bottom: 8.125rem;
+  padding-top: 6.875rem;
   position: relative; }
+  .stats .inner, .stats_with-graph .inner {
+    position: relative; }
+    @media only screen and (min-width: 1140px) {
+      .stats .inner, .stats_with-graph .inner {
+        margin-left: 8.33333%; } }
   .stats .value p, .stats_with-graph .value p {
     color: #fff;
     display: inline-block;
@@ -540,24 +526,12 @@ a {
       .stats .value p, .stats_with-graph .value p {
         font-size: 6.25rem;
         line-height: 6.25rem; } }
-  .stats .inner, .stats_with-graph .inner {
-    position: relative;
-    margin-left: 8.33333%; }
-  .stats .copy, .stats_with-graph .copy {
-    display: inline-block;
-    margin-right: 9.09091%;
-    width: 27.27273%; }
-    .stats .copy p, .stats_with-graph .copy p {
-      color: rgba(255, 255, 255, 0.35);
-      letter-spacing: 0.0375rem;
-      font-size: 0.875rem;
-      line-height: 1.4rem; }
 
 .stats_with-graph_title, .small-stats_title {
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
   font-weight: 100;
   letter-spacing: 0.075rem;
-  margin-bottom: 4.375rem;
+  margin-bottom: 1.875rem;
   text-transform: uppercase;
   font-size: 1.5625rem;
   line-height: 1.5625rem; }
@@ -572,27 +546,100 @@ a {
 .stats_with-graph .container {
   position: relative; }
 
-@media only screen and (min-width: 767px) {
-  .stats_with-graph .chart-container {
-    float: left;
-    width: 100%; }
-    .stats_with-graph .chart-container .chart {
-      display: inline-block;
-      width: 63.63636%; } }
+.stats_with-graph .chart {
+  display: inline-block;
+  width: 100%; }
 
-@media only screen and (max-width: 870px) {
-  .stats_with-graph .value {
-    margin: 0.625rem 0 4.375rem 0; } }
+.stats_with-graph .copy {
+  float: left;
+  margin-left: 8.33333%;
+  width: 50%; }
+  .stats_with-graph .copy p {
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.0375rem;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.4rem; }
+  @media only screen and (max-width: 620px) {
+    .stats_with-graph .copy {
+      width: 100%; } }
+  @media only screen and (max-width: 767px) {
+    .stats_with-graph .copy {
+      margin-left: 0;
+      margin-bottom: 5rem;
+      width: 75%; } }
+
+@media only screen and (min-width: 960px) {
+  .stats_with-graph .copy {
+    margin-left: 0;
+    margin-right: 9.09091%;
+    width: 27.27273%; }
+  .stats_with-graph .chart {
+    width: 63.63636%; } }
+
+.stats_with-graph .value {
+  display: inline-block;
+  margin-bottom: 3.125rem;
+  padding-bottom: 2.5rem;
+  position: relative;
+  width: 25%; }
+  .stats_with-graph .value p {
+    padding-top: 1.875rem;
+    font-size: 6.875rem;
+    line-height: 6.875rem; }
+    .stats_with-graph .value p.large_value {
+      font-size: 4.0625rem;
+      line-height: 4.0625rem; }
+  .stats_with-graph .value:before, .stats_with-graph .value:after {
+    background: rgba(255, 255, 255, 0.08);
+    content: '';
+    height: 1px;
+    position: absolute;
+    bottom: 0; }
+  .stats_with-graph .value:before {
+    left: 0;
+    width: 25%; }
+  .stats_with-graph .value:after {
+    right: 0;
+    width: 66.66667%; }
+  @media only screen and (max-width: 767px) {
+    .stats_with-graph .value {
+      width: 100%; }
+      .stats_with-graph .value:before {
+        left: 0;
+        width: 41.66667%; }
+      .stats_with-graph .value:after {
+        display: none; } }
+  @media only screen and (min-width: 960px) {
+    .stats_with-graph .value {
+      width: 100%; }
+      .stats_with-graph .value:before {
+        width: 27.27273%; }
+      .stats_with-graph .value:after {
+        width: 63.63636%; }
+      .stats_with-graph .value p, .stats_with-graph .value p.large_value {
+        font-size: 5.625rem;
+        line-height: 5.625rem; } }
+  @media only screen and (max-width: 960px) {
+    .stats_with-graph .value {
+      margin: 0.625rem 0 4.375rem 0; } }
 
 .elevation-charts {
   display: inline-block; }
 
 .elevation_bar-chart {
-  width: 34.54545%; }
+  width: 58.33333%; }
+  @media only screen and (min-width: 960px) {
+    .elevation_bar-chart {
+      width: 34.54545%; } }
 
 .elevation_mnts-chart {
-  margin-left: 9.09091%;
-  width: 20%; }
+  margin-left: 8.33333%;
+  width: 33.33333%; }
+  @media only screen and (min-width: 960px) {
+    .elevation_mnts-chart {
+      margin-left: 9.09091%;
+      width: 20%; } }
 
 polyline.mountain {
   fill: none;
@@ -621,35 +668,6 @@ polyline.mountain {
   text-transform: uppercase;
   font-size: 0.8125rem;
   line-height: 0.8125rem; }
-
-/* FEED
------------------------------------------------ */
-.feed-item {
-  color: rgba(255, 255, 255, 0.9);
-  float: left;
-  font-weight: 300;
-  width: 100%;
-  transition: all .23s ease-in-out; }
-  .feed-item:hover {
-    background: #0C0329;
-    color: #0984E6;
-    transform: scale(1.02); }
-    .feed-item:hover:after {
-      content: '';
-      background: red;
-      position: absolute;
-      left: 0;
-      height: auto;
-      width: 100; }
-  .feed-item li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    float: left;
-    letter-spacing: 0.075em;
-    padding: 1.5rem 0;
-    text-align: center;
-    width: 25%;
-    font-size: 0.9375rem;
-    line-height: 0.9375rem; }
 
 /* SMALL STATS
 ----------------------------------------------- */
@@ -681,9 +699,9 @@ polyline.mountain {
         line-height: 4.375rem; } }
     @media only screen and (min-width: 1100px) {
       .small-stats .value p {
-        letter-spacing: -.05rem;
-        font-size: 6.5625rem;
-        line-height: 6.5625rem; } }
+        letter-spacing: -.125rem;
+        font-size: 5.625rem;
+        line-height: 5.625rem; } }
     .small-stats .value p span {
       color: rgba(255, 255, 255, 0.5);
       display: inline-block;

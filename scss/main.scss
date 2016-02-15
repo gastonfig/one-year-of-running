@@ -159,40 +159,22 @@ a {
 
 /* MAIN STATS
 ----------------------------------------------- */
-.stats_with-graph {
-	.value {
-		padding-top: to-rem(50);
-		@include columns(11, 11);
-
-		&:before, &:after {
-			background: rgba(#ffffff, .08);
-			content: '';
-			height: 1px;
-			position: absolute;
-			top: 0;
-
-			@include columns(3, 11, right);
-		}
-
-		&:before {
-			left: 0;
-			width: columns(3, 11);
-		}
-
-		&:after {
-			right: 0;
-			width: columns(7, 11);
-		}
-	}
-}
-
 .stats, .stats_with-graph {
-	padding-bottom: to-rem(200);
-	padding-top: to-rem(120);
+	padding-bottom: to-rem(130);
+	padding-top: to-rem(110);
 	position: relative;
 
-	.value {
+	.inner {
+		position: relative;
 
+		@extend .container_after;
+
+		@include breakpoint(grid-width, min) {
+			margin-left: columns(1, 12);
+		}
+	}
+
+	.value {
 		p {
 			color: #fff;
 			display: inline-block;
@@ -213,49 +195,19 @@ a {
 				@include type-size(13, .95, true);
 			}
 
-			&.large_value {
-				// @include type-size(90);
-			}
-
 			@include breakpoint(tablet-portrait, min) {
 				@include type-size(100, 1, true);
-
-				&.large_value {
-					// @include type-size(120, 1, true);
-				}
 			}
-		}
-	}
-
-	.inner {
-		position: relative;
-		margin-left: columns(1, 12);
-
-		@extend .container_after;
-	}
-
-	.copy {
-		// bottom: 0;
-		// position: absolute;
-		display: inline-block;
-		margin-right: columns(1, 11);
-		width: columns(3, 11);
-		@extend %antialias;
-
-		p {
-			color: rgba(#ffffff, .35);
-			letter-spacing: to-rem(0.6);
-			@include type-size(14, 1.6, true);
 		}
 	}
 }
 
 // Title
 .stats_with-graph_title {
-	color: rgba(#ffffff, .8);
+	color: rgba(#ffffff, 1);
 	font-weight: 100;
 	letter-spacing: to-rem(1.2);
-	margin-bottom: to-rem(70);
+	margin-bottom: to-rem(30);
 	text-transform: uppercase;
 
 	@extend %antialias; // TODO: Only apply to HD screens
@@ -276,44 +228,133 @@ a {
 		position: relative;
 	}
 
-	.value, .chart {
-		// width: 100%;
+	.chart {
+		display: inline-block;
+		width: 100%;
 	}
 
-	@include breakpoint(phone-big, min) {
-		.value {
-			// position: absolute;
-			// left: 0;
-			// top: 50%;
-			// transform: translateY(-50%);
-			// width: 28%;
+	.copy {
+		// display: inline-block;
+		float: left;
+		margin-left: columns(1, 12);
+		width: columns(6, 12);
 
-			&.left {
-				// left: 0;
+		@extend %antialias;
+
+		p {
+			color: rgba(#ffffff, .5);
+			letter-spacing: to-rem(0.6);
+			margin: 0;
+
+			@include type-size(14, 1.6, true);
+		}
+
+		@include breakpoint(phone-mid, max) {
+			width: columns(12, 12);
+		}
+
+		@include breakpoint(phone-big, max) {
+			margin-left: 0;
+			margin-bottom: to-rem(80);
+			width: columns(9, 12);
+		}
+	}
+
+
+	@include breakpoint(desktop, min) {
+		.copy {
+			margin-left: 0;
+			margin-right: columns(1, 11);
+			width: columns(3, 11);
+		}
+
+		.chart {
+			width: columns(7, 11);
+		}
+	}
+
+
+	.value {
+		display: inline-block;
+		margin-bottom: to-rem(50);
+		padding-bottom: to-rem(40);
+		// padding-top: to-rem(10);
+		position: relative;
+		width: columns(3, 12);
+
+		p {
+			padding-top: to-rem(30);
+			@include type-size(110);
+
+			&.large_value {
+				@include type-size(65);
 			}
 
-			&.right {
-				// right: 0;
-				// text-align: right;
+			// &:before {
+			// 	background: rgba(#ffffff, .08);
+			// 	content: '';
+			// 	height: 1px;
+			// 	position: absolute;
+			// 	top: 0;
+			// 	width: columns(3, 11);
+			// }
+		}
+
+		&:before, &:after {
+			background: rgba(#ffffff, .08);
+			content: '';
+			height: 1px;
+			position: absolute;
+			bottom: 0;
+		}
+
+		&:before {
+			left: 0;
+			width: columns(3, 12);
+		}
+
+		&:after {
+			right: 0;
+			width: columns(8, 12);
+		}
+
+		@include breakpoint(phone-big, max) {
+			width: 100%;
+
+			&:before {
+				left: 0;
+				width: columns(5, 12);
+			}
+
+			&:after {
+				display: none;
 			}
 		}
 
-		.chart-container {
-			@include columns(11, 11);
 
-			.chart {
-				display: inline-block;
+		@include breakpoint(desktop, min) {
+			width: 100%;
+
+
+			&:before {
+				width: columns(3, 11);
+			}
+
+			&:after {
 				width: columns(7, 11);
+			}
 
+			p, p.large_value {
+				@include type-size(90);
 			}
 		}
-	}
 
-	@include breakpoint(tablet-portrait, max) {
-		.value {
+		@include breakpoint(desktop, max) {
+			// width: columns(3, 12);
 			margin: to-rem(10) 0 to-rem(70) 0;
 		}
 	}
+
 }
 
 .elevation-charts {
@@ -321,12 +362,21 @@ a {
 }
 
 .elevation_bar-chart {
-	width: columns(3.8, 11);
+	width: columns(7, 12);
+
+	@include breakpoint(desktop, min) {
+		width: columns(3.8, 11);
+	}
 }
 
 .elevation_mnts-chart {
-	margin-left: columns(1, 11);
-	width: columns(2.2, 11);
+	margin-left: columns(1, 12);
+	width: columns(4, 12);
+
+	@include breakpoint(desktop, min) {
+		margin-left: columns(1, 11);
+		width: columns(2.2, 11);
+	}
 }
 
 polyline.mountain {
@@ -365,48 +415,48 @@ polyline.mountain {
 	@include type-size(13);
 }
 
-/* FEED
------------------------------------------------ */
-.feed-item {
-	color: rgba(#ffffff, .9);
-	float: left;
-	font-weight: 300;
-	width: 100%;
-	transition: all .23s ease-in-out;
+// /* FEED
+// ----------------------------------------------- */
+// .feed-item {
+// 	color: rgba(#ffffff, .9);
+// 	float: left;
+// 	font-weight: 300;
+// 	width: 100%;
+// 	transition: all .23s ease-in-out;
 
-	&:hover {
-		background: $bg-color;
-		color: $accent-color;
-		transform: scale(1.02);
+// 	&:hover {
+// 		background: $bg-color;
+// 		color: $accent-color;
+// 		transform: scale(1.02);
 
-		&:after {
-			content: '';
-			background: red;
-			position: absolute;
-			left: 0;
-			height: auto;
-			width: 100;
-		}
+// 		&:after {
+// 			content: '';
+// 			background: red;
+// 			position: absolute;
+// 			left: 0;
+// 			height: auto;
+// 			width: 100;
+// 		}
 
-		li {
-			// border-color: transparent;
+// 		li {
+// 			// border-color: transparent;
 
-		}
-	}
+// 		}
+// 	}
 
-	li {
-		border-bottom: 1px solid rgba(#ffffff, .2);
-		float: left;
-		letter-spacing: 0.075em;
-		padding: 1.5rem 0;
-		text-align: center;
-		width: 25%;
+// 	li {
+// 		border-bottom: 1px solid rgba(#ffffff, .2);
+// 		float: left;
+// 		letter-spacing: 0.075em;
+// 		padding: 1.5rem 0;
+// 		text-align: center;
+// 		width: 25%;
 
-		@include type-size(15);
-		@extend %primary-mono;
+// 		@include type-size(15);
+// 		@extend %primary-mono;
 
-	}
-}
+// 	}
+// }
 
 /* SMALL STATS
 ----------------------------------------------- */
@@ -450,9 +500,9 @@ polyline.mountain {
 		}
 
 		@include breakpoint(1100, min) {
-			letter-spacing: -.05rem;
+			letter-spacing: -.125rem;
 
-			@include type-size(105);
+			@include type-size(90);
 		}
 
 		span {

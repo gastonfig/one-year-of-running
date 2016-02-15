@@ -38,11 +38,11 @@
 
 // MEDIA QUERIES
 @mixin breakpoint($point, $minMax) {
-  @if $point == full-min {
-    @media only screen and (min-width: 1440px) { @content; }
-  }
   @if $point == 1200 {
     @media only screen and (#{$minMax}-width: 1200px) { @content; }
+  }
+  @else if $point == grid-width {
+    @media only screen and (#{$minMax}-width: 1140px) { @content; }
   }
   @else if $point == 1040 {
     @media only screen and (#{$minMax}-width: 1040px) { @content; }

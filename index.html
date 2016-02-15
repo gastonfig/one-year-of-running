@@ -34,11 +34,9 @@
                     <p>{{ runsSum }}</p>
                 </div>
 
-                <div class="chart-container">
                     <div class="copy">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
                     </div><div class="chart" runs-dots-chart chart-data="data"></div>
-                </div>
             </div>
         </div>
     </section>
@@ -49,15 +47,13 @@
 
             <div class="inner">
                 <div class="value">
-                    <p class="large_value">{{ distanceSum | metersToMiles | number:0 }}</p>
+                    <p>{{ distanceSum | metersToMiles | number:0 }}</p>
                 </div>
 
 
-                <div class="chart-container">
                     <div class="copy">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
                     </div><div class="chart" miles-bar-chart chart-data="data"></div>
-                </div>
             </div>
         </div>
     </section>
@@ -72,11 +68,9 @@
                 </div>
 
 
-                <div class="chart-container">
                     <div class="copy">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
                     </div><div class="elevation-charts elevation_bar-chart"line-chart chart-data="data" chart-item="total_elevation_gain"></div><div class="elevation-charts elevation_mnts-chart"elevation-chart chart-data="data"></div>
-                </div>
             </div>
         </div>
     </section>
