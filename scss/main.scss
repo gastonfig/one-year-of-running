@@ -203,7 +203,8 @@ a {
 }
 
 // Title
-.stats_with-graph_title {
+// .stats_with-graph_title {
+.stats_title {
 	color: rgba(#ffffff, 1);
 	font-weight: 100;
 	letter-spacing: to-rem(1.2);
@@ -234,8 +235,7 @@ a {
 	}
 
 	.copy {
-		// display: inline-block;
-		float: left;
+		display: inline-block;
 		margin-left: columns(1, 12);
 		width: columns(6, 12);
 
@@ -263,6 +263,7 @@ a {
 
 	@include breakpoint(desktop, min) {
 		.copy {
+			float: left;
 			margin-left: 0;
 			margin-right: columns(1, 11);
 			width: columns(3, 11);
@@ -278,9 +279,8 @@ a {
 		display: inline-block;
 		margin-bottom: to-rem(50);
 		padding-bottom: to-rem(40);
-		// padding-top: to-rem(10);
 		position: relative;
-		width: columns(3, 12);
+		// width: columns(4, 12);
 
 		p {
 			padding-top: to-rem(30);
@@ -516,30 +516,26 @@ polyline.mountain {
 			@include type-size(21);
 		}
 	}
-
-	.small-stats_chart {
-		// float: right;
-
-		// width: 100%;
-	}
 }
 
 .small-stats_title {
-	margin-bottom: to-rem(40);
-	padding-bottom: to-rem(11);
-	position: relative;
+	@include breakpoint(tablet-portrait, min) {
+		margin-bottom: to-rem(40);
+		padding-bottom: to-rem(11);
+		position: relative;
 
-	@include type-size(16);
-	@extend .stats_with-graph_title;
+		@include type-size(16);
+		@extend .stats_with-graph_title;
 
-	&:after {
-		background: rgba(255, 255, 255, .13);
-		bottom: 0;
-		content: '';
-		height: 1px;
-		left: 0;
-		position: absolute;
-		width: 100%;
+		&:after {
+			background: rgba(255, 255, 255, .13);
+			bottom: 0;
+			content: '';
+			height: 1px;
+			left: 0;
+			position: absolute;
+			width: 100%;
+		}
 	}
 }
 

@@ -27,7 +27,7 @@
 
     <section class="run stats_with-graph outer">
         <div class="container">
-            <h3 class="stats_with-graph_title">Total Runs</h3>
+            <h3 class="stats_with-graph_title stats_title">Total Runs</h3>
 
             <div class="inner">
                 <div class="value">
@@ -43,7 +43,7 @@
 
     <section class="miles stats_with-graph outer dark">
         <div class="container">
-            <h3 class="stats_with-graph_title">Total Miles</h3>
+            <h3 class="stats_with-graph_title stats_title">Total Miles</h3>
 
             <div class="inner">
                 <div class="value">
@@ -60,13 +60,12 @@
 
     <section class="elevation stats_with-graph outer">
         <div class="container">
-            <h3 class="stats_with-graph_title">Elevation Gain</h3>
+            <h3 class="stats_with-graph_title stats_title">Elevation Gain</h3>
 
             <div class="inner">
                 <div class="value">
                     <p class="large_value">{{ elevationGain | number:0 }}<span>ft</span></p>
                 </div>
-
 
                     <div class="copy">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
@@ -78,19 +77,19 @@
     <section class="small-stats stats outer dark">
         <div class="container">
             <div class="third value left">
-                <h3 class="small-stats_title">Time on the Road</h3>
+                <h3 class="small-stats_title stats_title">Time on the Road</h3>
                 <p>{{ timeSum | secondsToHMS }}<span>hrs</span></p>
                 <div class=" " line-chart chart-data="data" chart-item="moving_time"></div>
             </div>
 
             <div class="third value left">
-                <h3 class="small-stats_title">Longest Distance</h3>
+                <h3 class="small-stats_title stats_title">Longest Distance</h3>
                 <p>{{ maxDistance | metersToMiles}}<span>mi</span></p>
                 <div class="small-stats_chart" line-chart chart-data="data" chart-item="distance"></div>
             </div>
 
             <div class="third value left">
-                <h3 class="small-stats_title">Fastest Pace</h3>
+                <h3 class="small-stats_title stats_title">Fastest Pace</h3>
                 <p>{{ minPace | milesPerHour}}<span>m/mi</span></p>
                 <div class="small-stats_chart" line-chart chart-data="data" chart-item="average_speed"></div>
             </div>

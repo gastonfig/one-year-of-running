@@ -399,7 +399,7 @@ th {
 body {
   font-family: 'Roboto', helvetica, arial, sans-serif; }
 
-.stats_with-graph_title, .small-stats_title, .stats_with-graph .copy, .small-stats .value p {
+.stats_title, .stats_with-graph .copy, .small-stats .value p {
   -webkit-font-smoothing: antialiased; }
 
 /* TYPOGRAPHY
@@ -527,7 +527,7 @@ a {
         font-size: 6.25rem;
         line-height: 6.25rem; } }
 
-.stats_with-graph_title, .small-stats_title {
+.stats_title {
   color: white;
   font-weight: 100;
   letter-spacing: 0.075rem;
@@ -535,7 +535,7 @@ a {
   text-transform: uppercase;
   font-size: 1.5625rem;
   line-height: 1.5625rem; }
-  .stats_with-graph_title:after, .small-stats_title:after {
+  .stats_title:after {
     background: rgba(255, 255, 255, 0.4);
     content: '';
     display: block;
@@ -551,7 +551,7 @@ a {
   width: 100%; }
 
 .stats_with-graph .copy {
-  float: left;
+  display: inline-block;
   margin-left: 8.33333%;
   width: 50%; }
   .stats_with-graph .copy p {
@@ -571,6 +571,7 @@ a {
 
 @media only screen and (min-width: 960px) {
   .stats_with-graph .copy {
+    float: left;
     margin-left: 0;
     margin-right: 9.09091%;
     width: 27.27273%; }
@@ -581,8 +582,7 @@ a {
   display: inline-block;
   margin-bottom: 3.125rem;
   padding-bottom: 2.5rem;
-  position: relative;
-  width: 25%; }
+  position: relative; }
   .stats_with-graph .value p {
     padding-top: 1.875rem;
     font-size: 6.875rem;
@@ -712,20 +712,21 @@ polyline.mountain {
       font-size: 1.3125rem;
       line-height: 1.3125rem; }
 
-.small-stats_title {
-  margin-bottom: 2.5rem;
-  padding-bottom: 0.6875rem;
-  position: relative;
-  font-size: 1rem;
-  line-height: 1rem; }
-  .small-stats_title:after {
-    background: rgba(255, 255, 255, 0.13);
-    bottom: 0;
-    content: '';
-    height: 1px;
-    left: 0;
-    position: absolute;
-    width: 100%; }
+@media only screen and (min-width: 870px) {
+  .small-stats_title {
+    margin-bottom: 2.5rem;
+    padding-bottom: 0.6875rem;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1rem; }
+    .small-stats_title:after {
+      background: rgba(255, 255, 255, 0.13);
+      bottom: 0;
+      content: '';
+      height: 1px;
+      left: 0;
+      position: absolute;
+      width: 100%; } }
 
 .small-stats_path {
   stroke: #0984E6;
