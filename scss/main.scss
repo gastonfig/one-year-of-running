@@ -95,13 +95,18 @@ a {
 	}
 
 	p {
-		color: rgba(255,255,255,.45);
+		color: rgba(255,255,255, 1);
 		font-weight: 100;
 		letter-spacing: .065em;
-		margin-left: 20%;
-		width: 90%;
+		width: 100%;
 
 		@include type-size(18, 1.35, true);
+
+		@include breakpoint(phone-mid, min) {
+			color: rgba(255,255,255,.45);
+			margin-left: 20%;
+			width: 90%;
+		}
 
 	}
 }
@@ -111,6 +116,10 @@ a {
 	right: 0;
 	top: 50%;
 	transform: translateY(-50%);
+
+	@include breakpoint(phone-mid, max) {
+		opacity: 0.3;
+	}
 
 	.line {
 		fill: transparent;
@@ -160,8 +169,8 @@ a {
 /* MAIN STATS
 ----------------------------------------------- */
 .stats, .stats_with-graph {
-	padding-bottom: to-rem(130);
-	padding-top: to-rem(110);
+	padding-bottom: to-rem(90);
+	padding-top: to-rem(60);
 	position: relative;
 
 	.inner {
@@ -178,21 +187,21 @@ a {
 		p {
 			color: #fff;
 			display: inline-block;
-			font-weight: 900;
+			font-weight: 100;
 			letter-spacing: to-rem(1.4);
 			margin: 0 0 to-rem(10) 0;
 
 			@include type-size(110, 100);
 
 			span {
+				color: rgba(#ffffff, .3);
 				display: inline-block;
-				font-weight: 100;
-				letter-spacing: to-rem(1.3);
-				text-transform: uppercase;
-				opacity: .3;
+				font-weight: 300;
+				letter-spacing: to-rem(.5);
+				margin-left: to-rem(3);
 				text-align: center;
 
-				@include type-size(13, .95, true);
+				@include type-size(18, .95, true);
 			}
 
 			@include breakpoint(tablet-portrait, min) {
@@ -203,9 +212,8 @@ a {
 }
 
 // Title
-// .stats_with-graph_title {
 .stats_title {
-	color: rgba(#ffffff, 1);
+	color: rgba(#ffffff, .6);
 	font-weight: 100;
 	letter-spacing: to-rem(1.2);
 	margin-bottom: to-rem(30);
@@ -215,7 +223,7 @@ a {
 	@include type-size(25);
 
 	&:after {
-		background: rgba(#ffffff, .4);
+		background: rgba(#ffffff, .2);
 		content: '';
 		display: block;
 		height: 1px;
@@ -225,6 +233,10 @@ a {
 }
 
 .stats_with-graph {
+	.inner {
+		overflow: hidden; // Needed for bottom border
+	}
+
 	.container {
 		position: relative;
 	}
@@ -242,24 +254,42 @@ a {
 		@extend %antialias;
 
 		p {
-			color: rgba(#ffffff, .5);
+			color: rgba(#ffffff, .4);
 			letter-spacing: to-rem(0.6);
 			margin: 0;
 
 			@include type-size(14, 1.6, true);
 		}
 
-		@include breakpoint(phone-mid, max) {
-			width: columns(12, 12);
-		}
+		@include breakpoint(phone-big, min) {
+			margin-bottom: to-rem(50);
+			padding-bottom: to-rem(30);
+			position: relative;
 
+			&:after {
+				background: rgba(#ffffff, .08);
+				bottom: 0;
+				content: '';
+				height: 1px;
+				position: absolute;
+				width: 200%;
+			}
+		}
 		@include breakpoint(phone-big, max) {
 			margin-left: 0;
 			margin-bottom: to-rem(80);
 			width: columns(9, 12);
 		}
-	}
 
+		@include breakpoint(phone-mid, max) {
+			margin-bottom: to-rem(70);
+			width: columns(12, 12);
+
+			p {
+				@include type-size(15, 1.5, true);
+			}
+		}
+	}
 
 	@include breakpoint(desktop, min) {
 		.copy {
@@ -267,6 +297,10 @@ a {
 			margin-left: 0;
 			margin-right: columns(1, 11);
 			width: columns(3, 11);
+
+			&:after {
+				display: none;
+			}
 		}
 
 		.chart {
@@ -274,20 +308,20 @@ a {
 		}
 	}
 
-
 	.value {
 		display: inline-block;
 		margin-bottom: to-rem(50);
 		padding-bottom: to-rem(40);
 		position: relative;
-		// width: columns(4, 12);
+		// width: columns(3, 12);
 
 		p {
-			padding-top: to-rem(30);
-			@include type-size(110);
+			// color: rgba(#ffffff, .7);
+			padding-top: to-rem(10);
+			@include type-size(60);
 
 			&.large_value {
-				@include type-size(65);
+				// @include type-size(65);
 			}
 
 			// &:before {
@@ -303,6 +337,7 @@ a {
 		&:before, &:after {
 			background: rgba(#ffffff, .08);
 			content: '';
+			display: none;
 			height: 1px;
 			position: absolute;
 			bottom: 0;
@@ -318,23 +353,36 @@ a {
 			width: columns(8, 12);
 		}
 
-		@include breakpoint(phone-big, max) {
-			width: 100%;
+		@include breakpoint(desktop, max) {
+			margin-bottom: to-rem(80);
+			margin-top: to-rem(10);
+			padding-bottom: to-rem(15);
+		}
 
+		@include breakpoint(phone-big, min) {
 			&:before {
-				left: 0;
-				width: columns(5, 12);
+				display: block;
+				width: 100%;
 			}
 
-			&:after {
-				display: none;
+			p, p.large_value {
+				@include type-size(70);
 			}
 		}
 
+		@include breakpoint(phone-big, max) {
+			margin-bottom: to-rem(12.5);
+			padding-bottom: to-rem(0);
+			width: 100%;
+
+			p {
+				border-bottom: 1px solid rgba(#ffffff, .1);
+				padding-bottom: to-rem(12.5);
+			}
+		}
 
 		@include breakpoint(desktop, min) {
 			width: 100%;
-
 
 			&:before {
 				width: columns(3, 11);
@@ -349,12 +397,12 @@ a {
 			}
 		}
 
-		@include breakpoint(desktop, max) {
-			// width: columns(3, 12);
-			margin: to-rem(10) 0 to-rem(70) 0;
+		@include breakpoint(desktop, min) {
+			&:before, &:after {
+				display: block;
+			}
 		}
 	}
-
 }
 
 .elevation-charts {
@@ -362,19 +410,28 @@ a {
 }
 
 .elevation_bar-chart {
-	width: columns(7, 12);
+	width: columns(12, 12);
 
+	@include breakpoint(phone-mid, min) {
+		width: columns(6, 12);
+	}
 	@include breakpoint(desktop, min) {
 		width: columns(3.8, 11);
 	}
 }
 
 .elevation_mnts-chart {
+	margin-bottom: to-rem(50);
 	margin-left: columns(1, 12);
-	width: columns(4, 12);
+	width: columns(10, 12);
 
+	@include breakpoint(phone-mid, min) {
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-right: columns(1, 12);
+		width: columns(5, 12);
+	}
 	@include breakpoint(desktop, min) {
-		margin-left: columns(1, 11);
 		width: columns(2.2, 11);
 	}
 }
@@ -415,54 +472,13 @@ polyline.mountain {
 	@include type-size(13);
 }
 
-// /* FEED
-// ----------------------------------------------- */
-// .feed-item {
-// 	color: rgba(#ffffff, .9);
-// 	float: left;
-// 	font-weight: 300;
-// 	width: 100%;
-// 	transition: all .23s ease-in-out;
-
-// 	&:hover {
-// 		background: $bg-color;
-// 		color: $accent-color;
-// 		transform: scale(1.02);
-
-// 		&:after {
-// 			content: '';
-// 			background: red;
-// 			position: absolute;
-// 			left: 0;
-// 			height: auto;
-// 			width: 100;
-// 		}
-
-// 		li {
-// 			// border-color: transparent;
-
-// 		}
-// 	}
-
-// 	li {
-// 		border-bottom: 1px solid rgba(#ffffff, .2);
-// 		float: left;
-// 		letter-spacing: 0.075em;
-// 		padding: 1.5rem 0;
-// 		text-align: center;
-// 		width: 25%;
-
-// 		@include type-size(15);
-// 		@extend %primary-mono;
-
-// 	}
-// }
-
 /* SMALL STATS
 ----------------------------------------------- */
 .small-stats {
-	padding-bottom: to-rem(180);
-	padding-top: to-rem(160);
+	@include breakpoint(tablet-portrait, min) {
+		padding-bottom: to-rem(180);
+		padding-top: to-rem(160);
+	}
 
 	.value {
 		@include columns-gutter(3, 5);
@@ -483,15 +499,13 @@ polyline.mountain {
 
 	.value p {
 		font-weight: 100;
-		letter-spacing: .015rem;
+		// letter-spacing: .005rem;
+		// letter-spacing: -.005rem;
 		margin-bottom: to-rem(30);
+		margin-top: to-rem(10);
 
-		@include type-size(90);
+		@include type-size(80);
 		@extend %antialias;
-
-		// @include breakpoint(phone-mid, max) {
-		// 	@include type-size(110);
-		// }
 
 		@include breakpoint(tablet-portrait, min) {
 			letter-spacing: -.005rem;
@@ -502,16 +516,12 @@ polyline.mountain {
 		@include breakpoint(1100, min) {
 			letter-spacing: -.125rem;
 
-			@include type-size(90);
+			@include type-size(80);
 		}
 
 		span {
-			color: rgba(#ffffff, .5);
 			display: inline-block;
-			font-weight: 300;
-			letter-spacing: to-rem(.28);
 			margin-left: to-rem(2);
-			text-transform: lowercase;
 
 			@include type-size(21);
 		}
@@ -559,6 +569,49 @@ polyline.mountain {
 	stroke-width: 1;
 	stroke: rgba(#ffffff, .15);
 }
+
+// /* FEED
+// ----------------------------------------------- */
+// .feed-item {
+// 	color: rgba(#ffffff, .9);
+// 	float: left;
+// 	font-weight: 300;
+// 	width: 100%;
+// 	transition: all .23s ease-in-out;
+
+// 	&:hover {
+// 		background: $bg-color;
+// 		color: $accent-color;
+// 		transform: scale(1.02);
+
+// 		&:after {
+// 			content: '';
+// 			background: red;
+// 			position: absolute;
+// 			left: 0;
+// 			height: auto;
+// 			width: 100;
+// 		}
+
+// 		li {
+// 			// border-color: transparent;
+
+// 		}
+// 	}
+
+// 	li {
+// 		border-bottom: 1px solid rgba(#ffffff, .2);
+// 		float: left;
+// 		letter-spacing: 0.075em;
+// 		padding: 1.5rem 0;
+// 		text-align: center;
+// 		width: 25%;
+
+// 		@include type-size(15);
+// 		@extend %primary-mono;
+
+// 	}
+// }
 
 /* ABOUT
 ----------------------------------------------- */
