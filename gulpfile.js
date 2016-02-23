@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp'),
   connect = require('gulp-connect'),
   concat = require('gulp-concat'),
@@ -37,20 +39,21 @@ gulp.task('concat-js', function() {
     'bower_components/d3/d3.min.js',
     'bower_components/angular/angular.min.js',
     'src/js/app.js',
+    'src/js/components/controllers/appControllers.js',
+    'src/js/components/filters/appFilters.js',
+    'src/js/components/directives/appDirectives.js',
     ])
     .pipe(concat('scripts.min.js'))
     .pipe(gulp.dest('js'))
-    // .pipe(uglify({ mangle: false }))
-    // .pipe(gulp.dest('js'))
     .pipe(livereload());
 });
 
-// gulp.task('compress', function() {
-//   return gulp.src('js/scripts.min.js')
-//     .pipe(uglify())
-//     .pipe(gulp.dest('js'))
-//     .pipe(livereload());
-// });
+gulp.task('compress', function() {
+  return gulp.src('js/scripts.min.js')
+    .pipe(uglify({ mangle: false }))
+    .pipe(gulp.dest('js'))
+    .pipe(livereload());
+});
 
 gulp.task('watch', function () {
   livereload.listen();
@@ -59,6 +62,4 @@ gulp.task('watch', function () {
   gulp.watch('scss/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['connect', 'watch'], function() {
-
-});
+gulp.task('default', ['connect', 'compress', 'watch']);

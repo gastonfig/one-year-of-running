@@ -4,9 +4,9 @@
   font-size: ($sizeValue / 16) + rem;
 
   @if $relative == false {
-	  line-height: ($lineHeight / 16) + rem;  	
+	  line-height: ($lineHeight / 16) + rem;
   } @else {
-	  line-height: ($sizeValue / 16 * $lineHeight) + rem;  	
+	  line-height: ($sizeValue / 16 * $lineHeight) + rem;
   }
 }
 
@@ -62,12 +62,6 @@
   @else if $point == phone-mid-small {
     @media only screen and (#{$minMax}-width: 540px)  { @content; }
   }
-  // @else if $point == phone {
-  //   @media only screen and (max-width: 480px)  { @content; }
-  // }
-  // @else if $point == phone-small {
-  //   @media only screen and (max-width: 320px)  { @content; }
-  // }
   @else {
     @media only screen and (#{$minMax}-width: #{$point}px) { @content; }
   }
