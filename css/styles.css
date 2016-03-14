@@ -399,8 +399,9 @@ th {
 body {
   font-family: 'Roboto', helvetica, arial, sans-serif; }
 
-.stats_title, .stats_with-graph .copy, .small-stats .value p {
-  -webkit-font-smoothing: antialiased; }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .stats_with-graph .copy, .small-stats .value p {
+    -webkit-font-smoothing: antialiased; } }
 
 /* TYPOGRAPHY
 ----------------------------------------------- */
@@ -475,13 +476,7 @@ a {
     stroke: #0984E6;
     stroke-width: 1.5; }
   .intro__chart .circle {
-    fill: #EB176F;
-    r: 2.5px; }
-  .intro__chart .path {
-    fill: transparent;
-    stroke: rgba(230, 9, 138, 0.3);
-    stroke-dasharray: 2, 2;
-    stroke-width: 2; }
+    fill: #EB176F; }
 
 .runs-circle {
   stroke: rgba(0, 0, 0, 0.3);
@@ -500,13 +495,9 @@ a {
       line-height: 0.625rem; } }
   @media only screen and (min-width: 767px) {
     .runs-label {
-      letter-spacing: 0.15625rem;
-      opacity: 0.7;
+      opacity: 1;
       font-size: 0.5625rem;
       line-height: 0.5625rem; } }
-  @media only screen and (min-width: 870px) {
-    .runs-label {
-      font-weight: 100; } }
 
 .miles-line, .miles-circle-bg {
   stroke-linecap: round;
@@ -562,6 +553,10 @@ a {
     height: 1px;
     margin-top: 0.75rem;
     width: 0.9375rem; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    .stats_title {
+      opacity: 0.85;
+      font-weight: 100; } }
 
 .stats_with-graph .inner {
   overflow: hidden; }
@@ -689,8 +684,8 @@ a {
 
 .elevation_mnts-chart {
   margin-bottom: 3.125rem;
-  margin-left: 8.33333%;
-  width: 83.33333%; }
+  margin-left: 25%;
+  width: 50%; }
   @media only screen and (min-width: 620px) {
     .elevation_mnts-chart {
       margin-bottom: 0;
@@ -794,7 +789,6 @@ polyline.mountain {
 
 .small-stats_dot {
   fill: #EB176F;
-  r: 3px;
   stroke-width: 10;
   stroke: rgba(182, 23, 235, 0.2); }
 
