@@ -11,7 +11,9 @@
 }
 
 %antialias {
-	-webkit-font-smoothing: antialiased;
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+		-webkit-font-smoothing: antialiased;
+	}
 }
 
 /* TYPOGRAPHY
@@ -163,13 +165,8 @@ a {
 	}
 
 	@include breakpoint(phone-big, min) {
-		letter-spacing: to-rem(2.5);
-		opacity: 0.7;
+		opacity: 1;
 		@include type-size(9);
-	}
-
-	@include breakpoint(tablet-portrait, min) {
-		font-weight: 100;
 	}
 }
 
@@ -231,9 +228,9 @@ a {
 	font-weight: 100;
 	letter-spacing: to-rem(1.2);
 	margin-bottom: to-rem(30);
+	opacity: 0.85;
 	text-transform: uppercase;
 
-	@extend %antialias; // TODO: Only apply to HD screens
 	@include type-size(25);
 
 	&:after {
@@ -243,6 +240,10 @@ a {
 		height: 1px;
 		margin-top: to-rem(12);
 		width: to-rem(15);
+	}
+
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+		font-weight: 100;
 	}
 }
 
@@ -513,8 +514,6 @@ polyline.mountain {
 
 	.value p {
 		font-weight: 100;
-		// letter-spacing: .005rem;
-		// letter-spacing: -.005rem;
 		margin-bottom: to-rem(30);
 		margin-top: to-rem(10);
 
