@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="" ng-app="runsApp">
+<html class="no-js" lang="" ng-app="runsApp" scroll-animation>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,7 +13,6 @@
     </head>
     <body ng-controller="mainCtrl" ng-cloak>
 
-
     <section class="outer intro dark">
         <div class="container">
             <div class="inner">
@@ -25,7 +24,7 @@
         </div>
     </section>
 
-    <section class="run stats_with-graph outer">
+    <section id="total-runs" class="run stats_with-graph outer">
         <div class="container">
             <h3 class="stats_with-graph_title stats_title">Total Runs</h3>
 
@@ -36,12 +35,12 @@
 
                     <div class="copy">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
-                    </div><div class="chart" runs-blocks-chart chart-data="data"></div>
+                    </div><div class="chart" runs-blocks-chart chart-data="data" animated="{{scrollState.totalRuns.state}}"></div>
             </div>
         </div>
     </section>
 
-    <section class="miles stats_with-graph outer dark">
+    <section id="total-miles" class="miles stats_with-graph outer dark">
         <div class="container">
             <h3 class="stats_with-graph_title stats_title">Total Miles</h3>
 
@@ -53,12 +52,12 @@
 
                     <div class="copy">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
-                    </div><div class="chart" miles-bar-chart chart-data="data"></div>
+                    </div><div class="chart" miles-bar-chart chart-data="data" animated="{{scrollState.totalMiles.state}}"></div>
             </div>
         </div>
     </section>
 
-    <section class="elevation stats_with-graph outer">
+    <section id="elevation-gain" class="elevation stats_with-graph outer">
         <div class="container">
             <h3 class="stats_with-graph_title stats_title">Elevation Gain</h3>
 
@@ -68,30 +67,30 @@
                 </div>
 
                     <div class="copy">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
-                    </div><div class="elevation-charts elevation_mnts-chart"elevation-chart chart-data="data"></div><div class="elevation-charts elevation_bar-chart"line-chart chart-data="data" chart-item="total_elevation_gain"></div>
+                        <p>Knowing that my main route was relatively flat I was curious to see how my elevation gain compared to a known peak. In this case it was almost half of Mount Hood's elevation.</p>
+                    </div><div class="elevation-charts elevation_mnts-chart"elevation-chart chart-data="data" animated="{{scrollState.elevationGain.state}}"></div><div class="elevation-charts elevation_bar-chart" line-chart chart-data="data" chart-item="total_elevation_gain" animated="{{scrollState.elevationGain.state}}"></div>
             </div>
         </div>
     </section>
 
-    <section class="small-stats stats outer dark">
+    <section id="small-stats" class="small-stats stats outer dark">
         <div class="container">
             <div class="third value left">
-                <h3 class="small-stats_title stats_title">Time on the Road</h3>
+                <h3 class="small-stats_title stats_title">Time on the Road {{scrollState.smallStats.state}}</h3>
                 <p>{{ timeSum | secondsToHMS }}<span>hrs</span></p>
-                <div class=" " line-chart chart-data="data" chart-item="moving_time"></div>
+                <div class=" " line-chart chart-data="data" chart-item="moving_time" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Longest Distance</h3>
                 <p>{{ maxDistance | metersToMiles}}<span>mi</span></p>
-                <div class="small-stats_chart" line-chart chart-data="data" chart-item="distance"></div>
+                <div class="small-stats_chart" line-chart chart-data="data" chart-item="distance" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Fastest Pace</h3>
                 <p>{{ minPace | milesPerHour}}<span>m/mi</span></p>
-                <div class="small-stats_chart" line-chart chart-data="data" chart-item="average_speed"></div>
+                <div class="small-stats_chart" line-chart chart-data="data" chart-item="average_speed" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
         </div>
@@ -103,7 +102,6 @@
 
             <div class="about_copy right">
                 <p>I took an interest in running in 2014 and <a href="http://gastonfig.com/my-first-race/" target="_blank">ran my first</a> race that year. I didn't make myself promises for 2015 but tried to run more overall and have fun at.</p>
-                <!-- <p>In 2015 running became more of a fun thing to do during in the weekends, most times pushing my daughter on her stroller.</p> -->
 
                 <h3>Meta</h3>
                 <p>I tracked all my activities using the <a href="https://www.strava.com/" target="_blank">Strava app</a>. I also wrote a quick Python script to export and format the data for easy manipulation and visualization. All the visualizations were built using <a href="http://d3js.org/" target="_blank">D3.js</a> with a little help from <a href="https://angularjs.org/" target="_blank">Angular.js</a>. The rest is just good old HTML and CSS.</p>

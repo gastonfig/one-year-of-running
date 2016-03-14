@@ -4,6 +4,43 @@
 
 angular.module('runsApp.appDirectives', [])
 
+// SCROLL
+.directive('scrollAnimation', ['$window', '$timeout', function($window, $timeout) {
+    return {
+		link: function(scope) {
+
+	        var winHeight = $window.innerHeight,
+	            yOffset = $window.pageYOffset,
+	            totalRuns = document.getElementById('total-runs'),
+	            totalMiles = document.getElementById('total-miles'),
+	            elevationGain = document.getElementById('elevation-gain'),
+	            smallStats = document.getElementById('small-stats');
+
+            scope.scrollState = {
+            	"totalRuns": {"elem": totalRuns,state: false},
+            	"totalMiles": {"elem": totalMiles,state: false},
+            	"elevationGain": {"elem": elevationGain,state: false},
+            	"smallStats": {"elem": smallStats,state: false}
+            };
+
+	        function loop() {
+				requestAnimationFrame(loop);
+	            yOffset = $window.pageYOffset;
+
+	            $timeout(function() {
+		            for(var elem in scope.scrollState) {
+			            if(yOffset > scope.scrollState[elem].elem.offsetTop - (winHeight*0.35) && scope.scrollState[elem].state === false) {
+			            	scope.scrollState[elem].state = true;
+			            }
+		            }
+		        });
+	        }
+
+	        loop();
+	    }
+	};
+}])
+
 // RADAR CHART
 .directive('linearChart', function($window) {
    return {
@@ -32,10 +69,6 @@ angular.module('runsApp.appDirectives', [])
 					    vis
 					    	.attr("width", w)
 					        .attr("height", h);
-					        // .attr('width', '100%')
-					        // .attr('height', '100%')
-					        // .attr('viewBox','0 0 '+ w +' '+ h)
-					        // .attr('preserveAspectRatio','xMinYMin');
 
 						// Lines
 						vis.append('svg:g')
@@ -44,10 +77,10 @@ angular.module('runsApp.appDirectives', [])
 						    .data(data)
 						    .enter().append('line')
 							    .attr("class", "line")
-							    .attr('x1', function(d, i) { 
+							    .attr('x1', function(d, i) {
 							    	return 30 * Math.sin(angle * i) / 2;
 							    })
-							    .attr('y1', function(d, i) { 
+							    .attr('y1', function(d, i) {
 							    	return 30 * Math.cos(angle * i) / 2 * -1;
 							    })
 							    .attr('x2', 0)
@@ -97,7 +130,7 @@ angular.module('runsApp.appDirectives', [])
 })
 
 // RUN BLOCKS CHART
-.directive('runsBlocksChart', function($window) {
+.directive('runsBlocksChart', function($window, $timeout) {
    return {
       restrict:'EA',
       template:"<svg></svg>",
@@ -166,7 +199,7 @@ angular.module('runsApp.appDirectives', [])
 					    	.attr('class', 'runs-circle-bg');
 					}
 
-					g.selectAll('.runs-circle')
+					var blocks = g.selectAll('.runs-circle')
 					    .data(function(d) {
 					    	return d.values;
 					    }).enter()
@@ -181,13 +214,23 @@ angular.module('runsApp.appDirectives', [])
 					    		return y(-i);
 					    	})
 					    	.attr('opacity', 0)
-					    	.attr('class', 'runs-circle')
-				    	.transition()
-						    .duration(200)
-						    .delay(function(d, i) {
-								return i * 80;
-							})
-						    .attr('opacity', 1);
+					    	.attr('class', 'runs-circle');
+
+
+				    function animate() {
+						blocks.transition()
+							    .duration(200)
+							    .delay(function(d, i) {
+									return i * 80;
+								})
+							    .attr('opacity', 1);
+				    }
+
+			    	attrs.$observe('animated', function(newData) {
+			    		if(newData === "true") {
+			    			animate();
+			    		}
+			    	});
 	       		}
 			}, true);
 		}
@@ -258,7 +301,7 @@ angular.module('runsApp.appDirectives', [])
 				    	})
 				    	.attr('class', 'miles-circle-bg');
 
-				    vis.selectAll('.miles-line')
+				    var mileLines = vis.selectAll('.miles-line')
 				    	.data(nest).enter()
 				    	.append('rect')
 				    		.attr('width', rectWidth)
@@ -272,17 +315,7 @@ angular.module('runsApp.appDirectives', [])
 					        .style("fill", function(d, i) {
 					        	return "url(#the-gradient" + i + ")";
 					        })
-						    .attr('opacity', 0)
-					        .transition()
-							    .duration(1200)
-								.attr("y", function(d) {
-									return -y(d.values);
-								})
-								.attr("height", function(d) {
-									return y(d.values);
-								})
-							    .attr('opacity', 1);
-
+						    .attr('opacity', 0);
 
 					for(var i = 0; i < 12; i++) {
 						// GRADIENT
@@ -307,6 +340,24 @@ angular.module('runsApp.appDirectives', [])
 								    .attr("stop-opacity", 1);
 						}
 					}
+
+					function animate() {
+						mileLines.transition()
+							    .duration(1200)
+								.attr("y", function(d) {
+									return -y(d.values);
+								})
+								.attr("height", function(d) {
+									return y(d.values);
+								})
+							    .attr('opacity', 1);
+					}
+
+					attrs.$observe('animated', function(newData) {
+			       		if(newData === "true") {
+			       			animate();
+			       		}
+			       	});
 	       		}
 			}, true);
 		}
@@ -362,7 +413,7 @@ angular.module('runsApp.appDirectives', [])
 					        .y(h);
 
 						// BARS
-				        vis
+				        var bars = vis
 					        .append('g')
 							.selectAll('.small-stats_bars')
 					    	.data(data)
@@ -376,36 +427,25 @@ angular.module('runsApp.appDirectives', [])
 				    		.attr('x2', function(d, i) {
 				    			return x(i);
 				    		})
-				    		.attr("y2", h)
-					        .transition()
-					        	.attr("y2", function(d) {
-						    		return y(d[chartAttribute]);
-						    	})
-								.duration(1500)
-								.delay(250)
-								.ease('elastic', 1, 0.7);
+				    		.attr("y2", h);
 
 						// CLIP PATH
-						vis.append('svg:g').append("svg:path")
+						var clip = vis.append('svg:g').append("svg:path")
 								.attr("d", lineLoad(data))
 								.attr("d", line(data))
 								.attr('stroke', '#01051c')
 								.attr('stroke-width', 5)
-								.attr('fill', 'transparent');
+								.attr('fill', 'transparent')
+								.attr('opacity', 0);
 
 					    // MAIN PATH
-					    vis.append('svg:g').append("svg:path")
+					    var mainPath = vis.append('svg:g').append("svg:path")
 								.attr("d", lineLoad(data))
 								.attr('class', 'small-stats_path')
-								.attr('opacity', 0)
-								.transition()
-									.attr('opacity', 1)
-									.attr("d", line(data))
-									.duration(1300)
-									.ease('elastic', 1, 0.7);
+								.attr('opacity', 0);
 
 						// DOT
-						vis.append('svg:g')
+						var dotMarker = vis.append('svg:g')
 							.selectAll('.small-stats_dot')
 					    .data(data)
 					  .enter().append('svg:circle')
@@ -418,10 +458,40 @@ angular.module('runsApp.appDirectives', [])
 						    .attr('cy', function(d) {
 						    	return y(d[chartAttribute]);
 						    })
-					    .attr('opacity', 0)
-					    .transition()
-						    .duration(1000)
-						    .attr('opacity', 1);
+					    .attr('opacity', 0);
+
+						function animate() {
+							clip.transition()
+							    .duration(1000)
+							    .attr('opacity', 1);
+
+							// Animate dot marker
+							dotMarker.transition()
+							    .duration(1000)
+							    .attr('opacity', 1);
+
+							// Animate main path
+							mainPath.transition()
+									.attr('opacity', 1)
+									.attr("d", line(data))
+									.duration(1300)
+									.ease('elastic', 1, 0.7);
+
+							// Animate bars
+							bars.transition()
+					        	.attr("y2", function(d) {
+						    		return y(d[chartAttribute]);
+						    	})
+								.duration(1500)
+								.delay(250)
+								.ease('elastic', 1, 0.7);
+						}
+
+						attrs.$observe('animated', function(newData) {
+				       		if(newData === "true") {
+				       			animate();
+				       		}
+				       	});
 	       		}
 			}, true);
 		}
@@ -431,10 +501,12 @@ angular.module('runsApp.appDirectives', [])
 // ELEVATION CHART
 .directive('elevationChart', function($window) {
    return {
-      restrict:'EA',
+      restrict:'A',
       template:"<svg></svg>",
+      transclude: true,
        link: function(scope, elem, attrs) {
-	       	scope.$watch('data', function(newData) {
+
+	       	attrs.$observe('chartData', function(newData) {
 	       		if(newData) {
 	            var data = scope[attrs.chartData],
 						d3 = $window.d3,
@@ -489,18 +561,13 @@ angular.module('runsApp.appDirectives', [])
 					        .attr("class", "mountain big");
 
 					    // Marker line
-					    vis
+					    var markerLine = vis
 					    	.append('svg:line')
 					    	.attr('class', 'mountain_marker')
 					    	.attr('x1', 0)
 					    	.attr('x2', w)
 					    	.attr('y1', h)
-					    	.attr('y2', h)
-					    	.transition()
-							    .duration(1600)
-							    .ease('elastic', 1, 1.1)
-							    .attr('y1', yMtnEleveation(totalElevation))
-						    	.attr('y2', yMtnEleveation(totalElevation));
+					    	.attr('y2', h);
 
 						// TEXT
 						vis.append('text')
@@ -515,18 +582,13 @@ angular.module('runsApp.appDirectives', [])
 							.attr('dx', 0)
 							.attr('dy', 35);
 
-						vis.append('text')
+						var mountLabel = vis.append('text')
 							.attr('class', 'elevation_marker-label')
 							.html(parseInt(totalElevation * 3.28) + ' ft')
 							.attr('dx', 0)
 							// .attr('dy', yMtnEleveation(totalElevation) - 13)
 							.attr('dy', h - 13)
-							.attr('opacity', 0)
-							.transition()
-							    .duration(1600)
-							    .ease('elastic', 1, 1.1)
-							    .attr('dy', yMtnEleveation(totalElevation) - 13)
-								.attr('opacity', 1);
+							.attr('opacity', 0);
 
 					    // Gradient
 				        var gradient = vis
@@ -549,6 +611,28 @@ angular.module('runsApp.appDirectives', [])
 					        .attr("offset", "100%")
 					        .attr("stop-opacity", 0)
 					        .attr("stop-color", "#0984E6");
+
+						scope.animate = function() {
+							// Animate the marker line
+							markerLine.transition()
+								    .duration(1600)
+								    .ease('elastic', 1, 1.1)
+								    .attr('y1', yMtnEleveation(totalElevation))
+							    	.attr('y2', yMtnEleveation(totalElevation));
+
+							// Animate the label
+							mountLabel.transition()
+								    .duration(1600)
+								    .ease('elastic', 1, 1.1)
+								    .attr('dy', yMtnEleveation(totalElevation) - 13)
+									.attr('opacity', 1);
+						};
+
+						attrs.$observe('animated', function(newData) {
+				       		if(newData === "true") {
+				       			scope.animate();
+				       		}
+				       	});
 	       		}
 			}, true);
 		}

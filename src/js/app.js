@@ -1,7 +1,7 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var runsApp = angular.module('runsApp',['runsApp.appControllers', 'runsApp.appFilters', 'runsApp.appDirectives']);
+var runsApp = angular.module('runsApp',[ 'runsApp.appDirectives', 'runsApp.appControllers', 'runsApp.appFilters']);
 
 // runsApp.config(function($routeProvider, $locationProvider, $httpProvider) {
 
