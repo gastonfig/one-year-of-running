@@ -6,6 +6,7 @@ var gulp = require('gulp'),
   livereload = require('gulp-livereload'),
   sass = require('gulp-sass'),
   uglify = require('gulp-uglify'),
+  ghPages = require('gulp-gh-pages'),
   DIST_DIR = 'dist/',
   SRC_DIR = 'src/';
 
@@ -17,6 +18,15 @@ gulp.task('connect', function() {
   });
 });
 
+/* DEPLOY TO GITHUB PAGES
+----------------------------------------------- */
+gulp.task('deploy', ['compress'], function() {
+  return gulp.src(DIST_DIR + '**/*')
+    .pipe(ghPages());
+});
+
+/* HTML
+----------------------------------------------- */
 gulp.task('html', function () {
   gulp.src(DIST_DIR + '*.html')
     .pipe(livereload());
@@ -65,5 +75,4 @@ gulp.task('watch', function () {
   gulp.watch(SRC_DIR + 'scss/**/*.scss', ['sass']);
 });
 
-// gulp.task('default', ['connect', 'compress', 'watch']);
 gulp.task('default', ['connect', 'watch']);
