@@ -476,13 +476,7 @@ a {
     stroke: #0984E6;
     stroke-width: 1.5; }
   .intro__chart .circle {
-    fill: #EB176F;
-    r: 2.5px; }
-  .intro__chart .path {
-    fill: transparent;
-    stroke: rgba(230, 9, 138, 0.3);
-    stroke-dasharray: 2, 2;
-    stroke-width: 2; }
+    fill: #EB176F; }
 
 .runs-circle {
   stroke: rgba(0, 0, 0, 0.3);
@@ -549,7 +543,6 @@ a {
   font-weight: 100;
   letter-spacing: 0.075rem;
   margin-bottom: 1.875rem;
-  opacity: 0.85;
   text-transform: uppercase;
   font-size: 1.5625rem;
   line-height: 1.5625rem; }
@@ -562,6 +555,7 @@ a {
     width: 0.9375rem; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
     .stats_title {
+      opacity: 0.85;
       font-weight: 100; } }
 
 .stats_with-graph .inner {
@@ -690,8 +684,8 @@ a {
 
 .elevation_mnts-chart {
   margin-bottom: 3.125rem;
-  margin-left: 8.33333%;
-  width: 83.33333%; }
+  margin-left: 25%;
+  width: 50%; }
   @media only screen and (min-width: 620px) {
     .elevation_mnts-chart {
       margin-bottom: 0;
@@ -795,7 +789,6 @@ polyline.mountain {
 
 .small-stats_dot {
   fill: #EB176F;
-  r: 3px;
   stroke-width: 10;
   stroke: rgba(182, 23, 235, 0.2); }
 

@@ -131,20 +131,11 @@ a {
 
 	.circle {
 		fill: $accent-contrast;
-		r: 2.5px;
 
 		// &.selected {
 		// 	r: 5;
 		// 	fill: red;
 		// }
-	}
-
-	.path {
-		fill: transparent;
-		stroke: rgba(#E6098A, .3);
-		stroke-dasharray: 2, 2;
-		stroke-width: 2;
-		// opacity: 0;
 	}
 }
 
@@ -228,7 +219,6 @@ a {
 	font-weight: 100;
 	letter-spacing: to-rem(1.2);
 	margin-bottom: to-rem(30);
-	opacity: 0.85;
 	text-transform: uppercase;
 
 	@include type-size(25);
@@ -243,6 +233,7 @@ a {
 	}
 
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+		opacity: 0.85;
 		font-weight: 100;
 	}
 }
@@ -437,8 +428,8 @@ a {
 
 .elevation_mnts-chart {
 	margin-bottom: to-rem(50);
-	margin-left: columns(1, 12);
-	width: columns(10, 12);
+	margin-left: columns(3, 12);
+	width: columns(6, 12);
 
 	@include breakpoint(phone-mid, min) {
 		margin-bottom: 0;
@@ -446,6 +437,7 @@ a {
 		margin-right: columns(1, 12);
 		width: columns(5, 12);
 	}
+
 	@include breakpoint(desktop, min) {
 		width: columns(2.2, 11);
 	}
@@ -570,11 +562,8 @@ polyline.mountain {
 }
 
 .small-stats_dot {
-	// fill: #E6098A;
 	fill: $accent-contrast;
-	r: 3px;
 	stroke-width: 10;
-	// stroke: rgba(117, 69, 230, .3);
 	stroke: rgba($accent-contrast-b, .2);
 }
 

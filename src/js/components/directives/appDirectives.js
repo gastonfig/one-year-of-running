@@ -109,6 +109,7 @@ angular.module('runsApp.appDirectives', [])
 						    .attr("class", "circle")
 								.attr('cx', 0)
 								.attr('cy', 0)
+								.attr('r', 2.5)
 						    .attr('opacity', 0)
 						    .transition()
 							    .duration(1300)
@@ -458,7 +459,8 @@ angular.module('runsApp.appDirectives', [])
 						    .attr('cy', function(d) {
 						    	return y(d[chartAttribute]);
 						    })
-					    .attr('opacity', 0);
+					    .attr('opacity', 0)
+					    .attr('r', 3);
 
 						function animate() {
 							clip.transition()
