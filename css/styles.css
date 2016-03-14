@@ -476,7 +476,7 @@ a {
     stroke-width: 1.5; }
   .intro__chart .circle {
     fill: #EB176F;
-    r: 2.5; }
+    r: 2.5px; }
   .intro__chart .path {
     fill: transparent;
     stroke: rgba(230, 9, 138, 0.3);
@@ -794,7 +794,7 @@ polyline.mountain {
 
 .small-stats_dot {
   fill: #EB176F;
-  r: 3;
+  r: 3px;
   stroke-width: 10;
   stroke: rgba(182, 23, 235, 0.2); }
 

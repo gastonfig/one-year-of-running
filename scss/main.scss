@@ -129,7 +129,7 @@ a {
 
 	.circle {
 		fill: $accent-contrast;
-		r: 2.5;
+		r: 2.5px;
 
 		// &.selected {
 		// 	r: 5;
@@ -573,7 +573,7 @@ polyline.mountain {
 .small-stats_dot {
 	// fill: #E6098A;
 	fill: $accent-contrast;
-	r: 3;
+	r: 3px;
 	stroke-width: 10;
 	// stroke: rgba(117, 69, 230, .3);
 	stroke: rgba($accent-contrast-b, .2);
