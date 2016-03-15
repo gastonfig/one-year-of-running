@@ -9,34 +9,48 @@ angular.module('runsApp.appDirectives', [])
     return {
 		link: function(scope) {
 
-	        var winHeight = $window.innerHeight,
-	            yOffset = $window.pageYOffset,
-	            totalRuns = document.getElementById('total-runs'),
-	            totalMiles = document.getElementById('total-miles'),
-	            elevationGain = document.getElementById('elevation-gain'),
-	            smallStats = document.getElementById('small-stats');
+			function init() {
+		        var winHeight = $window.innerHeight,
+		        	winHeightOffset = winHeight*0.35,
+		            yOffset = $window.pageYOffset,
+		            totalRuns = document.getElementById('total-runs'),
+		            totalMiles = document.getElementById('total-miles'),
+		            elevationGain = document.getElementById('elevation-gain'),
+		            smallStats = document.getElementById('small-stats');
 
-            scope.scrollState = {
-            	"totalRuns": {"elem": totalRuns,state: false},
-            	"totalMiles": {"elem": totalMiles,state: false},
-            	"elevationGain": {"elem": elevationGain,state: false},
-            	"smallStats": {"elem": smallStats,state: false}
-            };
+	            scope.scrollState = {
+	            	totalRuns: {"elem": totalRuns,state: false},
+	            	totalMiles: {"elem": totalMiles,state: false},
+	            	elevationGain: {"elem": elevationGain,state: false},
+	            	smallStats: {"elem": smallStats,state: false}
+	            };
 
-	        function loop() {
-				requestAnimationFrame(loop);
-	            yOffset = $window.pageYOffset;
+		        function loop() {
+					requestAnimationFrame(loop);
+		            yOffset = $window.pageYOffset;
 
-	            $timeout(function() {
-		            for(var elem in scope.scrollState) {
-			            if(yOffset > scope.scrollState[elem].elem.offsetTop - (winHeight*0.35) && scope.scrollState[elem].state === false) {
-			            	scope.scrollState[elem].state = true;
+	            	updateScrollState(yOffset);
+		        }
+
+		        function updateScrollState(offset) {
+		            $timeout(function() {
+			            for(var elem in scope.scrollState) {
+				            if(offset > scope.scrollState[elem].elem.offsetTop - winHeightOffset && scope.scrollState[elem].state === false) {
+				            	scope.scrollState[elem].state = true;
+				            }
 			            }
-		            }
-		        });
-	        }
+			        }, 0);
+		        }
 
-	        loop();
+		        loop();
+		    }
+
+		     scope.$watch('data', function(newData) {
+	       		if(newData) {
+	       			init();
+	       		}
+	       	});
+
 	    }
 	};
 }])
@@ -49,81 +63,81 @@ angular.module('runsApp.appDirectives', [])
        link: function(scope, elem, attrs) {
 	       	scope.$watch('data', function(newData) {
 	       		if(newData) {
-	            var data = scope[attrs.chartData],
-						d3 = $window.d3,
-						rawSvg = elem.find('svg'),
-						vis = d3.select(rawSvg[0]),
-						h = 940,
-						w = h * 0.69, // graph's ratio is long
-						margin = 10,
-						TWO_PI = 2 * Math.PI,
-					    angle = TWO_PI / data.length,
-					    radius = 1,
-						maxDistance = d3.max(data, function(d) { return + d.distance;}),
-						x = d3.scale.linear().domain([0, maxDistance]).range([0 + margin, (h) - margin]),
-						y = d3.scale.linear().domain([0, maxDistance]).range([0 + margin, (h) - margin]),
+		            var data = scope[attrs.chartData],
+							d3 = $window.d3,
+							rawSvg = elem.find('svg'),
+							vis = d3.select(rawSvg[0]),
+							h = 940,
+							w = h * 0.69, // graph's ratio is long
+							margin = 10,
+							TWO_PI = 2 * Math.PI,
+						    angle = TWO_PI / data.length,
+						    radius = 1,
+							maxDistance = d3.max(data, function(d) { return + d.distance;}),
+							x = d3.scale.linear().domain([0, maxDistance]).range([0 + margin, (h) - margin]),
+							y = d3.scale.linear().domain([0, maxDistance]).range([0 + margin, (h) - margin]),
 
-						vertPlacement = 3,  // hight given chart's shape
-						dotPadding = 11;
+							vertPlacement = 3,  // hight given chart's shape
+							dotPadding = 11;
 
-					    vis
-					    	.attr("width", w)
-					        .attr("height", h);
+						    vis
+						    	.attr("width", w)
+						        .attr("height", h);
 
-						// Lines
-						vis.append('svg:g')
-							  .attr("transform", "translate(" + w/1.5 +", " + h/vertPlacement + ")")
-								.selectAll('.line')
-						    .data(data)
-						    .enter().append('line')
-							    .attr("class", "line")
-							    .attr('x1', function(d, i) {
-							    	return 30 * Math.sin(angle * i) / 2;
-							    })
-							    .attr('y1', function(d, i) {
-							    	return 30 * Math.cos(angle * i) / 2 * -1;
-							    })
-							    .attr('x2', 0)
-							    .attr('y2', 0)
-								.attr('opacity', 0)
-							  .transition()
-									.duration(1300)
-									.attr('opacity', 1)
-									.attr('x2', function(d, i) {
-										return radius * x(d.distance) * Math.sin(angle * i) / 2;
+							// Lines
+							vis.append('svg:g')
+								  .attr("transform", "translate(" + w/1.5 +", " + h/vertPlacement + ")")
+									.selectAll('.line')
+							    .data(data)
+							    .enter().append('line')
+								    .attr("class", "line")
+								    .attr('x1', function(d, i) {
+								    	return 30 * Math.sin(angle * i) / 2;
+								    })
+								    .attr('y1', function(d, i) {
+								    	return 30 * Math.cos(angle * i) / 2 * -1;
+								    })
+								    .attr('x2', 0)
+								    .attr('y2', 0)
+									.attr('opacity', 0)
+								  .transition()
+										.duration(1300)
+										.attr('opacity', 1)
+										.attr('x2', function(d, i) {
+											return radius * x(d.distance) * Math.sin(angle * i) / 2;
+										})
+										.attr('y2', function(d, i) {
+											return radius * y(d.distance) * Math.cos(angle * i) / 2 * -1;
+										})
+										.delay(function(d, i) {
+											return 10 * i;
+										})
+										.ease('elastic', 1, 1.25);
+
+							// DOTS
+							vis.append('svg:g')
+							    .attr("transform", "translate(" + w/1.5 +", " + h/vertPlacement + ")")
+									.selectAll('.circle')
+							    .data(data)
+							  .enter().append('svg:circle')
+							    .attr("class", "circle")
+									.attr('cx', 0)
+									.attr('cy', 0)
+									.attr('r', 2.5)
+							    .attr('opacity', 0)
+							    .transition()
+								    .duration(1300)
+								    .attr('opacity', 1)
+									.attr('cx', function(d, i) {
+										return (radius * (x(d.distance) + dotPadding) * Math.sin(angle * i) / 2);
 									})
-									.attr('y2', function(d, i) {
-										return radius * y(d.distance) * Math.cos(angle * i) / 2 * -1;
-									})
-									.delay(function(d, i) {
-										return 10 * i;
-									})
+								    .attr('cy', function(d, i) {
+								    	return (radius * (y(d.distance) + dotPadding) * Math.cos(angle * i) / 2 * -1);
+								    })
+								    .delay(function(d, i) {
+								    	return 10 * i;
+								    })
 									.ease('elastic', 1, 1.25);
-
-						// DOTS
-						vis.append('svg:g')
-						    .attr("transform", "translate(" + w/1.5 +", " + h/vertPlacement + ")")
-								.selectAll('.circle')
-						    .data(data)
-						  .enter().append('svg:circle')
-						    .attr("class", "circle")
-								.attr('cx', 0)
-								.attr('cy', 0)
-								.attr('r', 2.5)
-						    .attr('opacity', 0)
-						    .transition()
-							    .duration(1300)
-							    .attr('opacity', 1)
-								.attr('cx', function(d, i) {
-									return (radius * (x(d.distance) + dotPadding) * Math.sin(angle * i) / 2);
-								})
-							    .attr('cy', function(d, i) {
-							    	return (radius * (y(d.distance) + dotPadding) * Math.cos(angle * i) / 2 * -1);
-							    })
-							    .delay(function(d, i) {
-							    	return 10 * i;
-							    })
-								.ease('elastic', 1, 1.25);
 	       		}
 			}, true);
 		}

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="" ng-app="runsApp" scroll-animation>
+<html class="no-js" lang="" ng-app="runsApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,7 +21,7 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/styles.css">
     </head>
-    <body ng-controller="mainCtrl" ng-cloak>
+    <body ng-controller="mainCtrl" ng-cloak scroll-animation chart-data="data">
 
     <section class="outer intro dark">
         <div class="container">
@@ -40,7 +40,7 @@
 
             <div class="inner">
                 <div class="value">
-                    <p>{{ runsSum }}</p>
+                    <p ng-bind="runsSum"></p>
                 </div>
 
                 <div class="copy">
@@ -56,7 +56,7 @@
 
             <div class="inner">
                 <div class="value">
-                    <p>{{ distanceSum | metersToMiles | number:0 }}</p>
+                    <p ng-bind="distanceSum | number:0"></p>
                 </div>
 
                 <div class="copy">
@@ -72,7 +72,7 @@
 
             <div class="inner">
                 <div class="value">
-                    <p class="large_value">{{ elevationGain | number:0 }}<span>ft</span></p>
+                    <p class="large_value" ng-bind-html="elevationGain"></p>
                 </div>
 
                 <div class="copy">
@@ -86,22 +86,21 @@
         <div class="container">
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Time on the Road</h3>
-                <p>{{ timeSum | secondsToHMS }}<span>hrs</span></p>
+                <p ng-bind-html="timeSum"></p>
                 <div class=" " line-chart chart-data="data" chart-item="moving_time" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Longest Distance</h3>
-                <p>{{ maxDistance | metersToMiles}}<span>mi</span></p>
+                <p ng-bind-html="maxDistance"></p>
                 <div class="small-stats_chart" line-chart chart-data="data" chart-item="distance" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Fastest Pace</h3>
-                <p>{{ minPace | milesPerHour}}<span>m/mi</span></p>
+                <p ng-bind-html="minPace"></p>
                 <div class="small-stats_chart" line-chart chart-data="data" chart-item="average_speed" animated="{{scrollState.smallStats.state}}"></div>
             </div>
-
         </div>
     </section>
 
