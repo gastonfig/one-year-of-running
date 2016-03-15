@@ -1,14 +1,15 @@
 'use strict';
 
 var gulp = require('gulp'),
-  connect = require('gulp-connect'),
-  concat = require('gulp-concat'),
-  livereload = require('gulp-livereload'),
-  sass = require('gulp-sass'),
-  uglify = require('gulp-uglify'),
-  ghPages = require('gulp-gh-pages'),
-  DIST_DIR = 'dist/',
-  SRC_DIR = 'src/';
+    connect = require('gulp-connect'),
+    concat = require('gulp-concat'),
+    livereload = require('gulp-livereload'),
+    sass = require('gulp-sass'),
+    uglify = require('gulp-uglify'),
+    ghPages = require('gulp-gh-pages'),
+    cleanCSS = require('gulp-clean-css'),
+    DIST_DIR = 'dist/',
+    SRC_DIR = 'src/';
 
 gulp.task('connect', function() {
   connect.server({
@@ -20,7 +21,7 @@ gulp.task('connect', function() {
 
 /* DEPLOY TO GITHUB PAGES
 ----------------------------------------------- */
-gulp.task('deploy', ['compress'], function() {
+gulp.task('deploy', ['compress', 'minify-css'], function() {
   return gulp.src(DIST_DIR + '**/*')
     .pipe(ghPages());
 });
@@ -43,6 +44,12 @@ gulp.task('sass', function() {
       .pipe(concat('styles.css'))
       .pipe(gulp.dest(DIST_DIR + 'css/'))
       .pipe(livereload());
+});
+
+gulp.task('minify-css', function() {
+  return gulp.src(DIST_DIR + 'css/styles.css')
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest(DIST_DIR + 'css/'));
 });
 
 /* JS

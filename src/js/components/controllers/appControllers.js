@@ -5,20 +5,11 @@
 angular.module('runsApp.appControllers', [])
 
 .controller('mainCtrl', ['$scope', '$http', 'getMaxValFilter', 'getSumFilter', 'metersToMilesFilter', '$filter', '$sce', 'secondsToHMSFilter' ,'metersToMilesFilter', 'milesPerHourFilter', function($scope, $http, getMaxValFilter, getSumFilter, metersToMilesFilter, $filter, $sce, secondsToHMSFilter ,metersToMilesFilter, milesPerHourFilter) {
-	// $scope.distanceSum = 0;
-	// $scope.timeSum = 0;
-	// $scope.runsSum = 0;
-	// $scope.maxDistance = 0;
-	// $scope.minPace = 0;
-	// $scope.elevationGain = 0;
-
 	$http.get('data.json').success(function(data) {
 		$scope.data = data;
 
-		// $scope.distanceSum = getSumFilter(data, 'distance');
 		$scope.distanceSum = getSumFilter(data, 'distance');
 		$scope.distanceSum = metersToMilesFilter($scope.distanceSum);
-		// $scope.distanceSum = $filter('number')($scope.distanceSum, 0);
 
 		$scope.runsSum = data.length;
 

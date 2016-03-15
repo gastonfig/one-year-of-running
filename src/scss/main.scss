@@ -3,7 +3,6 @@
 @import "modules/_colors";
 @import "modules/_layout";
 
-
 /* FONTS
 ----------------------------------------------- */
 %primary-sans {
@@ -41,7 +40,6 @@ a {
 }
 
 .intro .container {
-	// background: $bg-color url('/images/hero.jpg') no-repeat center;
 	background-size: cover;
 	display: block;
 	height: 100vh;
@@ -76,16 +74,6 @@ a {
 		span {
 			font-weight: 700;
 			letter-spacing: -.03em;
-
-			// color: desaturate($accent-contrast-b, 20%);
-		// 	color: rgba(#ffffff, 1);
-		// 	font-weight: 700;
-		// 	letter-spacing: -.13em;
-		// 	padding-left: to-rem(35);
-		// 	position: absolute;
-		// 	bottom: -7.5px; // Half of the diff between h1 and span typesizes
-
-		// 	@include type-size(110, 1.1, true);
 
 		// 	&:before {
 		// 		content: '‘';
