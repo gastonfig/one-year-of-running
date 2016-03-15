@@ -43,9 +43,9 @@
                     <p>{{ runsSum }}</p>
                 </div>
 
-                    <div class="copy">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
-                    </div><div class="chart" runs-blocks-chart chart-data="data" animated="{{scrollState.totalRuns.state}}"></div>
+                <div class="copy">
+                    <p>Despite my best efforts, I couldn't keep a consistent running schedule for 2015. However, completing an average of over one run per week was a vast improvement over 2014.</p>
+                </div><div class="chart" runs-blocks-chart chart-data="data" animated="{{scrollState.totalRuns.state}}"></div>
             </div>
         </div>
     </section>
@@ -59,10 +59,9 @@
                     <p>{{ distanceSum | metersToMiles | number:0 }}</p>
                 </div>
 
-
-                    <div class="copy">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet est, vitae pharetra ex. Quisque et venenatis diam, a sollicitudin massa.</p>
-                    </div><div class="chart" miles-bar-chart chart-data="data" animated="{{scrollState.totalMiles.state}}"></div>
+                <div class="copy">
+                    <p>The number of miles ran each month was proportional with the number of runs completed. The only exception was June in which I ran my first half marathon with a few longer runs before to build my endurance.</p>
+                </div><div class="chart" miles-bar-chart chart-data="data" animated="{{scrollState.totalMiles.state}}"></div>
             </div>
         </div>
     </section>
@@ -76,9 +75,9 @@
                     <p class="large_value">{{ elevationGain | number:0 }}<span>ft</span></p>
                 </div>
 
-                    <div class="copy">
-                        <p>Knowing that my main route was relatively flat I was curious to see how my elevation gain compared to a known peak. In this case it was almost half of Mount Hood's elevation.</p>
-                    </div><div class="elevation-charts elevation_mnts-chart"elevation-chart chart-data="data" animated="{{scrollState.elevationGain.state}}"></div><div class="elevation-charts elevation_bar-chart" line-chart chart-data="data" chart-item="total_elevation_gain" animated="{{scrollState.elevationGain.state}}"></div>
+                <div class="copy">
+                    <p>Knowing that my main route was relatively flat I was curious to see how my elevation gain compared to a known peak. In this case it was almost half of Mount Hood's elevation.</p>
+                </div><div class="elevation-charts elevation_mnts-chart"elevation-chart chart-data="data" animated="{{scrollState.elevationGain.state}}"></div><div class="elevation-charts elevation_bar-chart" line-chart chart-data="data" chart-item="total_elevation_gain" animated="{{scrollState.elevationGain.state}}"></div>
             </div>
         </div>
     </section>
