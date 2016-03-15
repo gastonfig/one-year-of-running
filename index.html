@@ -40,7 +40,7 @@
 
             <div class="inner">
                 <div class="value">
-                    <p>{{ runsSum }}</p>
+                    <p ng-bind="runsSum"></p>
                 </div>
 
                 <div class="copy">
@@ -56,7 +56,7 @@
 
             <div class="inner">
                 <div class="value">
-                    <p>{{ distanceSum | metersToMiles | number:0 }}</p>
+                    <p ng-bind="distanceSum | number:0"></p>
                 </div>
 
                 <div class="copy">
@@ -72,7 +72,7 @@
 
             <div class="inner">
                 <div class="value">
-                    <p class="large_value">{{ elevationGain | number:0 }}<span>ft</span></p>
+                    <p class="large_value" ng-bind-html="elevationGain"></p>
                 </div>
 
                 <div class="copy">
@@ -86,19 +86,19 @@
         <div class="container">
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Time on the Road</h3>
-                <p>{{ timeSum | secondsToHMS }}<span>hrs</span></p>
+                <p ng-bind-html="timeSum"></p>
                 <div class=" " line-chart chart-data="data" chart-item="moving_time" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Longest Distance</h3>
-                <p>{{ maxDistance | metersToMiles}}<span>mi</span></p>
+                <p ng-bind-html="maxDistance"></p>
                 <div class="small-stats_chart" line-chart chart-data="data" chart-item="distance" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
             <div class="third value left">
                 <h3 class="small-stats_title stats_title">Fastest Pace</h3>
-                <p>{{ minPace | milesPerHour}}<span>m/mi</span></p>
+                <p ng-bind-html="minPace"></p>
                 <div class="small-stats_chart" line-chart chart-data="data" chart-item="average_speed" animated="{{scrollState.smallStats.state}}"></div>
             </div>
 
