@@ -15,4 +15,4 @@ This is the repository for my [One Year of Running](http://gastonfig.com/one-yea
 `gulp`
 
 ## Deploy to gh-pages
-'gulp deploy'
+`gulp deploy`
