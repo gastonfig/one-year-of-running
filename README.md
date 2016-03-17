@@ -1,12 +1,18 @@
-# Simple boilerplate
+# One Year of Running
 
-Simple boilerplate for quick experiments and tests.
+This is the repository for my [One Year of Running](http://gastonfig.com/one-year-of-running/) annual report.
 
-## Features
-- Gulp ready
-- Bower ready
-- Connect server on port 8888
-- LiveReload
-- Watches
-	- HTML files in root
-	- JS files in /js
+## Dependencies
+- npm
+- Bower
+- Gulp
+
+## Installation
+- `npm install`
+- `bower install`
+
+## Development
+`gulp`
+
+## Deploy to gh-pages
+'gulp deploy'
